@@ -1,7 +1,16 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import Navbar from "../components/Navbar";
+import ScrollObserver from "../components/ScrollObserver";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Navbar />
+      <ScrollObserver>
+        <Component {...pageProps} />
+      </ScrollObserver>
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;
