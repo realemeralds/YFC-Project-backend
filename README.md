@@ -34,7 +34,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Build Instructions
+
 ```
-npm install -D tailwindcss postcss postcss-import autoprefixer 
+npm install -D tailwindcss postcss postcss-import autoprefixer sass
 npx tailwindcss init -p
 ```

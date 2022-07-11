@@ -3,8 +3,8 @@ import { TileBackground, TileWrapper, TileContent, Tile } from "./tile";
 import {
   ProblemBackground,
   ProblemContainer,
-  WorkLeft,
-  WorkRight,
+  ProblemLeft,
+  ProblemRight,
 } from "./problem";
 import Image from "next/image";
 
@@ -18,10 +18,10 @@ const Problems = () => (
         page={0}
         renderContent={({ progress }) => (
           <ProblemContainer>
-            <WorkLeft progress={progress}>
+            <ProblemLeft progress={progress}>
               <p>We built</p>
-            </WorkLeft>
-            <WorkRight progress={progress}>
+            </ProblemLeft>
+            <ProblemRight progress={progress}>
               <Image
                 src="/placeholder.png"
                 layout="responsive"
@@ -29,7 +29,7 @@ const Problems = () => (
                 height={600}
                 alt="placeholder"
               />
-            </WorkRight>
+            </ProblemRight>
           </ProblemContainer>
         )}
       />
@@ -39,10 +39,10 @@ const Problems = () => (
         page={1}
         renderContent={({ progress }) => (
           <ProblemContainer>
-            <WorkLeft progress={progress}>
+            <ProblemLeft progress={progress}>
               <p>We built</p>
-            </WorkLeft>
-            <WorkRight progress={progress}>
+            </ProblemLeft>
+            <ProblemRight progress={progress}>
               <Image
                 src="/placeholder.png"
                 layout="responsive"
@@ -50,7 +50,7 @@ const Problems = () => (
                 height={600}
                 alt="placeholder"
               />
-            </WorkRight>
+            </ProblemRight>
           </ProblemContainer>
         )}
       />
@@ -60,10 +60,10 @@ const Problems = () => (
         page={2}
         renderContent={({ progress }) => (
           <ProblemContainer>
-            <WorkLeft progress={progress}>
+            <ProblemLeft progress={progress}>
               <p>We built</p>
-            </WorkLeft>
-            <WorkRight progress={progress}>
+            </ProblemLeft>
+            <ProblemRight progress={progress}>
               <Image
                 src="/placeholder.png"
                 layout="responsive"
@@ -71,10 +71,9 @@ const Problems = () => (
                 height={600}
                 alt="placeholder"
               />
-            </WorkRight>
+            </ProblemRight>
           </ProblemContainer>
         )}
-        z
       />
     </TileContent>
   </TileWrapper>

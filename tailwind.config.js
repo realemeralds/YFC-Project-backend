@@ -12,6 +12,12 @@ module.exports = {
       height: {
         "half-screen": "50vh",
       },
+      colors: {
+        primary: "#E8E2CA",
+        secondary: "#f19606",
+        firstAccent: "#3b454e",
+        secondAccent: "#806751",
+      },
     },
   },
   plugins: [],
