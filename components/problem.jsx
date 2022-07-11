@@ -11,8 +11,12 @@ export const ProblemBackground = () => (
   </div>
 );
 
+export const ProblemBackgroundContainer = ({ children }) => (
+  <div className="absolute h-full w-full">{children}</div>
+);
+
 export const ProblemLeft = ({ children, progress }) => {
-  let translateY = Math.max(0, 50 - progress * 150);
+  let translateY = Math.max(0, 50 - progress * 3 * 50);
   if (progress > 0.85) translateY = Math.max(-50, -(progress - 0.85) * 100);
   return (
     <div
@@ -29,7 +33,7 @@ export const ProblemRight = ({ children, progress }) => {
   return (
     <div
       className="flex flex-1 lg:items-center justify-center h-screen"
-      style={{ transform: `translateY (${translateY}px)` }}
+      style={{ transform: `translate(${translateY}px)` }}
     >
       <div className="w-full max-w-md pt-10 lg:pt-0 px-10 md:px-0">
         {children}

@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div>
       <div
-        className={`justify-center items-center w-full flex absolute top-1 transition-all duration-500 ${
+        className={`justify-center items-center w-full flex absolute top-1 transition-all duration-1000 ${
           imageLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -26,7 +26,7 @@ const Header = () => {
         />
       </div>
       <div
-        className={`justify-center items-center w-full flex absolute bottom-6 transition-all duration-1000 ${
+        className={`justify-center items-center w-full flex absolute bottom-6 transition-all delay-300 duration-1000 ${
           imageLoaded ? "opacity-100" : "opacity-0 -translate-y-10"
         }`}
       >

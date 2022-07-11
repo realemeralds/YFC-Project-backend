@@ -1,7 +1,8 @@
 import React from "react";
-import { TileBackground, TileWrapper, TileContent, Tile } from "./tile";
+import { TileWrapper, TileContent, Tile } from "./tile";
 import {
   ProblemBackground,
+  ProblemBackgroundContainer,
   ProblemContainer,
   ProblemLeft,
   ProblemRight,
@@ -10,9 +11,9 @@ import Image from "next/image";
 
 const Problems = () => (
   <TileWrapper numOfPages={3}>
-    <TileBackground>
+    <ProblemBackgroundContainer>
       <ProblemBackground />
-    </TileBackground>
+    </ProblemBackgroundContainer>
     <TileContent>
       <Tile
         page={0}
@@ -33,8 +34,6 @@ const Problems = () => (
           </ProblemContainer>
         )}
       />
-    </TileContent>
-    <TileContent>
       <Tile
         page={1}
         renderContent={({ progress }) => (
@@ -54,8 +53,6 @@ const Problems = () => (
           </ProblemContainer>
         )}
       />
-    </TileContent>
-    <TileContent>
       <Tile
         page={2}
         renderContent={({ progress }) => (
