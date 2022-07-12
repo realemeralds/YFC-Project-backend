@@ -26,9 +26,10 @@ export default function Canvas() {
   const [ctx2, setCtx2] = useState();
   const [overlayContext, setOverlayContext] = useState();
   const [imgLoad, setImgLoad] = useState();
-  const [clearRectArray, setClearRectArray] = useState();
+  const [clearRectArray, setClearRectArray] = useState("");
   let tempArray;
   const [changed, setChanged] = useState(false);
+  const [countdownText, setCountdownText] = useState(undefined);
 
   const width = 1002;
   const height = 802;
@@ -230,8 +231,15 @@ export default function Canvas() {
         }
       };
 
+      let countdownDuration = 300;
+      const countdown = (n) => {
+        setCountdownText(`${Math.floor(n / 60)}:${n % 60} left`);
+        // setTimeout(countdown(n - 1), 1000);
+      };
+
       // Mount event listeners on load
       if (!triggered) {
+        setCountdownText("hello world");
         setImgLoad(localImgLoad(ctx2, imgRef.current, canvas));
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
@@ -252,6 +260,7 @@ export default function Canvas() {
           selectpos.y = undefined;
           breakButton.disabled = true;
           cancelButton.disabled = true;
+          countdown(countdownDuration);
         });
         window.addEventListener("mousedown", () => {
           if (mouseOnCanvas) {
@@ -308,57 +317,117 @@ export default function Canvas() {
   }, [backendURL]);
 
   return (
-    <CanvasContainer>
-      <CanvasWrapper zindex={0} daRef={bgCanvasRef} />
-      <CanvasWrapper zindex={10} shadow daRef={mainCanvasRef} />
-      <CanvasWrapper zindex={20} daRef={overlayCanvasRef} />
-      <div className="flex flex-row space-x-10 absolute bottom-10 left-0 w-full justify-center">
-        <CanvasButton icon={faCheck} text="Break" daRef={breakButtonRef} />
-        <CanvasButton icon={faXmark} text="Break" daRef={cancelButtonRef} />
-      </div>
-      <div style={{ display: "none" }}>
-        <img
-          ref={imgRef}
-          src="/finalpixelart.jpg"
-          onLoad={imgLoad}
-          width={750}
-          height={600}
+    <>
+      <CanvasContainer>
+        <CanvasWrapper>
+          <CanvasElement zindex={0} daRef={bgCanvasRef} />
+          <CanvasElement zindex={10} shadow daRef={mainCanvasRef} />
+          <CanvasElement zindex={20} daRef={overlayCanvasRef} />
+        </CanvasWrapper>
+        <CanvasSidebar
+          breakButtonRef={breakButtonRef}
+          cancelButtonRef={cancelButtonRef}
+          countdownText={countdownText}
         />
-      </div>
-    </CanvasContainer>
+      </CanvasContainer>
+      <ImageLoader daRef={imgRef} imgLoad={imgLoad} />
+    </>
   );
 }
 
-export const CanvasWrapper = ({ shadow, zindex, daRef }) => {
+export const CanvasContainer = ({ children }) => {
+  return (
+    <div className="h-screen flex justify-start items-center bg-firstAccent relative flex-row">
+      {children}
+    </div>
+  );
+};
+
+export const CanvasWrapper = ({ children }) => {
+  return (
+    <div className="w-[calc(752px+3vw)] lg:block hidden h-screen">
+      {children}
+    </div>
+  );
+};
+
+export const CanvasElement = ({ shadow, zindex, daRef }) => {
   return (
     <canvas
       ref={daRef}
-      className={`z-${zindex} top-1/2 left-1/2 lg:w-[752px] lg:h-[602px] lg:block hidden -translate-x-[376px] -translate-y-[251px] absolute ${
+      className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-[301px] lg:w-[752px] lg:h-[602px] ${
         shadow ? styles.shadow : ""
       }`}
     />
   );
 };
 
-export const CanvasContainer = ({ children }) => {
+export const CanvasSidebar = ({
+  breakButtonRef,
+  cancelButtonRef,
+  countdownText,
+}) => {
   return (
-    <div className="h-[150vh] w-full flex justify-center items-center bg-firstAccent relative">
-      <p className="text-4xl absolute top-[10%] text-center m-auto text-white">
-        Click the canvas below to find out more about dyslexia!
+    <div className="w-[calc(97vw-752px)] px-10">
+      <p className="text-4xl mb-5 text-center m-auto text-white">
+        paint on the mural to find out more about dyslexia.
       </p>
-      {children}
+      <p className="text-4xl mb-7 text-center m-auto text-white">
+        changes by other users are updated live, and there is a short cooldown
+        to add new pixels
+      </p>
+      <div className="flex flex-col space-y-5 justify-center align-center">
+        <div className="flex flex-row space-x-10 justify-center">
+          <CanvasButton icon={faCheck} text="Break" ref={breakButtonRef} />
+          <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
+        </div>
+        <CanvasCooldown text={countdownText} />
+      </div>
     </div>
   );
 };
 
-export const CanvasButton = ({ icon, text, daRef }) => {
+export const CanvasButton = React.forwardRef(({ icon, text }, ref) => {
   return (
     <button
-      ref={daRef}
+      ref={ref}
       className="bg-white shadow-md px-5 py-3 rounded-full disabled:bg-disabled flex flex-row align-center justify-center text-green-600 disabled:text-slate-500"
     >
       <FontAwesomeIcon icon={icon} size="lg" className="relative top-[7px]" />
-      <span className="text-2xl whitespace-pre ml-3 ">{text}</span>
+      <span className="text-2xl whitespace-pre ml-3">{text}</span>
     </button>
+  );
+});
+
+export const CanvasCooldown = ({ text }) => {
+  let expired = false;
+  let exampleText;
+  exampleText = text;
+  !text ? (exampleText = "ready!") : console.log("");
+
+  return (
+    <div className="min-w-[86px] px-4 py-2 bg-white rounded-full m-auto flex align-center justify-center">
+      <p
+        className={` text-xl font-semibold ${
+          expired ? "text-green-600" : "text-black"
+        }`}
+      >
+        {exampleText}
+      </p>
+    </div>
+  );
+};
+
+export const ImageLoader = ({ daRef, imgLoad }) => {
+  return (
+    <div style={{ display: "none" }}>
+      <img
+        ref={daRef}
+        src="/finalpixelart.jpg"
+        onLoad={imgLoad}
+        width={750}
+        height={600}
+      />
+    </div>
   );
 };

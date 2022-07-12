@@ -18,6 +18,9 @@ module.exports = {
         firstAccent: "#3b454e",
         secondAccent: "#806751",
       },
+      gridTemplateColumns: {
+        layout: "minmax(500px, 2fr) 3fr",
+      }, 
     },
   },
   plugins: [],
