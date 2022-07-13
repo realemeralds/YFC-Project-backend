@@ -6,6 +6,7 @@ import {
   ProblemContainer,
   ProblemLeft,
   ProblemRight,
+  ChangingText,
 } from "./problem";
 import Image from "next/image";
 
@@ -63,13 +64,9 @@ const Problems = () => (
               </p>
             </ProblemLeft>
             <ProblemRight progress={progress}>
-              <Image
-                src="/placeholder.png"
-                layout="responsive"
-                width={600}
-                height={600}
-                alt="placeholder"
-              />
+              <div className="space-y-6">
+                <ChangingText />
+              </div>
             </ProblemRight>
           </ProblemContainer>
         )}
@@ -83,26 +80,25 @@ const Problems = () => (
                 <span className="text-4xl font-semibold underline decoration-2 underline-offset-2">
                   On top of this,
                 </span>{" "}
-                Dyslexics have to deal with common misunderstandings of their
+                dyslexics have to deal with common misunderstandings of their
                 condition.
               </p>
             </ProblemLeft>
             <ProblemRight progress={progress}>
-              <div>
-                <div className="p-8 bg-secondAccent flex justify-center items-center">
-                  <p className="text-3xl"> 
-                    Everyday tasks are excruciatingly frustrating, with text
-                    being substituted, reversed, inserted, omitted and even
-                    combined,{" "}
-                    <span className="font-bold">at the same time.</span> Even
-                    dyslexics who can read decently well may experience severe
-                    headache minutes into reading.
-                  </p>
-                </div>
-                <div>
-                  <div></div>
-                  <div></div>
-                </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "80vh",
+                  position: "relative",
+                  display: "flex",
+                }}
+              >
+                <Image
+                  src="/misunderstandings.png"
+                  alt="misunderstandings of dyslexics"
+                  layout="fill"
+                  objectFit="contain"
+                />
               </div>
             </ProblemRight>
           </ProblemContainer>

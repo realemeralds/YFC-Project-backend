@@ -522,6 +522,18 @@
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.182.tgz"
   "version" "1.4.182"
 
+"embla-carousel-react@^7.0.0-rc04":
+  "integrity" "sha512-5Ndn+EeLX9DPZnR1wXH5+y9gnrh+ML5HO0+20l6rcnuhVqpJRMv2E3ZWnAw4jw7HmHAl+5eDKZaA6CGxgWiUdQ=="
+  "resolved" "https://registry.npmjs.org/embla-carousel-react/-/embla-carousel-react-7.0.0-rc04.tgz"
+  "version" "7.0.0-rc04"
+  dependencies:
+    "embla-carousel" "7.0.0-rc04"
+
+"embla-carousel@7.0.0-rc04":
+  "integrity" "sha512-vhzwCEdEqwS5c6jlfPHy/X1uUkwf9AvMma8KWNbmTgB3NUNN9hoqiyTdrpraMtPU5MzlxpZipln74ZwDK4v63g=="
+  "resolved" "https://registry.npmjs.org/embla-carousel/-/embla-carousel-7.0.0-rc04.tgz"
+  "version" "7.0.0-rc04"
+
 "emoji-regex@^9.2.2":
   "integrity" "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg=="
   "resolved" "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz"
@@ -1611,7 +1623,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0-0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.3", "react@18.2.0":
+"react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0-0", "react@^18.1.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.3", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

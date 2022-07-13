@@ -30,9 +30,26 @@ export default function Canvas() {
   let tempArray;
   const [changed, setChanged] = useState(false);
   const [countdownText, setCountdownText] = useState(undefined);
+  const [canvasDisabled, setCanvasDisabled] = useState(false);
 
   const width = 1002;
   const height = 802;
+  const countdownDuration = 300;
+
+  useEffect(() => {
+    console.log(canvasDisabled);
+    function countdown(n) {
+      if (n === 0) return;
+      // else if (n === countdownDuration)
+      // console.log(`called, ${n}, ${canvasDisabled}`);
+      setCountdownText(`${Math.floor(n / 60)}:${n % 60}`);
+      setTimeout(() => {
+        countdown(n - 1);
+      }, 1000);
+    }
+    if (!canvasDisabled) return;
+    countdown(countdownDuration);
+  }, [canvasDisabled]);
 
   useEffect(() => {
     setCanvas(mainCanvasRef.current);
@@ -148,6 +165,7 @@ export default function Canvas() {
       // @param y: center y-coord of pixel
       const outlineElement = (x, y) => {
         // Create a grey background
+        if (canvasDisabled) return;
         overlayContext.clearRect(0, 0, canvas.width, canvas.height);
         overlayContext.fillStyle = "#d0d0d0";
         overlayContext.fillRect(x - 1, y - 1, pixelSize + 1, pixelSize + 1);
@@ -172,6 +190,7 @@ export default function Canvas() {
       // create a red box after clicking on one
       const selectedElement = (x, y) => {
         // Create a border of 1 px, length 2 px
+        if (canvasDisabled) return;
         overlayContext.beginPath();
         overlayContext.moveTo(x + 3, y);
         overlayContext.lineTo(x, y);
@@ -197,10 +216,11 @@ export default function Canvas() {
           overlaypos.x = x - (x % 10) + 1; // +1 to compensate for padding
           overlaypos.y = y - (y % 10) + 1;
           if (
-            clearRectArray &&
-            JSON.stringify(clearRectArray).includes(
-              `[${overlaypos.x},${overlaypos.y}]`
-            )
+            (clearRectArray &&
+              JSON.stringify(clearRectArray).includes(
+                `[${overlaypos.x},${overlaypos.y}]`
+              )) ||
+            canvasDisabled
           ) {
             removePos();
             return;
@@ -231,15 +251,8 @@ export default function Canvas() {
         }
       };
 
-      let countdownDuration = 300;
-      const countdown = (n) => {
-        setCountdownText(`${Math.floor(n / 60)}:${n % 60} left`);
-        // setTimeout(countdown(n - 1), 1000);
-      };
-
       // Mount event listeners on load
       if (!triggered) {
-        setCountdownText("hello world");
         setImgLoad(localImgLoad(ctx2, imgRef.current, canvas));
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
@@ -260,12 +273,13 @@ export default function Canvas() {
           selectpos.y = undefined;
           breakButton.disabled = true;
           cancelButton.disabled = true;
-          countdown(countdownDuration);
+          setCanvasDisabled(true);
         });
         window.addEventListener("mousedown", () => {
-          if (mouseOnCanvas) {
+          if (mouseOnCanvas && !canvasDisabled) {
             selectpos.x = overlaypos.x;
             selectpos.y = overlaypos.y;
+            console.log(canvasDisabled);
             breakButton.disabled = false;
             cancelButton.disabled = false;
           }
@@ -298,7 +312,7 @@ export default function Canvas() {
         }
       }
     }
-  }, [canvas, canvas2, ctx, ctx2, changed]);
+  }, [canvas, canvas2, ctx, ctx2, changed, canvasDisabled]);
 
   // Connect to backend
   useEffect(() => {
@@ -330,6 +344,7 @@ export default function Canvas() {
           countdownText={countdownText}
         />
       </CanvasContainer>
+      <CanvasReplace />
       <ImageLoader daRef={imgRef} imgLoad={imgLoad} />
     </>
   );
@@ -337,7 +352,7 @@ export default function Canvas() {
 
 export const CanvasContainer = ({ children }) => {
   return (
-    <div className="h-screen flex justify-start items-center bg-firstAccent relative flex-row">
+    <div className="sm:h-screen flex justify-center items-center bg-firstAccent relative flex-row h-0">
       {children}
     </div>
   );
@@ -345,17 +360,17 @@ export const CanvasContainer = ({ children }) => {
 
 export const CanvasWrapper = ({ children }) => {
   return (
-    <div className="w-[calc(752px+3vw)] lg:block hidden h-screen">
+    <div className="w-[calc(752px+3vw)] sm:block hidden h-screen basis-4/5">
       {children}
     </div>
   );
 };
 
-export const CanvasElement = ({ shadow, zindex, daRef }) => {
+export const CanvasElement = ({ shadow, zindex, daRef, state }) => {
   return (
     <canvas
       ref={daRef}
-      className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-[301px] lg:w-[752px] lg:h-[602px] ${
+      className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-1/2 max-h-[90vh] w-[60vw] ${
         shadow ? styles.shadow : ""
       }`}
     />
@@ -368,20 +383,22 @@ export const CanvasSidebar = ({
   countdownText,
 }) => {
   return (
-    <div className="w-[calc(97vw-752px)] px-10">
-      <p className="text-4xl mb-5 text-center m-auto text-white">
-        paint on the mural to find out more about dyslexia.
-      </p>
-      <p className="text-4xl mb-7 text-center m-auto text-white">
-        changes by other users are updated live, and there is a short cooldown
-        to add new pixels
-      </p>
-      <div className="flex flex-col space-y-5 justify-center align-center">
-        <div className="flex flex-row space-x-10 justify-center">
-          <CanvasButton icon={faCheck} text="Break" ref={breakButtonRef} />
-          <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
+    <div className="cv:w-[38vw]  hidden sm:block cv:flex justify-center items-center  basis-2/5">
+      <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
+        <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
+          paint on the mural to find out more about dyslexia.
+        </p>
+        <p className="text-4xl mb-7  hidden cv:block text-center m-auto text-white">
+          changes by other users are updated live, and there is a short cooldown
+          to add new pixels
+        </p>
+        <div className="flex flex-col space-y-5 justify-center align-center">
+          <div className="flex flex-col cv:flex-row cv:space-y-0 cv:space-x-10 cv:w-auto space-y-5 justify-center items-center">
+            <CanvasButton icon={faCheck} text="Break" ref={breakButtonRef} />
+            <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
+          </div>
+          <CanvasCooldown text={countdownText} />
         </div>
-        <CanvasCooldown text={countdownText} />
       </div>
     </div>
   );
@@ -403,7 +420,7 @@ export const CanvasCooldown = ({ text }) => {
   let expired = false;
   let exampleText;
   exampleText = text;
-  !text ? (exampleText = "ready!") : console.log("");
+  !text ? (exampleText = "ready!") : console.log();
 
   return (
     <div className="min-w-[86px] px-4 py-2 bg-white rounded-full m-auto flex align-center justify-center">
@@ -428,6 +445,16 @@ export const ImageLoader = ({ daRef, imgLoad }) => {
         width={750}
         height={600}
       />
+    </div>
+  );
+};
+
+export const CanvasReplace = () => {
+  return (
+    <div className="bg-black py-10 sm:hidden block">
+      <h3 className="font-semibold text-3xl text-white text-center px-4">
+        Oops! Looks like your device is too small to load the mural :/
+      </h3>
     </div>
   );
 };

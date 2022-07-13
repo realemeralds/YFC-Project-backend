@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/embla.css";
 import Navbar from "../components/Navbar";
 import ScrollObserver from "../components/ScrollObserver";
 
@@ -10,7 +11,6 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Navbar />
       <ScrollObserver>
         <Component {...pageProps} />
       </ScrollObserver>
