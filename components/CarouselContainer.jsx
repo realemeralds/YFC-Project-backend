@@ -41,7 +41,7 @@ const CarouselContainer = () => {
 
   return (
     <div className="w-full flex pt-[5vh] items-center justify-center h-screen">
-      <div className="embla w-4/5 bg-slate-300">
+      <div className="embla w-4/5 bg-slate-300 rounded-3xl">
         <div class="embla__viewport overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex h-[420px] items-center">
             <div className="embla__slide">

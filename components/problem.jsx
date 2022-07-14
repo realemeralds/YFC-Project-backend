@@ -47,7 +47,7 @@ export const ProblemRight = ({ children, progress }) => {
   }, [children]);
   return (
     <div
-      className="flex flex-grow w-full lg:items-center justify-center h-screen"
+      className="flex flex-grow w-full lg:items-center justify-center h-screen z-10"
       style={{ transform: `translateY(${translateY}px)` }}
     >
       <div className="w-full mx-24 pt-10 lg:pt-0 px-10 md:px-0">{children}</div>
@@ -55,12 +55,12 @@ export const ProblemRight = ({ children, progress }) => {
   );
 };
 
-export const ChangingText = () => {
+export const ChangingText = ({ progress }) => {
   const paraRef = useRef(null);
   const text = `Everyday tasks are excruciatingly frustrating, with text being
   substituted, reversed, inserted, omitted and even combined, 
   at the same time. Even dyslexics who
-  can read decently well may experience severe headache minutes into
+  can read decently well may experience severe headaches minutes into
   reading.`;
   let displayedWords = text.split(/\s+/);
   let originalWords = text.split(/\s+/);
@@ -68,47 +68,45 @@ export const ChangingText = () => {
   let running = 0;
   let dict = "qwertyuiopasdfghjklzxcvbnm";
   let para;
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     for (var i = 0; i < displayedWords.length; i++) {
       changeCheck.push(false);
-      console.log("triggered", i);
     }
     console.log(displayedWords);
-    messUpWord(getRandomInt(displayedWords.length));
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
-    messUpWord(getRandomInt(displayedWords.length), 4);
+    messUpWords();
   }, []);
 
   useEffect(() => {
-    if (paraRef && running < 1) {
-      para = paraRef.current;
-      messUpWords(para);
-      running += 1;
-      console.log(`running: ${running}`);
-    }
+    console.log(progress);
+  }, [progress]);
+
+  useEffect(() => {
+    // if (paraRef && running < 1) {
+    //   para = paraRef.current;
+    //   // messUpWords(para);
+    //   running += 1;
+    //   console.log(`running: ${running}`);
+    // }
   }, [paraRef]);
 
-  /*one
-  petty to pretty (insertion) 3
-  saw to was (reversal)
-  
-  two
-  fog to dog (substitution) 1
-  plain to pain (omission) 2
-  swapping of positions 
-  Substitution of vowels (a e i o u) */
+  useEffect(() => {
+    console.log(paused);
+  }, [paused]);
 
-  function messUpWord(index, mode = getRandomInt(2) + 1) {
+  function messUpWord(p, index, mode = getRandomInt(5) + 1) {
+    if (changeCheck.includes(index)) {
+      displayedWords[index] = originalWords[index];
+      // console.log(`reverted ${displayedWords[index]}`);
+      changeCheck.splice(changeCheck.indexOf(index), 1);
+      p.innerHTML = displayedWords.join(" ");
+      return;
+    }
+
     let displayedWord = displayedWords[index];
     if (!displayedWord) {
-      console.log("returning");
+      console.log("uh oh"); // TODO: remove
       return;
     }
     let punctuation = "";
@@ -123,14 +121,14 @@ export const ChangingText = () => {
     }
     let randomChar = dict.charAt(getRandomInt(26));
     if (mode === 1 || mode === 2 || mode === 3) {
-      // substitution or omission
+      // substitution (1) or omission (2) or insertion (3)
       let randomIndex = getRandomInt(displayedWord.length - 1) + 1; // keep the front
       let before = displayedWord.slice(0, randomIndex);
       let after = displayedWord.slice(randomIndex + 1);
       if (mode === 3) {
         after = displayedWord.slice(randomIndex);
       }
-      console.log(`original: ${displayedWord}`);
+      // console.log(`original: ${displayedWord}`);
       mode === 2
         ? (displayedWord =
             before +
@@ -142,33 +140,53 @@ export const ChangingText = () => {
             after.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "") +
             punctuation);
 
-      console.log(`final: ${displayedWord}, ${mode}`);
-    } else if (mode == 4) {
+      // console.log(`final: ${displayedWord}, ${mode}`);
+    } else if (mode === 4) {
       displayedWord =
         displayedWord
           .split("")
           .reverse()
           .join("")
           .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "") + punctuation;
+    } else if (mode === 5) {
+      let wordArray = displayedWord.split("");
+      let randomIndex = getRandomInt(displayedWord.length - 2) + 1;
+      let temp = wordArray[randomIndex + 1];
+      wordArray[randomIndex + 1] = wordArray[randomIndex];
+      wordArray[randomIndex] = temp;
+      displayedWord =
+        wordArray.join("").replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "") +
+        punctuation;
     }
-
     displayedWords[index] = displayedWord;
-    console.log(displayedWords);
+    p.innerHTML = displayedWords.join(" ");
+    changeCheck.push(index);
   }
 
-  function messUpWords(p) {
-    console.log("messing up words");
-    if (p) {
+  function messUpWords() {
+    if (!paraRef.current || paused) return;
+    para = paraRef.current;
+    // console.log("messing up words");
+    if (para) {
       if (running > 1) {
         return;
       }
-      for (var i = 0; i < displayedWords.length && Math.random() < 0.1; i++) {
-        messUpFunctionArray[getRandomInt(messUpFunctionArray.length)](i);
+      for (var i = 0; i < displayedWords.length; i++) {
+        if (Math.random() < 0.1) messUpWord(para, i);
       }
-      p.innerHTML = displayedWords.join(" ");
-      console.log(running);
-      // setTimeout(messUpWords(p), 1000);
+      // console.log(running);
+      // console.log(paused);
+      setTimeout(messUpWords, 1000);
     }
+  }
+
+  function resetWords() {
+    if (!paraRef.current) return;
+    para = paraRef.current;
+    displayedWords = originalWords;
+    para.innerHTML = displayedWords.join(" ");
+    changeCheck = [];
+    console.log("words reset");
   }
 
   function getRandomInt(max) {
@@ -177,7 +195,7 @@ export const ChangingText = () => {
 
   return (
     <>
-      <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl">
+      <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000]">
         <p ref={paraRef} className="text-3xl">
           Everyday tasks are excruciatingly frustrating, with text being
           substituted, reversed, inserted, omitted and even combined, at the
@@ -185,13 +203,21 @@ export const ChangingText = () => {
           severe headaches minutes into reading.
         </p>
       </div>
-      <div className="space-x-4 flex justify-center align-center">
-        <div className="bg-secondary text-white text-xl font-medium px-5 py-3 rounded-3xl">
+      <div className="space-x-4 flex justify-center align-center z-[2999]">
+        <button
+          onClick={() => {
+            setPaused(!paused);
+          }}
+          className="bg-secondary text-white text-xl font-medium px-5 py-3 rounded-3xl"
+        >
           PAUSE
-        </div>
-        <div className="bg-secondary text-white text-xl font-medium px-5 py-3 rounded-3xl">
+        </button>
+        <button
+          onClick={resetWords}
+          className="bg-secondary text-white text-xl font-medium px-5 py-3 rounded-3xl relative z-[3000]"
+        >
           RESET
-        </div>
+        </button>
       </div>
     </>
   );

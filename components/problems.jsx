@@ -8,7 +8,7 @@ import {
   ProblemRight,
   ChangingText,
 } from "./problem";
-import Image from "next/image";
+import Image from "next/future/image";
 
 const Problems = () => (
   <TileWrapper numOfPages={3}>
@@ -31,13 +31,23 @@ const Problems = () => (
               </p>
             </ProblemLeft>
             <ProblemRight progress={progress}>
-              <Image
-                src="/placeholder.png"
-                layout="responsive"
-                width={600}
-                height={600}
-                alt="placeholder"
-              />
+              <div
+                style={{
+                  width: "100%",
+                  height: "80vh",
+                  position: "relative",
+                  display: "flex",
+                  pointerEvents: "none",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src="/panel1.png"
+                  alt="Embrace dysxleia poster"
+                  className="pointer-events-none z-10 object-center object-contain"
+                />
+              </div>
             </ProblemRight>
           </ProblemContainer>
         )}
@@ -65,7 +75,7 @@ const Problems = () => (
             </ProblemLeft>
             <ProblemRight progress={progress}>
               <div className="space-y-6">
-                <ChangingText />
+                <ChangingText progess={progress} />
               </div>
             </ProblemRight>
           </ProblemContainer>
@@ -91,13 +101,14 @@ const Problems = () => (
                   height: "80vh",
                   position: "relative",
                   display: "flex",
+                  pointerEvents: "none",
+                  justifyContent: "center",
                 }}
               >
                 <Image
                   src="/misunderstandings.png"
                   alt="misunderstandings of dyslexics"
-                  layout="fill"
-                  objectFit="contain"
+                  className="pointer-events-none z-10 object-center object-contain"
                 />
               </div>
             </ProblemRight>

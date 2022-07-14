@@ -40,7 +40,7 @@ export const TileWrapper = ({ children, numOfPages }) => {
 };
 
 export const TileContent = ({ children }) => (
-  <div className="sticky top-0 h-screen overflow-hidden">{children}</div>
+  <div className="sticky top-0 h-screen overflow-hidden z-10">{children}</div>
 );
 
 export const Tile = ({ page, renderContent }) => {
@@ -58,7 +58,7 @@ export const Tile = ({ page, renderContent }) => {
       ref={refContainer}
       className="absolute top-0 w-full"
       style={{
-        pointerEvents: progress >= 0 || progress >= 1 ? "none" : undefined,
+        pointerEvents: progress >= 0 || progress >= 1 ? "auto" : undefined,
         opacity,
       }}
     >
