@@ -27,6 +27,8 @@ module.exports = {
         firstAccent: "#3b454e",
         secondAccent: "#806751",
         thirdAccent: "#282C24",
+        fadedWhite: "#FAFBFB",
+        borderWhite: "#D6D9DB",
       },
       gridTemplateColumns: {
         layout: "minmax(500px, 2fr) 3fr",
