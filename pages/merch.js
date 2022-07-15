@@ -5,6 +5,7 @@ const Home = () => {
     <>
       <Navbar />
       <p>Hello world!</p>
+      <BotPanel />
     </>
   );
 };

@@ -11,6 +11,7 @@ module.exports = {
       twoxsm: "444px",
       xsm: "515px",
       project: "700px",
+      changingText: "768px",
       cv: "1168px",
       ...defaultTheme.screens,
     },
@@ -38,6 +39,10 @@ module.exports = {
       },
       fontFamily: {
         futuraLight: ["FuturaLight", "SF Pro Display"],
+      },
+      boxShadow: {
+        cards: "0px 2px #E5E5E5",
+        cardsActive: "0px 8px #E5E5E5",
       },
     },
   },

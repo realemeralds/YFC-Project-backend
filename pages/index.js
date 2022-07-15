@@ -5,6 +5,7 @@ import Footer from "../components/IndexFooter";
 import Problems from "../components/Problems";
 import Canvas from "../components/Canvas";
 import Navbar from "../components/Navbar";
+import BotPanel from "../components/BotPanel";
 
 const Home = () => {
   return (
@@ -13,8 +14,8 @@ const Home = () => {
       <Header />
       <Problems />
       <Canvas />
-      <Header />
       <Footer />
+      <BotPanel />
     </>
   );
 };

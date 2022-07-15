@@ -31,23 +31,30 @@ export default function Canvas() {
   const [changed, setChanged] = useState(false);
   const [countdownText, setCountdownText] = useState(undefined);
   const [canvasDisabled, setCanvasDisabled] = useState(false);
+  const [mousedown, setMousedown] = useState(false);
 
   const width = 1002;
   const height = 802;
-  const countdownDuration = 300;
+  const countdownDuration = 30;
 
   useEffect(() => {
     console.log(canvasDisabled);
+    let min, sec;
     function countdown(n) {
-      if (n === 0) return;
-      // else if (n === countdownDuration)
-      // console.log(`called, ${n}, ${canvasDisabled}`);
-      setCountdownText(`${Math.floor(n / 60)}:${n % 60}`);
+      if (n === 0) {
+        setCountdownText("ready!");
+        return;
+      }
+      min = Math.floor(n / 60);
+      sec = n % 60;
+      if (sec.toString().length < 2) sec = "0" + sec;
+      setCountdownText(`${min}:${sec}`);
       setTimeout(() => {
         countdown(n - 1);
       }, 1000);
     }
     if (!canvasDisabled) return;
+    console.log(`called ${canvasDisabled}`);
     countdown(countdownDuration);
   }, [canvasDisabled]);
 
@@ -276,14 +283,7 @@ export default function Canvas() {
           setCanvasDisabled(true);
         });
         window.addEventListener("mousedown", () => {
-          if (mouseOnCanvas && !canvasDisabled) {
-            selectpos.x = overlaypos.x;
-            selectpos.y = overlaypos.y;
-            console.log(canvasDisabled);
-            breakButton.disabled = false;
-            cancelButton.disabled = false;
-          }
-          selectedElement(selectpos.x, selectpos.y);
+          setMousedown(true);
         });
         cancelButton.addEventListener("click", () => {
           selectpos.x = undefined;
@@ -334,9 +334,22 @@ export default function Canvas() {
     <>
       <CanvasContainer>
         <CanvasWrapper>
-          <CanvasElement zindex={0} daRef={bgCanvasRef} />
-          <CanvasElement zindex={10} shadow daRef={mainCanvasRef} />
-          <CanvasElement zindex={20} daRef={overlayCanvasRef} />
+          <CanvasElement
+            zindex={0}
+            daRef={bgCanvasRef}
+            active={!canvasDisabled}
+          />
+          <CanvasElement
+            zindex={10}
+            shadow
+            daRef={mainCanvasRef}
+            active={!canvasDisabled}
+          />
+          <CanvasElement
+            zindex={20}
+            daRef={overlayCanvasRef}
+            active={!canvasDisabled}
+          />
         </CanvasWrapper>
         <CanvasSidebar
           breakButtonRef={breakButtonRef}
@@ -366,13 +379,14 @@ export const CanvasWrapper = ({ children }) => {
   );
 };
 
-export const CanvasElement = ({ shadow, zindex, daRef, state }) => {
+export const CanvasElement = ({ shadow, zindex, daRef, active }) => {
   return (
     <canvas
       ref={daRef}
       className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-1/2 max-h-[90vh] w-[60vw] ${
         shadow ? styles.shadow : ""
       }`}
+      style={{ pointerEvents: active ? "auto" : "none" }}
     />
   );
 };
@@ -444,6 +458,7 @@ export const ImageLoader = ({ daRef, imgLoad }) => {
         onLoad={imgLoad}
         width={750}
         height={600}
+        className="z-20"
       />
     </div>
   );

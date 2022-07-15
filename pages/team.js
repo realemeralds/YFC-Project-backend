@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import BotPanel from "../components/BotPanel";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -27,9 +28,9 @@ const Home = () => {
           youth.
         </p> */}
 
-        <div className="flex flex-row space-x-[9vw] px-[28.5vw] justify-center items-center w-full box-border">
-          <div className="w-full mb-[10vh]">
-            <div className="w-full h-[21vw] ">
+        <div className="flex flex-row space-x-[9vw] mx-auto justify-center items-start w-[43vw] min-w-[550px] box-border">
+          <div className="w-full lg:mb-[10vh] mb-18">
+            <div className="w-full h-[21vw] min-h-[275px]">
               <Image
                 layout="responsive"
                 className="my-auto"
@@ -45,20 +46,20 @@ const Home = () => {
                   loaded ? "translate-x-0" : "-translate-x-[calc(125%)]"
                 }`}
               >
-                <h2 className="xl:text-4xl text-5xl text-center mb-3 font-semibold">
+                <h2 className="xl:text-4xl text-3xl text-center mb-3 font-semibold">
                   Aidan
                 </h2>
-                <p className="text-center tracking-tight text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Logistics
                 </p>
-                <p className="text-center tracking-tight text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Communications
                 </p>
               </div>
             </div>
           </div>
           <div className="w-full mb-[10vh] flex flex-col justify-start items-start">
-            <div className="w-full h-[21vw] relative top-[1.59195vw]">
+            <div className="w-full h-[21vw] min-h-[275px] relative lg:top-[1.59195vw] top-4">
               <Image
                 layout="responsive"
                 width={1000}
@@ -73,23 +74,23 @@ const Home = () => {
                 }`}
               >
                 <h2
-                  className={`xl:text-4xl text-5xl text-center mb-3 font-semibold`}
+                  className={`xl:text-4xl text-3xl text-center mb-3 font-semibold`}
                 >
                   Bilquis
                 </h2>
-                <p className="text-center tracking-tight text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Outreach
                 </p>
-                <p className="text-start tracking-tight leading-[1.1] mt-1 text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Performance <br></br> and HR
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row space-x-[9vw] px-[28.5vw] justify-center items-center w-full box-border">
+        <div className="flex flex-row space-x-[9vw] mx-auto justify-center items-start w-[43vw] min-w-[550px] box-border">
           <div className="w-full mb-[10vh]">
-            <div className="w-full h-[21vw]">
+            <div className="w-full h-[21vw] min-h-[275px]">
               <Image
                 layout="responsive"
                 width={1000}
@@ -103,17 +104,17 @@ const Home = () => {
                   loaded ? "translate-x-0" : "-translate-x-[calc(125%)]"
                 }`}
               >
-                <h2 className="xl:text-4xl text-5xl text-center mb-3 font-semibold">
+                <h2 className="xl:text-4xl text-3xl text-center mb-3 font-semibold">
                   Aysha
                 </h2>
-                <p className="text-center text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Publicity
                 </p>
               </div>
             </div>
           </div>
           <div className="w-full mb-[10vh]">
-            <div className="w-full h-[21vw] relative top-[1.05vw]">
+            <div className="w-full h-[21vw] min-h-[275px] relative top-[1.05vw]">
               <Image
                 layout="responsive"
                 width={1000}
@@ -127,13 +128,13 @@ const Home = () => {
                   loaded ? "translate-x-0" : "-translate-x-[calc(125%)]"
                 }`}
               >
-                <h2 className="xl:text-4xl text-5xl text-center mb-3 font-semibold">
+                <h2 className="xl:text-4xl text-3xl text-center mb-3 font-semibold">
                   Darren
                 </h2>
-                <p className="text-center text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Events
                 </p>
-                <p className="text-center text-xl font-medium">
+                <p className="text-start tracking-tight leading-[1.1] mt-1 text-lg font-medium">
                   Head of Finance
                 </p>
               </div>
@@ -166,7 +167,7 @@ const Home = () => {
                   height={100}
                   layout="fixed"
                 />
-                <p className="font-thin xl:text-5xl md:text-4xl sm:text-3xl">
+                <p className="font-thin xl:text-5xl md:text-4xl text-3xl">
                   @projprima
                 </p>
               </div>
@@ -174,6 +175,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* <BotPanel /> */}
     </>
   );
 };
