@@ -176,5 +176,3 @@ export const ChangingText = ({ progress }) => {
     </>
   );
 };
-
-export default ChangingText;

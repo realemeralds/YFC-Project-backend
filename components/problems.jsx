@@ -7,7 +7,7 @@ import {
   ProblemLeft,
   ProblemRight,
 } from "./problem";
-import ChangingText from "./ChangingText";
+import { ChangingText } from "./ChangingText";
 import Image from "next/future/image";
 
 const Problems = () => (
