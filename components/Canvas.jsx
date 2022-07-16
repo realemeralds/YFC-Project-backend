@@ -352,6 +352,7 @@ export default function Canvas() {
     if (!socket.current) {
       return;
     }
+    console.log("attempting connection");
     socket.current.emit("handshake", (response) => {
       console.log(response.status); // ok
     });
@@ -359,10 +360,10 @@ export default function Canvas() {
       args[0] || clearRectArray ? () => {} : console.log("huh");
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
-        : // setClearRectArray([])
-          console.log("");
+        : console.log("");
       console.log(`canvasUpdate: ${JSON.stringify(args[0])}`);
       setChanged(true);
+      // fallback
     });
   }, [backendURL]);
 
