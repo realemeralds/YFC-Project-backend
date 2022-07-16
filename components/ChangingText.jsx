@@ -31,16 +31,16 @@ export const ChangingText = ({ progress }) => {
       resetWords();
       setPaused(true);
     }
-  }, [progress, paused, resetWords]);
+  }, [progress]);
 
   useEffect(() => {
     if (!paused) messUpWords();
-  }, [changed, messUpWords, paused]); // might be a problem
+  }, [changed]); // might be a problem
 
   useEffect(() => {
     console.log(paused);
     if (!paused) messUpWords();
-  }, [paused, messUpWords]);
+  }, [paused]);
 
   function messUpWord(p, index, mode = getRandomInt(5) + 1) {
     if (changeCheck.includes(index)) {

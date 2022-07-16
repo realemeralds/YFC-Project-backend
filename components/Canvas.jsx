@@ -157,7 +157,7 @@ export default function Canvas() {
               pixelSize + offset.ey
             );
           }
-          console.log(log);
+          // console.log(log);
         }
       };
 
