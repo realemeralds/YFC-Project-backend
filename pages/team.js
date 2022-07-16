@@ -36,6 +36,7 @@ const Home = () => {
                 width={1000}
                 height={1207.21}
                 src="/aidan.png"
+                alt="mugshot of aidan"
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
@@ -63,6 +64,7 @@ const Home = () => {
                 width={1000}
                 height={1082.45}
                 src="/bil.png"
+                alt="mugshot of bilquis"
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
@@ -94,6 +96,7 @@ const Home = () => {
                 width={1000}
                 height={1241.13}
                 src="/aysha.png"
+                alt="mugshot of aysha"
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
@@ -118,6 +121,7 @@ const Home = () => {
                 width={1000}
                 height={1147.54}
                 src="/darren.png"
+                alt="mugshot of darren"
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
@@ -148,6 +152,7 @@ const Home = () => {
                 width={2000}
                 height={2000}
                 src="/group.png"
+                alt="photo of YFC group"
               />
             </div>
 
@@ -164,6 +169,7 @@ const Home = () => {
                   width={100}
                   height={100}
                   layout="fixed"
+                  alt="instagram icon"
                 />
                 <p className="font-thin xl:text-5xl md:text-4xl text-3xl">
                   @projprima

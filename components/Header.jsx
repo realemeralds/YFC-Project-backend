@@ -35,6 +35,7 @@ const Header = () => {
           height={40}
           width={40}
           onLoad={handleImageLoaded}
+          alt="down chevron"
         />
       </div>
       <div className="flex h-screen w-full justify-center items-center flex-col">

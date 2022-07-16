@@ -526,6 +526,7 @@ export const ImageLoader = ({ daRef, imgLoad }) => {
         width={750}
         height={600}
         className="z-20"
+        alt="nothing to see here."
       />
     </div>
   );

@@ -22,26 +22,25 @@ export const ChangingText = ({ progress }) => {
     }
     // console.log(displayedWords);
     messUpWords();
-  }, []);
+  });
 
   useEffect(() => {
-    // console.log(progress);
     if (progress > 0.3 && paused) {
       setTimeout(() => setPaused(false), 1500);
     } else if (progress < 0 || progress > 1) {
       resetWords();
       setPaused(true);
     }
-  }, [progress]);
+  }, [progress, paused, resetWords]);
 
   useEffect(() => {
     if (!paused) messUpWords();
-  }, [changed]);
+  }, [changed, messUpWords, paused]); // might be a problem
 
   useEffect(() => {
     console.log(paused);
     if (!paused) messUpWords();
-  }, [paused]);
+  }, [paused, messUpWords]);
 
   function messUpWord(p, index, mode = getRandomInt(5) + 1) {
     if (changeCheck.includes(index)) {

@@ -22,7 +22,7 @@ export default function Navbar({ hidden, menuVisible }) {
     } else if (percentY < 0.85) {
       setOpacity(1);
     }
-  }, [scrollY]);
+  }, [scrollY, menuVisible]); // might be an issue
 
   const buttonClick = () => {
     setDisplayed(!displayed);
@@ -65,7 +65,12 @@ export default function Navbar({ hidden, menuVisible }) {
             onClick={buttonClick}
             className="flex items-end justify-end"
           >
-            <Image src={icon} width={30} height={30} />
+            <Image
+              src={icon}
+              width={30}
+              height={30}
+              alt="menu hamburger icon"
+            />
           </button>
         </div>
       </div>

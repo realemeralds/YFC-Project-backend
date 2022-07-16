@@ -7,6 +7,7 @@ export const Solution = () => {
         <Image
           src="/haikei transparent.svg"
           layout="responsive"
+          alt="waves"
           width={1000}
           height={142.76}
         />

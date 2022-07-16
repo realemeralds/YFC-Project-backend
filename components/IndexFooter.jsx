@@ -4,7 +4,13 @@ export const Footer = () => {
   return (
     <FooterWrapper>
       <PanelWrapper>
-        <Image src="/placeholder.png" layout="fixed" width={150} height={150} />
+        <Image
+          src="/placeholder.png"
+          alt="placeholder"
+          layout="fixed"
+          width={150}
+          height={150}
+        />
         <p className="font-semibold text-lg tracking-tight mb-1 mt-4">
           Projects →
         </p>
@@ -13,7 +19,13 @@ export const Footer = () => {
         </p>
       </PanelWrapper>
       <PanelWrapper>
-        <Image src="/placeholder.png" layout="fixed" width={150} height={150} />
+        <Image
+          src="/placeholder.png"
+          alt="placeholder"
+          layout="fixed"
+          width={150}
+          height={150}
+        />
         <p className="font-semibold text-lg tracking-tight mb-1 mt-4">
           Merch →
         </p>
@@ -22,7 +34,13 @@ export const Footer = () => {
         </p>
       </PanelWrapper>
       <PanelWrapper>
-        <Image src="/placeholder.png" layout="fixed" width={150} height={150} />
+        <Image
+          src="/placeholder.png"
+          alt="placeholder"
+          layout="fixed"
+          width={150}
+          height={150}
+        />
         <p className="font-semibold text-lg tracking-tight mb-1 mt-4">
           Our Team →
         </p>
