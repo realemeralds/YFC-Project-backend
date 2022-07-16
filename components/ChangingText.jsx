@@ -20,12 +20,12 @@ export const ChangingText = ({ progress }) => {
     for (var i = 0; i < displayedWords.length; i++) {
       changeCheck.push(false);
     }
-    console.log(displayedWords);
+    // console.log(displayedWords);
     messUpWords();
   }, []);
 
   useEffect(() => {
-    console.log(progress);
+    // console.log(progress);
     if (progress > 0.3 && paused) {
       setTimeout(() => setPaused(false), 1500);
     } else if (progress < 0 || progress > 1) {
@@ -133,7 +133,7 @@ export const ChangingText = ({ progress }) => {
     displayedWords = originalWords;
     para.innerHTML = displayedWords.join(" ");
     changeCheck = [];
-    console.log("words reset");
+    // console.log("words reset");
     setPaused(true);
   }
 
@@ -143,7 +143,7 @@ export const ChangingText = ({ progress }) => {
 
   return (
     <>
-      <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000]">
+      <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000] cv:mx-20">
         <p
           ref={paraRef}
           className="project:text-3xl project:font-medium text-xl font-regular tracking-tight leading-tight"

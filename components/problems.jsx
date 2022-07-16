@@ -98,12 +98,13 @@ const Problems = () => (
               <div
                 style={{
                   width: "100%",
-                  height: "80vh",
                   position: "relative",
                   display: "flex",
                   pointerEvents: "none",
                   justifyContent: "center",
+                  alignItems: "center",
                 }}
+                className="lg:w-full w-[80vh] h-full py-[5vh]"
               >
                 <Image
                   src="/misunderstandings.png"

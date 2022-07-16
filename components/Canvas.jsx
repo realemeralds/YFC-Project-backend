@@ -1,9 +1,10 @@
 import Image from "next/image";
 import CanvasBackground from "../public/finalpixelart.jpg";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
+import { ScrollContext } from "./ScrollObserver";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faL, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "../styles/Canvas.module.css";
 
@@ -12,6 +13,7 @@ import { io } from "socket.io-client";
 const backendURL = "yfc-backend.herokuapp.com:80";
 
 export default function Canvas() {
+  // Define stuff
   const mainCanvasRef = useRef(null);
   const bgCanvasRef = useRef(null);
   const overlayCanvasRef = useRef(null);
@@ -24,6 +26,7 @@ export default function Canvas() {
   const [overlayCanvas, setOverlayCanvas] = useState();
   const [ctx, setCtx] = useState();
   const [ctx2, setCtx2] = useState();
+  let contextSet = false;
   const [overlayContext, setOverlayContext] = useState();
   const [imgLoad, setImgLoad] = useState();
   const [clearRectArray, setClearRectArray] = useState("");
@@ -32,11 +35,14 @@ export default function Canvas() {
   const [countdownText, setCountdownText] = useState(undefined);
   const [canvasDisabled, setCanvasDisabled] = useState(false);
   const [mousedown, setMousedown] = useState(false);
+  let translate;
+  let drawn;
 
   const width = 1002;
   const height = 802;
   const countdownDuration = 30;
 
+  // Countdown duration
   useEffect(() => {
     console.log(canvasDisabled);
     let min, sec;
@@ -63,11 +69,15 @@ export default function Canvas() {
     setCanvas2(bgCanvasRef.current);
     setOverlayCanvas(overlayCanvasRef.current);
   }, []);
+
+  // The main function
   useEffect(() => {
-    if (canvas && canvas2) {
+    // Get canvases on all rounds
+    if (canvas && canvas2 && !contextSet) {
       setCtx(canvas.getContext("2d"));
       setCtx2(canvas2.getContext("2d"));
       setOverlayContext(overlayCanvas.getContext("2d"));
+      contextSet = true;
 
       // Set canvas width
       canvas.width = width;
@@ -82,16 +92,14 @@ export default function Canvas() {
       const breakButton = breakButtonRef.current;
       const cancelButton = cancelButtonRef.current;
 
+      // Key canvas params
       const pixelSize = 10;
       const padding = 1;
 
-      var image = document.createElement("img");
-      image.src = "/finalpixelart.jpg";
-      var mouseOnCanvas = false;
+      var mouseOnCanvas = false; // not used?
       breakButton.disabled = true;
       cancelButton.disabled = true;
       let triggered = false;
-      let drawn = false;
 
       // Overlay square position
       var overlaypos = {
@@ -105,25 +113,13 @@ export default function Canvas() {
       };
 
       // Create the holes in the canvas based off clearRectArray
-      const paintCanvas = (clearRectArray) => {
+      const paintCanvas = (clearRectArray, log = "normal") => {
         let offset;
         if (clearRectArray) {
           // Create spots where image is revealed
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           // insert clear rectangles
-          if (!drawn) {
-            setTimeout(() => {
-              ctx2.drawImage(
-                imgRef.current,
-                0,
-                0,
-                canvas.width - 1,
-                canvas.height + 2
-              );
-            }, 1);
-            drawn = true;
-          }
           for (let i = 0; i < clearRectArray.length; i++) {
             offset = { sx: 0, sy: 0, ex: 0, ey: 0 };
             var clearRectCoords = clearRectArray[i];
@@ -146,9 +142,9 @@ export default function Canvas() {
               pixelSize + offset.ey
             );
           }
+          console.log(log);
         }
       };
-      paintCanvas(clearRectArray);
 
       // return mouse positions on canvas
       function getMousePos(canvas, evt) {
@@ -163,6 +159,7 @@ export default function Canvas() {
 
       // paint canvas once array has been changed
       if (changed) {
+        console.log("changed");
         paintCanvas(clearRectArray);
         setChanged(false);
       }
@@ -236,6 +233,7 @@ export default function Canvas() {
         } else {
           removePos();
         }
+        // console.log(mouseOnCanvas);
         outlineElement(overlaypos.x, overlaypos.y);
         selectedElement(selectpos.x, selectpos.y);
       };
@@ -248,19 +246,28 @@ export default function Canvas() {
       };
 
       // Set upon click
-
       const localImgLoad = () => {
         if (ctx2 && imgRef.current && !drawn) {
-          paintCanvas(clearRectArray);
+          console.log("drawn");
+          paintCanvas(clearRectArray, "imgload");
+          ctx2.drawImage(
+            imgRef.current,
+            0,
+            0,
+            canvas.width - 1,
+            canvas.height + 2
+          );
           setImgLoad(() => {
-            console.log("hi");
+            1 + 1 === 2;
           });
         }
       };
 
       // Mount event listeners on load
       if (!triggered) {
-        setImgLoad(localImgLoad(ctx2, imgRef.current, canvas));
+        setImgLoad(() => {
+          localImgLoad(ctx2, imgRef.current, canvas);
+        });
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
         });
@@ -281,9 +288,16 @@ export default function Canvas() {
           breakButton.disabled = true;
           cancelButton.disabled = true;
           setCanvasDisabled(true);
+          setChanged(true);
+          paintCanvas(tempArray);
         });
         window.addEventListener("mousedown", () => {
-          setMousedown(true);
+          if (mouseOnCanvas) {
+            selectpos.x = overlaypos.x;
+            selectpos.y = overlaypos.y;
+            breakButton.disabled = false;
+            cancelButton.disabled = false;
+          }
         });
         cancelButton.addEventListener("click", () => {
           selectpos.x = undefined;
@@ -330,8 +344,27 @@ export default function Canvas() {
     });
   }, [backendURL]);
 
+  const { scrollY } = useContext(ScrollContext);
+  const refContainer = useRef(null);
+  let percentY;
+  let translateString;
+
+  const { current: elContainer } = refContainer;
+  if (elContainer) {
+    const { clientHeight, offsetTop } = elContainer;
+    const screenH = window.innerHeight;
+    const halfH = screenH / 2;
+    percentY =
+      Math.min(
+        clientHeight + halfH,
+        Math.max(-screenH, scrollY - offsetTop) + halfH
+      ) / clientHeight;
+
+    translate = Math.max(0, (percentY - 0.5434) * 60);
+    translateString = `translateY(${translate}vh)`;
+  }
   return (
-    <>
+    <div ref={refContainer} style={{ transform: translateString }}>
       <CanvasContainer>
         <CanvasWrapper>
           <CanvasElement
@@ -344,6 +377,7 @@ export default function Canvas() {
             shadow
             daRef={mainCanvasRef}
             active={!canvasDisabled}
+            onLoad={() => console.log("canvas loaded")}
           />
           <CanvasElement
             zindex={20}
@@ -359,13 +393,13 @@ export default function Canvas() {
       </CanvasContainer>
       <CanvasReplace />
       <ImageLoader daRef={imgRef} imgLoad={imgLoad} />
-    </>
+    </div>
   );
 }
 
 export const CanvasContainer = ({ children }) => {
   return (
-    <div className="sm:h-screen flex justify-center items-center bg-firstAccent relative flex-row h-0">
+    <div className="sm:h-[120vh] flex justify-center items-center bg-firstAccent relative flex-row h-0">
       {children}
     </div>
   );
@@ -379,15 +413,29 @@ export const CanvasWrapper = ({ children }) => {
   );
 };
 
-export const CanvasElement = ({ shadow, zindex, daRef, active }) => {
+export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
+  const [loaded, setLoaded] = useState(false);
+  const scriptContainer = useRef(null);
+
+  if (scriptContainer.current && !loaded) {
+    setTimeout(() => setLoaded(true), 1000);
+    console.log("!loaded");
+  }
+
   return (
-    <canvas
-      ref={daRef}
-      className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-1/2 max-h-[90vh] w-[60vw] ${
-        shadow ? styles.shadow : ""
-      }`}
-      style={{ pointerEvents: active ? "auto" : "none" }}
-    />
+    <>
+      <canvas
+        ref={daRef}
+        className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[60vw] ${
+          shadow ? styles.shadow : ""
+        }`}
+        style={{
+          pointerEvents: active ? "auto" : "none",
+          opacity: loaded || zindex !== 0 ? "1" : "0",
+        }}
+      />
+      <script ref={scriptContainer}></script>
+    </>
   );
 };
 
@@ -397,7 +445,7 @@ export const CanvasSidebar = ({
   countdownText,
 }) => {
   return (
-    <div className="cv:w-[38vw]  hidden sm:block cv:flex justify-center items-center  basis-2/5">
+    <div className="cv:w-[38vw]  hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-2/5">
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
         <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
           paint on the mural to find out more about dyslexia.

@@ -1,6 +1,44 @@
 // /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+const plugin = require("tailwindcss/plugin");
+
+// Rotate X utilities
+const rotateX = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".rotate-x-20": {
+      transform: "rotateX(20deg)",
+    },
+    ".rotate-x-40": {
+      transform: "rotateX(40deg)",
+    },
+    ".rotate-x-60": {
+      transform: "rotateX(60deg)",
+    },
+    ".rotate-x-80": {
+      transform: "rotateX(80deg)",
+    },
+    ".rotate-y-20": {
+      transform: "rotateY(20deg)",
+    },
+    ".rotate-y-40": {
+      transform: "rotateY(40deg)",
+    },
+    ".rotate-y-60": {
+      transform: "rotateY(60deg)",
+    },
+    ".rotate-y-80": {
+      transform: "rotateY(80deg)",
+    },
+    ".cards-rotation": {
+      transform: "rotate3d(1, 1, 0, 20deg)",
+    },
+    ".-cards-rotation": {
+      transform: "rotate3d(-1, 1, 0, 20deg)",
+    },
+  });
+});
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -30,6 +68,7 @@ module.exports = {
         thirdAccent: "#282C24",
         fadedWhite: "#FAFBFB",
         borderWhite: "#D6D9DB",
+        cardBG: "#E5DBB4",
       },
       gridTemplateColumns: {
         layout: "minmax(500px, 2fr) 3fr",
@@ -46,5 +85,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [rotateX],
 };

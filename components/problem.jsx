@@ -50,7 +50,7 @@ export const ProblemRight = ({ children, progress }) => {
       className="flex flex-grow w-full lg:items-center justify-center h-screen z-10"
       style={{ transform: `translateY(${translateY}px)` }}
     >
-      <div className="w-full mx-4 sm:mx-10 changingText:mx-24 pt-10 lg:pt-0 px-10 md:px-0">
+      <div className="w-full mx-4 sm:mx-10 changingText:mx-24 pt-10 lg:pt-0 px-10 md:px-0 lg:h-auto h-[70vh]">
         {children}
       </div>
     </div>

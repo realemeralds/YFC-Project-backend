@@ -1,9 +1,9 @@
 .embla {
   position: relative;
   background-color: #f8eaea;
-  padding: 20px;
-  padding-bottom: 10px;
-  max-width: 100%;
+  padding: 25px;
+  padding-bottom: 15px;
+  max-width: 1100px;
 }
 
 .embla__viewport {
@@ -31,7 +31,8 @@
 
 .embla__slide {
   position: relative;
-  max-width: 100%; /* Prevent from growing larger than viewport */
+  max-width: 100%;
+  /* Prevent from growing larger than viewport */
   padding-left: 10px;
   margin: 0 25%;
   flex: 0 0 50%;

@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import BotPanel from "../components/BotPanel";
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
@@ -15,7 +14,7 @@ const Home = () => {
       <Navbar />
       <div className="flex justify-center mt-8 flex-col">
         <h1 className="font-bold text-4xl text-center mb-6">Our Team</h1>
-        <p className="xl:text-2xl text-xl text-center mx-[20vw] mb-8">
+        <p className="xl:text-2xl xsm:text-xl text-md text-center mx-[20vw] mb-8">
           <span className="font-bold">Welcome!</span> We are a group of students
           from St Joseph’s institution, participating in the YMCA
           Youth-for-Causes competition! Our names are Aidan, Aysha, Bilquis and
@@ -28,9 +27,9 @@ const Home = () => {
           youth.
         </p> */}
 
-        <div className="flex flex-row space-x-[9vw] mx-auto justify-center items-start w-[43vw] min-w-[550px] box-border">
-          <div className="w-full lg:mb-[10vh] mb-18">
-            <div className="w-full h-[21vw] min-h-[275px]">
+        <div className="flex project:flex-row flex-col project:space-x-[9vw] mx-auto justify-center items-start w-[43vw] project:min-w-[550px] box-border">
+          <div className="w-full project:mb-[10vh] mb-16">
+            <div className="w-full project:h-[21vw] project:min-h-[275px]">
               <Image
                 layout="responsive"
                 className="my-auto"
@@ -39,7 +38,6 @@ const Home = () => {
                 src="/aidan.png"
               />
             </div>
-
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
               <div
                 className={`w-full transition-all duration-700 flex flex-col justify-center items-start  ${
@@ -58,8 +56,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-full mb-[10vh] flex flex-col justify-start items-start">
-            <div className="w-full h-[21vw] min-h-[275px] relative lg:top-[1.59195vw] top-4">
+          <div className="w-full project:mb-[10vh]  mb-16 flex flex-col justify-start items-start">
+            <div className="w-full project:h-[21vw] project:min-h-[275px] project:relative project:top-[1.59195vw] top-4">
               <Image
                 layout="responsive"
                 width={1000}
@@ -88,9 +86,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row space-x-[9vw] mx-auto justify-center items-start w-[43vw] min-w-[550px] box-border">
-          <div className="w-full mb-[10vh]">
-            <div className="w-full h-[21vw] min-h-[275px]">
+        <div className="flex project:flex-row flex-col project:space-x-[9vw] mx-auto justify-center items-start w-[43vw] project:min-w-[550px] box-border">
+          <div className="w-full project:mb-[10vh] mb-16">
+            <div className="w-full project:h-[21vw] project:min-h-[275px]">
               <Image
                 layout="responsive"
                 width={1000}
@@ -113,8 +111,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-full mb-[10vh]">
-            <div className="w-full h-[21vw] min-h-[275px] relative top-[1.05vw]">
+          <div className="w-full mb-16 lg:mb-[10vh]">
+            <div className="w-full project:h-[21vw] project:min-h-[275px] relative top-[1.05vw]">
               <Image
                 layout="responsive"
                 width={1000}
@@ -144,7 +142,7 @@ const Home = () => {
 
         <div className="flex justify-center items-center -mt-3">
           <div className="w-full">
-            <div className="w-2/5 m-auto">
+            <div className="project:w-2/5 w-3/5 m-auto">
               <Image
                 layout="responsive"
                 width={2000}
@@ -153,10 +151,10 @@ const Home = () => {
               />
             </div>
 
-            <h1 className="text-center font-medium text-4xl mb-2">
+            <h1 className="text-center font-medium text-2xl project:text-4xl mb-2 px-5">
               Thanks for checking out the website!
             </h1>
-            <h3 className="text-center text-2xl">
+            <h3 className="text-center text-lg px-3 project:text-2xl">
               Follow our Instagram for more updates and volunteer opportunites!
             </h3>
             <a href="https://www.instagram.com/projprima/">

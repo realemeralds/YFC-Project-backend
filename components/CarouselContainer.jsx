@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
@@ -39,11 +39,30 @@ const CarouselContainer = () => {
     emblaApi.on("select", onSelect);
   }, [emblaApi, setScrollSnaps, onSelect]);
 
+  const paraRef = useRef(null);
+  const [clicked, setClicked] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem("clicked") === null) {
+      setClicked(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(clicked);
+  }, [clicked]);
+
   return (
-    <div className="w-full flex pt-[5vh] items-center justify-center h-screen">
-      <div className="embla w-4/5 bg-slate-300 rounded-3xl">
-        <div class="embla__viewport overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex h-[420px] items-center">
+    <div className="w-full flex pt-[2vh] items-center justify-center h-screen flex-col-reverse">
+      <div
+        className="embla w-4/5 bg-slate-300 rounded-3xl peer"
+        onMouseDown={() => {
+          setClicked(true);
+          localStorage.setItem("clicked", true);
+        }}
+      >
+        <div className="embla__viewport overflow-hidden" ref={emblaRef}>
+          <div className="embla__container flex h-[440px] items-center">
             <div className="embla__slide">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[80vw] px-8 flex-row items-center justify-center flex">
@@ -192,6 +211,13 @@ const CarouselContainer = () => {
           ))}
         </div>
       </div>
+      <p
+        ref={paraRef}
+        className="opacity-100 transition-opacity delay-200 duration-700 text-2xl font-medium mb-3"
+        style={{ opacity: clicked ? "0" : "1" }}
+      >
+        click and drag on the carousel to browse events!
+      </p>
     </div>
   );
 };

@@ -1,0 +1,33 @@
+@mixin scrollbars($size: 10px,
+    $foreground-color: #999,
+    $hover-color,
+    $background-color: #333,
+) {
+
+    // For Chrome & Safari
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-width: 1px;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $background-color;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: $hover-color;
+    }
+
+    // Standard version (Firefox only for now)
+    scrollbar-color: $foreground-color $background-color;
+}
+
+body {
+    @include scrollbars(10px, #f19606, #D48302, #FBFBFB)
+}

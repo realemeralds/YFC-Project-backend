@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import Logo from "../components/Logo";
 import ProjectHeader from "../components/ProjectHeader";
 import CarouselContainer from "../components/CarouselContainer";
-import BotPanel from "../components/BotPanel";
 
 const Home = () => {
   return (
@@ -11,7 +10,6 @@ const Home = () => {
       {/* <Logo /> */}
       <ProjectHeader />
       <CarouselContainer />
-      <BotPanel />
     </>
   );
 };
