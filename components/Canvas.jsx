@@ -8,7 +8,7 @@ import styles from "../styles/Canvas.module.css";
 
 import { io } from "socket.io-client";
 
-const backendURL = "yfc-backend.herokuapp.com:80";
+const backendURL = "ws://yfc-backend.herokuapp.com:80";
 
 export default function Canvas() {
   // Define the references to key elements
