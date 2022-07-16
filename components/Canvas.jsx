@@ -1,5 +1,3 @@
-import Image from "next/image";
-import CanvasBackground from "../public/finalpixelart.jpg";
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { ScrollContext } from "./ScrollObserver";
 
@@ -13,36 +11,48 @@ import { io } from "socket.io-client";
 const backendURL = "yfc-backend.herokuapp.com:80";
 
 export default function Canvas() {
-  // Define stuff
+  // Define the references to key elements
   const mainCanvasRef = useRef(null);
   const bgCanvasRef = useRef(null);
   const overlayCanvasRef = useRef(null);
   const breakButtonRef = useRef(null);
   const cancelButtonRef = useRef(null);
   const imgRef = useRef(null);
+
+  // Socket ref for backend implementation
   let socket = useRef("");
+  // clearRectArray, for all broken squares
+  const [clearRectArray, setClearRectArray] = useState("");
+  let tempArray;
+
+  // States to store the canvases + contexts, as their refs are filled
+  let contextSet = false;
   const [canvas, setCanvas] = useState();
   const [canvas2, setCanvas2] = useState();
   const [overlayCanvas, setOverlayCanvas] = useState();
   const [ctx, setCtx] = useState();
   const [ctx2, setCtx2] = useState();
-  let contextSet = false;
   const [overlayContext, setOverlayContext] = useState();
+
+  // Function + variable to load the image
   const [imgLoad, setImgLoad] = useState();
-  const [clearRectArray, setClearRectArray] = useState("");
-  let tempArray;
+
+  // Changed, to trigger a canvas repaint
   const [changed, setChanged] = useState(false);
+
+  // Countdown implementation
   const [countdownText, setCountdownText] = useState(undefined);
   const [canvasDisabled, setCanvasDisabled] = useState(false);
-  const [mousedown, setMousedown] = useState(false);
-  let translate;
-  let drawn;
 
+  // translate for parallax
+  let translate;
+
+  // key variables
   const width = 1002;
   const height = 802;
   const countdownDuration = 30;
 
-  // Countdown duration
+  // effect to do countdown recursion
   useEffect(() => {
     console.log(canvasDisabled);
     let min, sec;
@@ -64,6 +74,7 @@ export default function Canvas() {
     countdown(countdownDuration);
   }, [canvasDisabled]);
 
+  // Get canvases from refs
   useEffect(() => {
     setCanvas(mainCanvasRef.current);
     setCanvas2(bgCanvasRef.current);
@@ -96,16 +107,20 @@ export default function Canvas() {
       const pixelSize = 10;
       const padding = 1;
 
-      var mouseOnCanvas = false; // not used?
+      // Key params for loading the overlays and triggering the event listneers
+      var mouseOnCanvas = false;
+      let triggered = false;
+
+      // default disabled
       breakButton.disabled = true;
       cancelButton.disabled = true;
-      let triggered = false;
 
       // Overlay square position
       var overlaypos = {
         x: undefined,
         y: undefined,
       };
+
       // selected square position
       var selectpos = {
         x: undefined,
@@ -146,7 +161,7 @@ export default function Canvas() {
         }
       };
 
-      // return mouse positions on canvas
+      // helper fn: return mouse positions on canvas
       function getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect(), // abs. size of element
           scaleX = canvas.width / rect.width, // relationship bitmap vs. element for x
@@ -213,6 +228,7 @@ export default function Canvas() {
         overlayContext.stroke();
       };
 
+      // function to check whether overlays are painted
       var paintOverlays = (e) => {
         const { x, y } = getMousePos(canvas, e);
 
@@ -220,6 +236,7 @@ export default function Canvas() {
           overlaypos.x = x - (x % 10) + 1; // +1 to compensate for padding
           overlaypos.y = y - (y % 10) + 1;
           if (
+            // if overlay if on a removed rect or canvas is disabled, dont show anything
             (clearRectArray &&
               JSON.stringify(clearRectArray).includes(
                 `[${overlaypos.x},${overlaypos.y}]`
@@ -227,17 +244,18 @@ export default function Canvas() {
             canvasDisabled
           ) {
             removePos();
+            console.log(canvasDisabled);
             return;
           }
           mouseOnCanvas = true;
         } else {
           removePos();
         }
-        // console.log(mouseOnCanvas);
         outlineElement(overlaypos.x, overlaypos.y);
         selectedElement(selectpos.x, selectpos.y);
       };
 
+      // helper function to remove overlay
       const removePos = () => {
         overlaypos.x = undefined;
         overlaypos.y = undefined;
@@ -247,7 +265,7 @@ export default function Canvas() {
 
       // Set upon click
       const localImgLoad = () => {
-        if (ctx2 && imgRef.current && !drawn) {
+        if (ctx2 && imgRef.current) {
           console.log("drawn");
           paintCanvas(clearRectArray, "imgload");
           ctx2.drawImage(
@@ -344,6 +362,7 @@ export default function Canvas() {
     });
   }, [backendURL]);
 
+  // parallax effect translation calculations
   const { scrollY } = useContext(ScrollContext);
   const refContainer = useRef(null);
   let percentY;

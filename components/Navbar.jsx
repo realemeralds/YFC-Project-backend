@@ -92,22 +92,10 @@ export default function Navbar({ hidden, menuVisible }) {
             Home
           </a>
         </Link>
-        <Link href="/team">
-          <a
-            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[0.6s]"
-            href=""
-            style={{
-              opacity: textOpacity,
-              transition,
-              pointerEvents,
-            }}
-          >
-            Our Team
-          </a>
-        </Link>
+
         <Link href="/projects">
           <a
-            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[0.9s]"
+            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[0.6s]"
             href=""
             style={{
               opacity: textOpacity,
@@ -120,7 +108,7 @@ export default function Navbar({ hidden, menuVisible }) {
         </Link>
         <Link href="/merch">
           <a
-            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[1.2s]"
+            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[0.9s]"
             href=""
             style={{
               opacity: textOpacity,
@@ -129,6 +117,19 @@ export default function Navbar({ hidden, menuVisible }) {
             }}
           >
             Merch
+          </a>
+        </Link>
+        <Link href="/team">
+          <a
+            className="text-end text-2xl transition-opacity duration-300 opacity-0 delay-[1.2s]"
+            href=""
+            style={{
+              opacity: textOpacity,
+              transition,
+              pointerEvents,
+            }}
+          >
+            Our Team
           </a>
         </Link>
       </div>
