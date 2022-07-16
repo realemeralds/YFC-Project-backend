@@ -22,7 +22,7 @@ export default function Canvas() {
   // Socket ref for backend implementation
   let socket = useRef("");
   // clearRectArray, for all broken squares
-  const [clearRectArray, setClearRectArray] = useState("");
+  const [clearRectArray, setClearRectArray] = useState([]);
   let tempArray;
 
   // States to store the canvases + contexts, as their refs are filled
@@ -356,8 +356,9 @@ export default function Canvas() {
       args[0] || clearRectArray ? () => {} : console.log("huh");
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
-        : console.log("");
-      // console.log(`canvasUpdate: ${JSON.stringify(args[0])}`);
+        : // setClearRectArray([])
+          console.log("");
+      console.log(`canvasUpdate: ${JSON.stringify(args[0])}`);
       setChanged(true);
     });
   }, [backendURL]);
@@ -438,7 +439,6 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
 
   if (scriptContainer.current && !loaded) {
     setTimeout(() => setLoaded(true), 1000);
-    console.log("!loaded");
   }
 
   return (
