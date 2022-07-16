@@ -352,6 +352,9 @@ export default function Canvas() {
     if (!socket.current) {
       return;
     }
+    socket.current.emit("handshake", (response) => {
+      console.log(response.status); // ok
+    });
     socket.current.on("canvasUpdate", (...args) => {
       args[0] || clearRectArray ? () => {} : console.log("huh");
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
