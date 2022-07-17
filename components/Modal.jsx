@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Modal = ({ onClose, children, title, show }) => {
+const Modal = ({ onClose, children, title, show, daRef }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   const [active, setActive] = useState(false);
 
@@ -14,7 +14,7 @@ const Modal = ({ onClose, children, title, show }) => {
 
   // check if the user has clickedinside or outside the modal
   const backDropHandler = (e) => {
-    if (!modalWrapperRef?.current?.contains(e.target) && show) {
+    if (!modalWrapperRef?.current?.contains(e.target)) {
       console.log(active);
       console.log("sduah");
       onClose();
@@ -22,7 +22,6 @@ const Modal = ({ onClose, children, title, show }) => {
   };
 
   useEffect(() => {
-    console.log(show);
     setActive(true);
     if (show) setTimeout(() => setActive(false), 300);
   }, [show]);

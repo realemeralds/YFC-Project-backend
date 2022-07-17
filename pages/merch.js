@@ -24,8 +24,7 @@ const Home = () => {
       <div>
         <button
           onClick={() => {
-            setShowModal(true);
-            console.log("ihjasd");
+            setTimeout(() => setShowModal(true), 10);
           }}
         >
           Open Modal
