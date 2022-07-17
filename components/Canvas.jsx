@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import { ScrollContext } from "./ScrollObserver";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faL, faXmark } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 import styles from "../styles/Canvas.module.css";
 
@@ -43,6 +43,8 @@ export default function Canvas() {
   // Countdown implementation
   const [countdownText, setCountdownText] = useState(undefined);
   const [canvasDisabled, setCanvasDisabled] = useState(false);
+  const [mousedown, onMousedown] = useState(false);
+  let breakButton, cancelButton;
 
   // translate for parallax
   let translate;
@@ -52,6 +54,18 @@ export default function Canvas() {
   const height = 802;
   const countdownDuration = 30;
 
+  // Overlay square position
+  var overlaypos = {
+    x: undefined,
+    y: undefined,
+  };
+
+  // selected square position
+  var selectpos = {
+    x: undefined,
+    y: undefined,
+  };
+
   // effect to do countdown recursion
   useEffect(() => {
     console.log(canvasDisabled);
@@ -59,6 +73,7 @@ export default function Canvas() {
     function countdown(n) {
       if (n === 0) {
         setCountdownText("ready!");
+        setCanvasDisabled(false);
         return;
       }
       min = Math.floor(n / 60);
@@ -81,6 +96,23 @@ export default function Canvas() {
     setOverlayCanvas(overlayCanvasRef.current);
   }, []);
 
+  useEffect(() => {
+    console.log(clearRectArray);
+  }, [clearRectArray]);
+
+  useEffect(() => {
+    console.log(mousedown);
+    console.log(canvasDisabled);
+    if (!canvasDisabled) {
+      console.log(mousedown);
+      breakButton = breakButtonRef.current;
+      cancelButton = cancelButtonRef.current;
+      console.log(overlaypos);
+      breakButton.disabled = false;
+      cancelButton.disabled = false;
+    }
+  }, [mousedown]);
+
   // The main function
   useEffect(() => {
     // Get canvases on all rounds
@@ -100,8 +132,9 @@ export default function Canvas() {
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
-      const breakButton = breakButtonRef.current;
-      const cancelButton = cancelButtonRef.current;
+      breakButton = breakButtonRef.current;
+      cancelButton = cancelButtonRef.current;
+      console.log(breakButton);
 
       // Key canvas params
       const pixelSize = 10;
@@ -115,29 +148,17 @@ export default function Canvas() {
       breakButton.disabled = true;
       cancelButton.disabled = true;
 
-      // Overlay square position
-      var overlaypos = {
-        x: undefined,
-        y: undefined,
-      };
-
-      // selected square position
-      var selectpos = {
-        x: undefined,
-        y: undefined,
-      };
-
       // Create the holes in the canvas based off clearRectArray
-      const paintCanvas = (clearRectArray, log = "normal") => {
+      const paintCanvas = (array = clearRectArray, log) => {
         let offset;
-        if (clearRectArray) {
-          // Create spots where image is revealed
+        if (array) {
+          console.log(array, log);
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           // insert clear rectangles
-          for (let i = 0; i < clearRectArray.length; i++) {
+          for (let i = 0; i < array.length; i++) {
             offset = { sx: 0, sy: 0, ex: 0, ey: 0 };
-            var clearRectCoords = clearRectArray[i];
+            var clearRectCoords = array[i];
             if (clearRectCoords[0] + pixelSize + padding == width) {
               offset.ex = 1;
             } else if (clearRectCoords[0] - 1 == 0) {
@@ -157,7 +178,6 @@ export default function Canvas() {
               pixelSize + offset.ey
             );
           }
-          // console.log(log);
         }
       };
 
@@ -176,7 +196,7 @@ export default function Canvas() {
       if (changed) {
         console.log("changed");
         paintCanvas(clearRectArray);
-        setChanged(false);
+        setTimeout(() => setChanged(false), 500);
       }
 
       // Create a grey box when mousing over boxes
@@ -184,7 +204,6 @@ export default function Canvas() {
       // @param y: center y-coord of pixel
       const outlineElement = (x, y) => {
         // Create a grey background
-        if (canvasDisabled) return;
         overlayContext.clearRect(0, 0, canvas.width, canvas.height);
         overlayContext.fillStyle = "#d0d0d0";
         overlayContext.fillRect(x - 1, y - 1, pixelSize + 1, pixelSize + 1);
@@ -209,7 +228,6 @@ export default function Canvas() {
       // create a red box after clicking on one
       const selectedElement = (x, y) => {
         // Create a border of 1 px, length 2 px
-        if (canvasDisabled) return;
         overlayContext.beginPath();
         overlayContext.moveTo(x + 3, y);
         overlayContext.lineTo(x, y);
@@ -243,31 +261,29 @@ export default function Canvas() {
               )) ||
             canvasDisabled
           ) {
-            removePos();
-            console.log(canvasDisabled);
-            return;
+            removePos(258);
+            () => {};
           }
           mouseOnCanvas = true;
         } else {
-          removePos();
+          removePos(262);
         }
         outlineElement(overlaypos.x, overlaypos.y);
         selectedElement(selectpos.x, selectpos.y);
       };
 
       // helper function to remove overlay
-      const removePos = () => {
+      const removePos = (origin) => {
         overlaypos.x = undefined;
         overlaypos.y = undefined;
         mouseOnCanvas = false;
-        paintCanvas(clearRectArray);
       };
 
       // Set upon click
       const localImgLoad = () => {
         if (ctx2 && imgRef.current) {
           console.log("drawn");
-          paintCanvas(clearRectArray, "imgload");
+          paintCanvas();
           ctx2.drawImage(
             imgRef.current,
             0,
@@ -290,16 +306,19 @@ export default function Canvas() {
           paintOverlays(e, canvas);
         });
         breakButton.addEventListener("click", () => {
-          tempArray = clearRectArray;
+          if (!clearRectArray) return;
+          tempArray = clearRectArray.slice();
           if (
-            tempArray &&
+            JSON.stringify(tempArray) !== JSON.stringify([]) &&
             !JSON.stringify(tempArray).includes(
               JSON.stringify([selectpos.x, selectpos.y])
             )
           ) {
+            console.log(tempArray);
             tempArray.push([selectpos.x, selectpos.y]);
           }
-          setClearRectArray(tempArray);
+          if (JSON.stringify(tempArray) !== JSON.stringify([]))
+            setClearRectArray(tempArray);
           socket.current.emit("canvasChange", selectpos.x, selectpos.y);
           selectpos.x = undefined;
           selectpos.y = undefined;
@@ -307,19 +326,21 @@ export default function Canvas() {
           cancelButton.disabled = true;
           setCanvasDisabled(true);
           setChanged(true);
-          paintCanvas(tempArray);
+          // paintCanvas(tempArray, "lol");
         });
         window.addEventListener("mousedown", () => {
           if (mouseOnCanvas) {
             selectpos.x = overlaypos.x;
             selectpos.y = overlaypos.y;
-            breakButton.disabled = false;
-            cancelButton.disabled = false;
+            console.log(selectpos);
+            onMousedown(!mousedown);
           }
         });
         cancelButton.addEventListener("click", () => {
           selectpos.x = undefined;
           selectpos.y = undefined;
+          breakButton.disabled = true;
+          cancelButton.disabled = true;
         });
         triggered = true;
       }
@@ -366,29 +387,8 @@ export default function Canvas() {
       // fallback
     });
   }, [backendURL]);
-
-  // parallax effect translation calculations
-  const { scrollY } = useContext(ScrollContext);
-  const refContainer = useRef(null);
-  let percentY;
-  let translateString;
-
-  const { current: elContainer } = refContainer;
-  if (elContainer) {
-    const { clientHeight, offsetTop } = elContainer;
-    const screenH = window.innerHeight;
-    const halfH = screenH / 2;
-    percentY =
-      Math.min(
-        clientHeight + halfH,
-        Math.max(-screenH, scrollY - offsetTop) + halfH
-      ) / clientHeight;
-
-    translate = Math.max(0, (percentY - 0.5434) * 60);
-    translateString = `translateY(${translate}vh)`;
-  }
   return (
-    <div ref={refContainer} style={{ transform: translateString }}>
+    <div>
       <CanvasContainer>
         <CanvasWrapper>
           <CanvasElement
@@ -417,13 +417,28 @@ export default function Canvas() {
       </CanvasContainer>
       <CanvasReplace />
       <ImageLoader daRef={imgRef} imgLoad={imgLoad} />
+      <Waves />
     </div>
   );
 }
 
+export const Waves = () => (
+  <div className="-mt-[16.666666666666666666666666666666666667vh] z-10 sm:block hidden">
+    <div className="w-full h-auto">
+      <Image
+        src="/haikei.svg"
+        layout="responsive"
+        alt="waves"
+        width={900}
+        height={150}
+      />
+    </div>
+  </div>
+);
+
 export const CanvasContainer = ({ children }) => {
   return (
-    <div className="sm:h-[120vh] flex justify-center items-center bg-firstAccent relative flex-row h-0">
+    <div className="sm:h-[120vh]  justify-center items-center bg-firstAccent relative flex-row h-0 sm:flex hidden">
       {children}
     </div>
   );
@@ -431,7 +446,7 @@ export const CanvasContainer = ({ children }) => {
 
 export const CanvasWrapper = ({ children }) => {
   return (
-    <div className="w-[calc(752px+3vw)] sm:block hidden h-screen basis-4/5">
+    <div className="w-[calc(752px+3vw)] sm:block h-screen basis-4/5 flex justify-center">
       {children}
     </div>
   );
@@ -449,7 +464,7 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
     <>
       <canvas
         ref={daRef}
-        className={`z-${zindex} absolute top-1/2 translate-x-[3vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[60vw] ${
+        className={`z-${zindex} absolute top-1/2 right-[40vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
           shadow ? styles.shadow : ""
         }`}
         style={{
@@ -468,7 +483,7 @@ export const CanvasSidebar = ({
   countdownText,
 }) => {
   return (
-    <div className="cv:w-[38vw]  hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-2/5">
+    <div className="cv:w-[38vw] overflow-hidden hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-[50%]">
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
         <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
           paint on the mural to find out more about dyslexia.

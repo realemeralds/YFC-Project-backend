@@ -31,10 +31,10 @@ const rotateX = plugin(function ({ addUtilities }) {
       transform: "rotateY(80deg)",
     },
     ".cards-rotation": {
-      transform: "rotate3d(1, 1, 0, 20deg)",
+      transform: "rotate3d(1, 1, 0, 12deg)",
     },
     ".-cards-rotation": {
-      transform: "rotate3d(-1, 1, 0, 20deg)",
+      transform: "rotate3d(-1, 1, 0, 12deg)",
     },
   });
 });
@@ -51,6 +51,7 @@ module.exports = {
       project: "700px",
       changingText: "768px",
       cv: "1168px",
+      xl: "1376px",
       ...defaultTheme.screens,
     },
     letterSpacing: {
@@ -68,20 +69,21 @@ module.exports = {
         thirdAccent: "#282C24",
         fadedWhite: "#FAFBFB",
         borderWhite: "#D6D9DB",
-        cardBG: "#E5DBB4",
+        cardBG: "#FFD694",
+        panelBG: "#201A3E",
+        link: "#00539E",
       },
       gridTemplateColumns: {
         layout: "minmax(500px, 2fr) 3fr",
-      },
-      boxShadow: {
-        elevated: "inset 0 0 2px 1px #DBFBFB;",
       },
       fontFamily: {
         futuraLight: ["FuturaLight", "SF Pro Display"],
       },
       boxShadow: {
-        cards: "0px 2px #E5E5E5",
-        cardsActive: "0px 8px #E5E5E5",
+        elevated: "inset 0 0 2px 1px #DBFBFB;",
+        panel: "2px 3px rgba(0,0,0,0.25)",
+        panelActive: "4px 8px rgba(0,0,0,0.25)",
+        cards: "0px 4px 4px rgba(0, 0, 0, 0.5);",
       },
     },
   },

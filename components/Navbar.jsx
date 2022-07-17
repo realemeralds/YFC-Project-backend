@@ -51,7 +51,7 @@ export default function Navbar({ hidden, menuVisible }) {
       >
         {!hidden ? (
           <p
-            className={`font-light text-xl text-right mr-4 self-center`}
+            className={`font-light sm:block hidden text-xl text-right mr-4 self-center`}
             style={{ opacity }}
           >
             menu

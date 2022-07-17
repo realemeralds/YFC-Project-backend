@@ -55,17 +55,17 @@ const CarouselContainer = () => {
   return (
     <div className="w-full flex pt-[2vh] items-center justify-center h-screen flex-col-reverse">
       <div
-        className="embla w-4/5 bg-slate-300 rounded-3xl peer"
+        className="embla w-10/12 sm:w-4/5 bg-slate-300 rounded-3xl peer"
         onMouseDown={() => {
           setClicked(true);
           localStorage.setItem("clicked", true);
         }}
       >
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex h-[440px] items-center">
+          <div className="embla__container flex sm:h-[440px] h-[380px] items-center">
             <div className="embla__slide">
               <div className="embla__slide__inner">
-                <div className="h-[500px] w-[80vw] px-8 flex-row items-center justify-center flex">
+                <div className="h-[500px] w-[90vw] sm:px-8 flex-row items-center justify-center flex">
                   <div className="max-w-[40%] max-h-[500px] lg:block hidden">
                     <Image
                       src="/cookie.png"
@@ -75,12 +75,12 @@ const CarouselContainer = () => {
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-10 pl-4 -mt-5">
-                    <p className="font-futuraLight text-center project:text-[48px] mb-3 text-4xl">
+                    <p className="font-futuraLight text-center project:text-[48px] text-4xl mb-3 ">
                       boba and cookies day
                     </p>
-                    <p className="font-medium text-center text-2xl relative twoxsm:left-5 mb-4">
+                    <p className="font-medium text-center text-xl xsm:text-2xl relative left-5 mb-4">
                       11 - 12th August{" "}
-                      <span className="twoxsm:inline-block hidden relative rotate-[-30deg] bottom-3 ">
+                      <span className="inline-block relative rotate-[-30deg] bottom-3 ">
                         📅
                       </span>
                     </p>
@@ -113,7 +113,7 @@ const CarouselContainer = () => {
             </div>
             <div className="embla__slide relative">
               <div className="embla__slide__inner">
-                <div className="h-[500px] w-[80vw] px-8 pt-5 flex-row items-center justify-center flex">
+                <div className="h-[500px] w-[90vw] sm:px-8 pt-5 flex-row items-center justify-center flex">
                   <div className="max-w-[48%] max-h-[500px] md:block hidden">
                     <Image
                       src="/clay_edited.png"
@@ -123,7 +123,7 @@ const CarouselContainer = () => {
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow md:pl-10 pl-3 -mt-5">
-                    <p className="font-futuraLight text-center text-3xl xsm:text-[48px] mb-3">
+                    <p className="font-futuraLight text-center text-4xl xsm:text-[48px] mb-3">
                       clay workshop
                     </p>
                     <p className="font-medium text-center text-xl xsm:text-2xl relative left-3 mb-4">
@@ -149,7 +149,44 @@ const CarouselContainer = () => {
             </div>
             <div className="embla__slide relative">
               <div className="embla__slide__inner">
-                <div className="h-[500px] w-[80vw] px-12 pt-5 flex-row items-center justify-center flex">
+                <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
+                  <div className="max-w-[40%] max-h-[500px] lg:block hidden">
+                    <Image
+                      src="/guitar.png"
+                      layout="intrinsic"
+                      width={1598}
+                      height={1396}
+                    />
+                  </div>
+                  <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">
+                    <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-2">
+                      football match
+                    </p>
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1">
+                      24th July{" "}
+                      <span className="relative rotate-[-30deg] bottom-3 project:inline-block hidden">
+                        📅
+                      </span>
+                    </p>
+                    <p className="xsm:text-[20px] text-[16px] tracking-tight leading-tight mb-3">
+                      At the upcoming Lion City Sailors vs Tampines Rovers match
+                      on <b>July 24th</b>, we will be setting up a booth!
+                    </p>
+                    <p className="xsm:text-[20px] text-[17px] tracking-tight leading-tight mb-3">
+                      We will be selling merch and having a board to showcase
+                      our programs, and all proceeds from the ticket sales to
+                      the match will be donated to DAS.
+                    </p>
+                    <p className="text-[20px] tracking-tight leading-tight project:block hidden">
+                      Consider donating if you enjoy their music!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="embla__slide relative">
+              <div className="embla__slide__inner">
+                <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
                   <div className="max-w-[40%] max-h-[500px] lg:block hidden">
                     <Image
                       src="/guitar.png"
@@ -192,11 +229,6 @@ const CarouselContainer = () => {
                 </div>
               </div>
             </div>
-            <div className="embla__slide relative">
-              <div className="embla__slide__inner">
-                <h1 className="text-6xl leading-tight">Coming soon!</h1>
-              </div>
-            </div>
           </div>
         </div>
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
@@ -213,10 +245,11 @@ const CarouselContainer = () => {
       </div>
       <p
         ref={paraRef}
-        className="opacity-100 transition-opacity delay-200 duration-700 text-2xl font-medium mb-3"
+        className="opacity-100 transition-opacity delay-200 duration-700 sm:text-2xl text-center text-lg font-medium mb-3 leading-[1.1]"
         style={{ opacity: clicked ? "0" : "1" }}
       >
-        click and drag on the carousel to browse events!
+        click and drag on the <br className="sm:hidden block" /> carousel to
+        browse events!
       </p>
     </div>
   );
@@ -232,7 +265,7 @@ export const DotButton = ({ selected, onClick }) => (
 
 export const PrevButton = ({ enabled, onClick }) => (
   <button
-    className="embla__button embla__button--prev"
+    className="embla__button embla__button--prev sm:block hidden"
     onClick={onClick}
     disabled={!enabled}
   >
@@ -244,7 +277,7 @@ export const PrevButton = ({ enabled, onClick }) => (
 
 export const NextButton = ({ enabled, onClick }) => (
   <button
-    className="embla__button embla__button--next"
+    className="embla__button embla__button--next sm:block hidden"
     onClick={onClick}
     disabled={!enabled}
   >

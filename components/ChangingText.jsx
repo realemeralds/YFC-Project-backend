@@ -22,7 +22,7 @@ export const ChangingText = ({ progress }) => {
     }
     // console.log(displayedWords);
     messUpWords();
-  });
+  }, []);
 
   useEffect(() => {
     if (progress > 0.3 && paused) {
@@ -141,7 +141,7 @@ export const ChangingText = ({ progress }) => {
   }
 
   return (
-    <>
+    <div className="space-y-4">
       <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000] cv:mx-20">
         <p
           ref={paraRef}
@@ -172,6 +172,6 @@ export const ChangingText = ({ progress }) => {
           RESET
         </button>
       </div>
-    </>
+    </div>
   );
 };

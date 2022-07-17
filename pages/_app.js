@@ -3,6 +3,7 @@ import "../styles/embla.scss";
 import "../styles/scrollbar.scss";
 import Navbar from "../components/Navbar";
 import ScrollObserver from "../components/ScrollObserver";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 // Font Awesome
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -12,9 +13,11 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <ScrollObserver>
-        <Component {...pageProps} />
-      </ScrollObserver>
+      <ParallaxProvider>
+        <ScrollObserver>
+          <Component {...pageProps} />
+        </ScrollObserver>
+      </ParallaxProvider>
     </>
   );
 }
