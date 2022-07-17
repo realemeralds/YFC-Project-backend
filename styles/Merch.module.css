@@ -1,0 +1,16 @@
+.gradient {
+  background: linear-gradient(
+    292.41deg,
+    #dcdcdc 4.75%,
+    rgba(251, 251, 251, 0) 35.85%
+  );
+}
+
+.radialGradient {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #e8e2ca 0%,
+    rgba(232, 226, 202, 0.455959) 71.07%,
+    rgba(232, 226, 202, 0) 100%
+  );
+}

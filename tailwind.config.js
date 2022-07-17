@@ -72,6 +72,7 @@ module.exports = {
         cardBG: "#FFD694",
         panelBG: "#201A3E",
         link: "#00539E",
+        shopFaded: "#A49F9B",
       },
       gridTemplateColumns: {
         layout: "minmax(500px, 2fr) 3fr",

@@ -66,7 +66,7 @@ const CarouselContainer = () => {
             <div className="embla__slide">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[90vw] sm:px-8 flex-row items-center justify-center flex">
-                  <div className="max-w-[40%] max-h-[500px] lg:block hidden">
+                  <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
                     <Image
                       src="/cookie.png"
                       layout="intrinsic"
@@ -97,16 +97,18 @@ const CarouselContainer = () => {
                         and food will be delivered <u>right to your class.</u>
                       </span>{" "}
                     </p>
-                    <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
-                      <p className="text-start text-2xl text-firstAccent font-medium mb-1">
-                        Link to Google Form →
-                      </p>
-                      <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
-                        All proceeds will go to the Dyslexia{" "}
-                        <span className="xsm:block hidden"></span>
-                        Association of Singapore (DAS)
-                      </p>
-                    </button>
+                    <a>
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
+                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
+                          link to google form →
+                        </p>
+                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
+                          All proceeds will go to the Dyslexia{" "}
+                          <span className="xsm:block hidden"></span>
+                          Association of Singapore (DAS)
+                        </p>
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -150,36 +152,54 @@ const CarouselContainer = () => {
             <div className="embla__slide relative">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
-                  <div className="max-w-[40%] max-h-[500px] lg:block hidden">
+                  <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
                     <Image
-                      src="/guitar.png"
+                      src="/football.png"
                       layout="intrinsic"
                       width={1598}
-                      height={1396}
+                      height={1598}
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">
-                    <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-2">
+                    <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-3">
                       football match
                     </p>
-                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1">
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-4">
                       24th July{" "}
                       <span className="relative rotate-[-30deg] bottom-3 project:inline-block hidden">
                         📅
                       </span>
                     </p>
-                    <p className="xsm:text-[20px] text-[16px] tracking-tight leading-tight mb-3">
+                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight mb-4 sm:block hidden">
                       At the upcoming Lion City Sailors vs Tampines Rovers match
                       on <b>July 24th</b>, we will be setting up a booth!
                     </p>
-                    <p className="xsm:text-[20px] text-[17px] tracking-tight leading-tight mb-3">
-                      We will be selling merch and having a board to showcase
-                      our programs, and all proceeds from the ticket sales to
-                      the match will be donated to DAS.
+                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight">
+                      <span className="sm:hidden inline-block pr-4">
+                        During the upcoming match between Lion City Sailors and
+                        Tampines Rovers,
+                      </span>{" "}
+                      <span className="sm:hidden inline-block pr-4">
+                        we will be selling merch and having a board to showcase
+                        our programs. <u>All proceeds</u> from the ticket sales
+                        to the match <u>will be donated to DAS.</u>
+                      </span>
+                      <span className="sm:inline-block hidden pr-4">
+                        We will be selling merch and having a board to showcase
+                        our programs, and <u>all proceeds</u> from the ticket
+                        sales to the match <u>will be donated to DAS.</u>
+                      </span>
                     </p>
-                    <p className="text-[20px] tracking-tight leading-tight project:block hidden">
-                      Consider donating if you enjoy their music!
-                    </p>
+                    <a>
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
+                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
+                          buy tickets from sistic →
+                        </p>
+                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
+                          come down and show your support!
+                        </p>
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -187,7 +207,7 @@ const CarouselContainer = () => {
             <div className="embla__slide relative">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
-                  <div className="max-w-[40%] max-h-[500px] lg:block hidden">
+                  <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
                     <Image
                       src="/guitar.png"
                       layout="intrinsic"
