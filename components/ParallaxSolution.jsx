@@ -15,10 +15,14 @@ export const Solution = () => {
   let lastOffsetHeight;
   let lastBottom = 1300;
   let height;
+  const [clicked, setClicked] = useState(true);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
     handleWindowResize();
+    if (localStorage.getItem("cards") === null) {
+      setClicked(false);
+    }
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
@@ -50,19 +54,29 @@ export const Solution = () => {
     }
   };
 
+  const paraRef = useRef(null);
+
+  useEffect(() => {
+    console.log(clicked);
+  }, [clicked]);
+
   return (
     <>
       <div
-        className={`bg-slate-100 relative min-h-max md:h-[2400px] z-0 overflow-hidden`}
+        className={`bg-slate-100 relative min-h-max md:h-[2400px] z-0 overflow-hidden flex flex-col`}
         style={{ height }}
+        onMouseDown={() => {
+          setClicked(true);
+          localStorage.setItem("cards", true);
+        }}
       >
         <Parallax
           speed={5}
           rootMargin={{ top: -350, right: 0, bottom: 536, left: 0 }}
           disabled={mdBroken}
         >
-          <div className="block mt-6 md:absolute md:w-[750px] w-[80vw] mx-[10vw] p-6 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-24 md:top-[300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
-            <div className="border-l-black border-l-4 md:border-l-[5px] pl-4 pt-1 pb-2">
+          <div className="block mt-6 md:absolute md:w-[750px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-24 md:top-[300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
+            <div className="border-l-black border-l-[3px] md:border-l-[5px] pl-4 pt-1 pb-2 pr-4">
               <p className="md:text-[40px] text-2xl font-regular text-start mb-2 leading-tight">
                 What are we doing?
               </p>
@@ -99,8 +113,8 @@ export const Solution = () => {
           onEnter={() => console.log("entered")}
           disabled={mdBroken}
         >
-          <div className="block mt-10 md:translate-y-0 md:absolute md:w-[660px] w-[80vw] mx-[10vw] p-6 md:p-8 pr-6 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-40 md:top-[700px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
-            <div className="border-r-black border-r-[5px] pr-6 pt-1 pb-2">
+          <div className="block mt-10 md:translate-y-0 md:absolute md:w-[660px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-4 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-40 md:top-[700px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
+            <div className="border-r-black border-r-[3px] sm:border-r-[5px] pr-5 sm:pr-6 pt-1 pb-2 pl-5">
               <p className="md:text-[40px] text-2xl font-regular text-end mb-3 leading-tight">
                 <b>(1)</b> On stereotypes:
               </p>
@@ -157,8 +171,8 @@ export const Solution = () => {
           onEnter={() => console.log("entered")}
           disabled={mdBroken}
         >
-          <div className="block mt-10 md:translate-y-0 md:absolute md:w-[750px] w-[80vw] mx-[10vw] p-6 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-0 md:top-[1300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
-            <div className="border-l-black border-l-[5px] pl-6 pt-1 pb-2">
+          <div className="block mt-10 md:translate-y-0 md:absolute md:w-[750px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-0 md:top-[1300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
+            <div className="border-l-black sm:border-l-[5px] border-l-[3px] pl-4 pt-1 pb-2 pr-4">
               <p className="md:text-[40px] text-2xl font-regular text-start mb-2 leading-tight">
                 <b>(2)</b> Raising funds
               </p>
@@ -203,9 +217,9 @@ export const Solution = () => {
 
         <div
           ref={divContainer}
-          className="block mt-10 md:translate-y-0 md:absolute md:w-[660px] w-[80vw] mx-[10vw] p-6 md:p-8 pr-6 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-8 md:top-[1800px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300 mb-6"
+          className="block mt-10 md:translate-y-0 md:absolute md:w-[660px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-4 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-8 md:top-[1800px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300 mb-6"
         >
-          <div className="border-r-black border-r-[5px] pr-6 pt-1 pb-2">
+          <div className="border-r-black border-r-[3px] sm:border-r-[5px] pr-6 pt-1 pb-2 sm:pl-0 pl-4">
             <p className="md:text-[40px] text-2xl font-regular text-end mb-3 leading-tight">
               <b>(3)</b> Programs for dyslexic youths:
             </p>
@@ -223,8 +237,6 @@ export const Solution = () => {
         <Parallax
           speed={20}
           rootMargin={{ top: -2000, right: 0, bottom: 2080, left: 0 }}
-          onEnter={() => console.log("entered picture")}
-          onExit={() => console.log("exited picture")}
           disabled={mdBroken}
         >
           <div className="w-[calc(23vw+20px)] max-w-[400px] left-8 xl:left-40 md:top-[1850px] absolute hidden lg:block">
@@ -236,6 +248,13 @@ export const Solution = () => {
             />
           </div>
         </Parallax>
+        <p
+          className="opacity-100 transition-opacity delay-200 duration-700 sm:text-3xl text-2xl font-semibold leading-[1.1] text-center mt-3 peer order-[-1]"
+          ref={paraRef}
+          style={{ opacity: clicked ? "0" : "1" }}
+        >
+          click and interact with the cards!
+        </p>
       </div>
     </>
   );

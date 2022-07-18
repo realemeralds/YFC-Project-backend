@@ -168,9 +168,9 @@ const CarouselContainer = () => {
                     <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-3">
                       football match
                     </p>
-                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-4">
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-8 -mt-1 mb-4">
                       24th July{" "}
-                      <span className="relative rotate-[-30deg] bottom-3 project:inline-block hidden">
+                      <span className="relative rotate-[-30deg] bottom-3 inline-block">
                         📅
                       </span>
                     </p>
@@ -195,7 +195,7 @@ const CarouselContainer = () => {
                       </span>
                     </p>
                     <a>
-                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
                           buy tickets from sistic →
                         </p>

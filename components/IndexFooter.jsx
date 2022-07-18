@@ -14,10 +14,10 @@ export const Footer = () => {
             width={100}
             height={100}
           />
-          <p className="font-semibold text-3xl tracking-tight text-white mb-3 mt-4">
+          <p className="font-semibold text-2xl sm:text-3xl mb-1 sm:mb-3 tracking-tight text-white mt-4">
             → Projects
           </p>
-          <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
+          <p className="font-light text-lg sm:text-2xl text-white text-md tracking-tight leading-tight">
             Learn more about the projects{" "}
             <span className="font-semibold">you</span> can contribute to.
           </p>
@@ -31,10 +31,10 @@ export const Footer = () => {
             width={100}
             height={100}
           />
-          <p className="font-semibold text-3xl tracking-tight text-white mb-3 mt-4">
+          <p className="font-semibold text-2xl sm:text-3xl mb-1 sm:mb-3 tracking-tight text-white mt-4">
             → Donate
           </p>
-          <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
+          <p className="font-light  text-lg sm:text-2xl text-white text-md tracking-tight leading-tight">
             Donations received will go directly to DAS&apos; bursary fund, to
             sustain daily operations for low-income families.
           </p>
@@ -47,10 +47,10 @@ export const Footer = () => {
             width={100}
             height={100}
           />
-          <p className="font-semibold text-3xl tracking-tight text-white mb-3 mt-4">
+          <p className="font-semibold text-2xl sm:text-3xl mb-1 sm:mb-3 tracking-tight text-white mt-4">
             → About DAS
           </p>
-          <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
+          <p className="font-light text-lg sm:text-2xl text-white text-md tracking-tight leading-tight">
             Learn more about our beneficiary, DAS by checking out their website
             and the services they provide.
           </p>
