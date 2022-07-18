@@ -36,8 +36,8 @@ export const Footer = () => {
             → Donate
           </p>
           <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
-            Donations received will go directly to DAS' bursary fund, to sustain
-            daily operations for low-income families.
+            Donations received will go directly to DAS&apos; bursary fund, to
+            sustain daily operations for low-income families.
           </p>
         </PanelWrapper>
         <PanelWrapper link="https://www.das.org.sg/">
