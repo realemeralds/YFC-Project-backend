@@ -36,6 +36,7 @@ const Header = () => {
             width={210}
             height={90}
             objectFit="cover"
+            priority
           />
         </div>
         <div

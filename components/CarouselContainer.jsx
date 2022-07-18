@@ -92,8 +92,8 @@ const CarouselContainer = () => {
                     </p>
                     <p className="text-[20px] tracking-tight leading-tight">
                       <span className="project:block hidden">Thankfully,</span>{" "}
-                      Project Vanguard will be selling [item 1], [item 2] and
-                      [item 3] on <b>August 11th and 12th!</b>{" "}
+                      Project Vanguard will be selling boba, cookies and other
+                      items on <b>August 11th and 12th!</b>{" "}
                       <span className="xsm:block hidden">
                         Place an order with the link below by <b>August 7th</b>,
                         and food will be delivered <u>right to your class.</u>
@@ -168,7 +168,7 @@ const CarouselContainer = () => {
                     <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-3">
                       football match
                     </p>
-                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-8 -mt-1 mb-4">
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-4">
                       24th July{" "}
                       <span className="relative rotate-[-30deg] bottom-3 inline-block">
                         📅
@@ -220,7 +220,7 @@ const CarouselContainer = () => {
                       alt="an acoustic guitar"
                     />
                   </div>
-                  <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">
+                  <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 lg:-mr-3 ">
                     <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-2">
                       busking
                     </p>
@@ -239,13 +239,9 @@ const CarouselContainer = () => {
                       on July <b>25th, 26th, and 28th.</b>
                     </p>
                     <p className="xsm:text-[20px] text-[17px] tracking-tight leading-tight mb-3">
-                      <span className="xsm:block hidden">
-                        Our student bands have been practising hard, and are
-                        passionate to showcase their musical talent for a worthy
-                        cause.
-                      </span>
-                      The <u>set list includes:</u> [epic song 1 by someone],
-                      [epic song 2 by someone] and [epic song 3 by someone]
+                      Our student bands have been practising hard, and are
+                      passionate to showcase their musical talent for a worthy
+                      cause.
                     </p>
                     <p className="text-[20px] tracking-tight leading-tight project:block hidden">
                       Consider donating if you enjoy their music!

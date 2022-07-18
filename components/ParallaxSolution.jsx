@@ -161,6 +161,7 @@ export const Solution = () => {
               height={400}
               layout="intrinsic"
               src="/studying.png"
+              alt="photo of kid studying"
             />
           </div>
         </Parallax>
@@ -245,11 +246,12 @@ export const Solution = () => {
               height={400}
               layout="intrinsic"
               src="/reading.png"
+              alt="photo of kid reading"
             />
           </div>
         </Parallax>
         <p
-          className="opacity-100 transition-opacity delay-200 duration-700 sm:text-3xl text-2xl font-semibold leading-[1.1] text-center mt-3 peer order-[-1]"
+          className="opacity-100 transition-opacity delay-200 duration-700 sm:text-3xl text-2xl font-semibold leading-[1.1] text-center mt-3 peer order-[-1] sm:hidden block"
           ref={paraRef}
           style={{ opacity: clicked ? "0" : "1" }}
         >

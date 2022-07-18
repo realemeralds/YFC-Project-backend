@@ -13,7 +13,7 @@ const Home = () => {
       </h1>
       <p className="text-center text-2xl md:text-3xl text-black font-regular px-6 sm:px-[14vw] lg:px-[20vw]">
         Grab some fashionable merchandise while <u>100%</u> of your purchase
-        goes towards supporting dyslexics!
+        goes towards supporting DAS&#39; programs for dyslexics!
       </p>
       <p className="text-center px-10 sm:px-[30vw] mt-4 md:mt-2 sm:mt-0 text-2xl font-light mb-8">
         click on the panels for more details...
