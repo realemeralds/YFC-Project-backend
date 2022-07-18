@@ -154,7 +154,7 @@ const CarouselContainer = () => {
                 <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
                   <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
                     <Image
-                      src="/football.png"
+                      src="/Football.png"
                       layout="intrinsic"
                       width={1598}
                       height={1598}
