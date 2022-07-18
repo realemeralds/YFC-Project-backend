@@ -48,9 +48,9 @@ const Modal = ({ onClose, children, title, show, daRef }) => {
     >
       <div
         ref={modalWrapperRef}
-        className="w-[500px] h-[650px] flex items-center justify-center bg-transparent"
+        className="sm:w-[500px] sm:h-[650px] w-[300px] h-[390px] flex items-center justify-center bg-transparent"
       >
-        <div className="bg-white w-[450px] h-[525px] relative rounded-[50px] border border-black shadow-[0_0_20px_10px_rgba(0,0,0,0.24)]">
+        <div className="bg-white w-[300px] h-[390px] sm:w-[450px] sm:h-[525px] relative rounded-[50px] border border-black shadow-[0_0_20px_10px_rgba(0,0,0,0.24)]">
           <div className="absolute top-5 right-7 text-2xl">
             <a href="#" onClick={handleCloseClick}>
               <FontAwesomeIcon icon={faXmark} size="lg" />

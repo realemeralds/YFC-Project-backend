@@ -52,7 +52,7 @@ export default function Canvas() {
   // key variables
   const width = 1002;
   const height = 802;
-  const countdownDuration = 30;
+  const countdownDuration = 5;
 
   // Overlay square position
   var overlaypos = {
@@ -102,7 +102,7 @@ export default function Canvas() {
 
   useEffect(() => {
     console.log(mousedown);
-    console.log(canvasDisabled);
+    console.log("effect triggered");
     if (!canvasDisabled) {
       console.log(mousedown);
       breakButton = breakButtonRef.current;
@@ -110,8 +110,10 @@ export default function Canvas() {
       console.log(overlaypos);
       breakButton.disabled = false;
       cancelButton.disabled = false;
+      console.log(`${breakButton} enabled`);
     }
-  }, [mousedown]);
+    onMousedown(false);
+  }, [mousedown, overlaypos.x]);
 
   // The main function
   useEffect(() => {
@@ -341,6 +343,7 @@ export default function Canvas() {
           selectpos.y = undefined;
           breakButton.disabled = true;
           cancelButton.disabled = true;
+          console.log("lol");
         });
         triggered = true;
       }
@@ -464,7 +467,7 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
     <>
       <canvas
         ref={daRef}
-        className={`z-${zindex} absolute top-1/2 right-[40vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
+        className={`z-${zindex} absolute top-1/2 cv:right-[40vw] right-[36vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
           shadow ? styles.shadow : ""
         }`}
         style={{

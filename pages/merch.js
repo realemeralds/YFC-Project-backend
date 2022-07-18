@@ -11,11 +11,11 @@ const Home = () => {
       <h1 className="text-center text-4xl md:text-5xl text-black font-bold mb-4 mt-5">
         Merchandise
       </h1>
-      <p className="text-center text-2xl md:text-3xl text-black font-regular px-[20vw]">
+      <p className="text-center text-2xl md:text-3xl text-black font-regular px-6 sm:px-[14vw] lg:px-[20vw]">
         Grab some fashionable merchandise while <u>100%</u> of your purchase
         goes towards supporting dyslexics!
       </p>
-      <p className="text-center px-[30vw] text-2xl font-light mb-8">
+      <p className="text-center px-10 sm:px-[30vw] mt-4 md:mt-2 sm:mt-0 text-2xl font-light mb-8">
         click on the panels for more details...
       </p>
       <ShopWrapper />
@@ -46,13 +46,15 @@ export const ModalFunction = ({
           }}
           show={showModal[index]}
         >
-          <p className="text-3xl w-4/5 font-bold leading-8 mb-1 self-start">
+          <p className="text-start text-xl font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-8 mb-1 self-start">
             {heading}
           </p>
-          <p className="text-lg text-[#A49F9B] self-start mb-4">{author}</p>
-          <div className="w-96">
+          <p className="text-sm sm:text-lg text-[#A49F9B] self-start mb-2 sm:mb-4">
+            {author}
+          </p>
+          <div className="w-64 sm:w-96">
             <div
-              className={`rounded-[50px] py-7 mx-8 mb-4 px-12 ${styles.radialGradient}`}
+              className={`rounded-[50px] px-8  sm:py-7 sm:mx-8 sm:mb-4 sm:px-12 ${styles.radialGradient}`}
             >
               <Image
                 src={src}
@@ -101,205 +103,202 @@ export const ShopWrapper = () => {
   ]);
 
   return (
-    <div className="flex flex-col space-y-6 w-3/4 m-auto mb-20">
-      <div className="flex flex-row space-x-6">
-        <ModalFunction
-          index={0}
-          heading={"when life gives you melons totebag"}
-          author="by Heather, LE510"
-          src="/tote (1).png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="w-full h-full">
-            <div className={`pb-2 pt-2 ${styles.gradient}`}>
-              <Image
-                src="/tote (1).png"
-                layout="responsive"
-                height={200}
-                width={200}
-                className="max-h-60"
-                priority
-                alt="when life gives you melons totebag"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-start text-xl font-medium leading-5 mb-1">
-                when life gives you melons totebag
-              </p>
-              <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
-                by Heather, LE510
-              </p>
-              <p className="font-semibold text-xl text-start">$9.99</p>
-            </div>
+    // <div className="flex flex-col space-y-6 w-3/4 m-auto mb-20">
+    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-3/4 m-auto gap-6 mb-10">
+      <ModalFunction
+        index={0}
+        heading={"when life gives you melons totebag"}
+        author="by Heather, LE510"
+        src="/tote (1).png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="w-full h-full">
+          <div className={`pb-2 pt-2 ${styles.gradient}`}>
+            <Image
+              src="/tote (1).png"
+              layout="responsive"
+              height={200}
+              width={200}
+              className="max-h-60"
+              priority
+              alt="when life gives you melons totebag"
+            />
           </div>
-        </ModalFunction>
-        <ModalFunction
-          index={1}
-          heading={"prima signa totebag"}
-          author="by Olivia, MN518"
-          src="/tote (2).png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="w-full h-full">
-            <div className={`pb-2 pt-2 ${styles.gradient} `}>
-              <Image
-                src="/tote (2).png"
-                layout="responsive"
-                height={200}
-                width={200}
-                className="max-h-60"
-                priority
-                alt="prima signa totebag"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl text-start font-medium leading-5 mb-1">
-                prima signa totebag
-              </p>
-              <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
-                by Olivia, MN518
-              </p>
-              <p className="font-semibold text-start text-xl">$9.99</p>
-            </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-start text-xl font-medium leading-5 mb-1">
+              when life gives you melons totebag
+            </p>
+            <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
+              by Heather, LE510
+            </p>
+            <p className="font-semibold text-xl text-start">$9.99</p>
           </div>
-        </ModalFunction>
-        <ModalFunction
-          index={2}
-          heading="seeing through dyslexia totebag"
-          author="by Clement, MN517"
-          src="/tote (3).png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="w-full h-full">
-            <div className={`pb-2 pt-2 ${styles.gradient} `}>
-              <Image
-                src="/tote (3).png"
-                layout="responsive"
-                height={200}
-                width={200}
-                priority
-                className="max-h-60"
-                alt="seeing through dyslexia totebag"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-5 mb-1 text-start">
-                seeing through dyslexia totebag
-              </p>
-              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-                by Clement, MN517
-              </p>
-              <p className="font-semibold text-xl text-start">$9.99</p>
-            </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={1}
+        heading={"prima signa totebag"}
+        author="by Olivia, MN518"
+        src="/tote (2).png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="w-full h-full">
+          <div className={`pb-2 pt-2 ${styles.gradient} `}>
+            <Image
+              src="/tote (2).png"
+              layout="responsive"
+              height={200}
+              width={200}
+              className="max-h-60"
+              priority
+              alt="prima signa totebag"
+            />
           </div>
-        </ModalFunction>
-      </div>
-      <div className="flex flex-row space-x-6">
-        <ModalFunction
-          index={3}
-          heading="sticker collection A"
-          author="by Alyssa, ML511"
-          src="/editedStickerA.png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="w-full h-full">
-            <div className={`pb-2 pt-2 ${styles.gradient} `}>
-              <Image
-                src="/editedStickerA.png"
-                layout="responsive"
-                width={1}
-                height={1}
-                alt="sticker collection A"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-5 mb-1 text-start">
-                sticker collection A
-              </p>
-              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-                by Alyssa, ML511
-              </p>
-              <p className="font-semibold text-xl text-start">$9.99</p>
-            </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl text-start font-medium leading-5 mb-1">
+              prima signa totebag
+            </p>
+            <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
+              by Olivia, MN518
+            </p>
+            <p className="font-semibold text-start text-xl">$9.99</p>
           </div>
-        </ModalFunction>
-        <ModalFunction
-          index={4}
-          heading="misconceptions totebag"
-          author="by Darren, MN518"
-          src="/tote (4).png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="w-full h-full">
-            <div className={`pb-2 pt-2 ${styles.gradient} `}>
-              <Image
-                src="/tote (4).png"
-                layout="responsive"
-                height={200}
-                width={200}
-                className="max-h-60"
-                alt="misconceptions totebag"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-5 mb-1 text-start">
-                misconceptions totebag
-              </p>
-              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-                by Darren, MN518
-              </p>
-              <p className="font-semibold text-xl text-start">$9.99</p>
-            </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={2}
+        heading="seeing through dyslexia totebag"
+        author="by Clement, MN517"
+        src="/tote (3).png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="w-full h-full">
+          <div className={`pb-2 pt-2 ${styles.gradient} `}>
+            <Image
+              src="/tote (3).png"
+              layout="responsive"
+              height={200}
+              width={200}
+              priority
+              className="max-h-60"
+              alt="seeing through dyslexia totebag"
+            />
           </div>
-        </ModalFunction>
-        <ModalFunction
-          index={5}
-          heading="sticker collection B"
-          author="by Darren, MN518"
-          src="/editedStickerB.png"
-          price="$9.99"
-          link="#"
-          showModal={showModal}
-          setShowModal={setShowModal}
-        >
-          <div className="h-full w-full">
-            <div className={`pb-2 pt-2 ${styles.gradient} `}>
-              <Image
-                src="/editedStickerB.png"
-                layout="responsive"
-                height={2480}
-                width={2480}
-                className="max-h-60"
-                alt="sticker collection B"
-              />
-            </div>
-            <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-5 mb-1 text-start">
-                sticker collection B
-              </p>
-              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-                by Various Artists
-              </p>
-              <p className="font-semibold text-xl text-start">$9.99</p>
-            </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              seeing through dyslexia totebag
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Clement, MN517
+            </p>
+            <p className="font-semibold text-xl text-start">$9.99</p>
           </div>
-        </ModalFunction>
-      </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={3}
+        heading="sticker collection A"
+        author="by Alyssa, ML511"
+        src="/editedStickerA.png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="w-full h-full">
+          <div className={`pb-2 pt-2 ${styles.gradient} `}>
+            <Image
+              src="/editedStickerA.png"
+              layout="responsive"
+              width={1}
+              height={1}
+              alt="sticker collection A"
+            />
+          </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              sticker collection A
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Alyssa, ML511
+            </p>
+            <p className="font-semibold text-xl text-start">$9.99</p>
+          </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={4}
+        heading="misconceptions totebag"
+        author="by Darren, MN518"
+        src="/tote (4).png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="w-full h-full">
+          <div className={`pb-2 pt-2 ${styles.gradient} `}>
+            <Image
+              src="/tote (4).png"
+              layout="responsive"
+              height={200}
+              width={200}
+              className="max-h-60"
+              alt="misconceptions totebag"
+            />
+          </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              misconceptions totebag
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Darren, MN518
+            </p>
+            <p className="font-semibold text-xl text-start">$9.99</p>
+          </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={5}
+        heading="sticker collection B"
+        author="by Darren, MN518"
+        src="/editedStickerB.png"
+        price="$9.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+      >
+        <div className="h-full w-full">
+          <div className={`pb-2 pt-2 ${styles.gradient} `}>
+            <Image
+              src="/editedStickerB.png"
+              layout="responsive"
+              height={2480}
+              width={2480}
+              className="max-h-60"
+              alt="sticker collection B"
+            />
+          </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              sticker collection B
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Various Artists
+            </p>
+            <p className="font-semibold text-xl text-start">$9.99</p>
+          </div>
+        </div>
+      </ModalFunction>
     </div>
   );
 };

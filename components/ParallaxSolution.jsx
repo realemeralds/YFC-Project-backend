@@ -14,6 +14,7 @@ export const Solution = () => {
   let lastOffsetTop;
   let lastOffsetHeight;
   let lastBottom = 1300;
+  let height;
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
@@ -35,20 +36,25 @@ export const Solution = () => {
 
   const handleWindowResize = () => {
     if (!elContainer) return;
-    if (window.innerWidth < mdMinWidth) setMdBroken(true);
-    else {
-      setMdBroken(false);
-    }
     lastOffsetTop = elContainer.offsetTop;
     lastOffsetHeight = elContainer.offsetHeight;
     console.log("!!", lastOffsetTop, lastOffsetHeight);
-    lastBottom = lastOffsetHeight + lastOffsetTop;
+    lastBottom = lastOffsetHeight + lastOffsetTop + 1000;
+    console.log("!!", lastBottom);
+    if (window.innerWidth < mdMinWidth) {
+      setMdBroken(true);
+      height = lastBottom;
+    } else {
+      setMdBroken(false);
+      height = 2400;
+    }
   };
 
   return (
     <>
       <div
-        className={`bg-slate-100 relative min-h-max h-[${lastBottom}px] md:h-[2400px] z-0 overflow-hidden`}
+        className={`bg-slate-100 relative min-h-max md:h-[2400px] z-0 overflow-hidden`}
+        style={{ height }}
       >
         <Parallax
           speed={5}
@@ -187,7 +193,7 @@ export const Solution = () => {
                 <a>
                   <p className="md:text-3xl text-xl text-link text-left font-light hover:translate-x-4 duration-300">
                     {" "}
-                    → check out our merch..?
+                    → check out our merch!
                   </p>
                 </a>
               </Link>

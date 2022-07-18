@@ -33,22 +33,11 @@ const Problems = () => {
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "80vh",
-                    position: "relative",
-                    display: "flex",
-                    pointerEvents: "none",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: "10vh",
-                  }}
-                >
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center lg:mt-20">
                   <Image
                     src="/panel1.png"
                     alt="Embrace dysxleia poster"
-                    className="pointer-events-none z-10 object-center object-contain"
+                    className="pointer-events-none z-10 object-center object-contain w-full"
                   />
                 </div>
               </ProblemRight>
@@ -109,19 +98,11 @@ const Problems = () => {
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div
-                  style={{
-                    width: "100%",
-                    position: "relative",
-                    display: "flex",
-                    pointerEvents: "none",
-                  }}
-                  className="lg:w-full h-full py-[5vh] max-w-[400px] lg:max-w-[80vh] mx-auto flex items-center justify-center"
-                >
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center">
                   <Image
                     src="/misunderstandings.png"
                     alt="misunderstandings of dyslexics"
-                    className="pointer-events-none z-10  object-center object-contain"
+                    className="pointer-events-none z-10  object-center object-contain w-full"
                   />
                 </div>
               </ProblemRight>
