@@ -15,8 +15,6 @@ const Modal = ({ onClose, children, title, show, daRef }) => {
   // check if the user has clickedinside or outside the modal
   const backDropHandler = (e) => {
     if (!modalWrapperRef?.current?.contains(e.target)) {
-      console.log(active);
-      console.log("sduah");
       onClose();
     }
   };

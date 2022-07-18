@@ -34,17 +34,13 @@ export const Solution = () => {
     handleWindowResize();
   }, [divContainer]);
 
-  useEffect(() => {
-    console.log(`mdBroken: ${mdBroken}`);
-  }, [mdBroken]);
-
   const handleWindowResize = () => {
     if (!elContainer) return;
     lastOffsetTop = elContainer.offsetTop;
     lastOffsetHeight = elContainer.offsetHeight;
-    console.log("!!", lastOffsetTop, lastOffsetHeight);
+    // console.log("!!", lastOffsetTop, lastOffsetHeight);
     lastBottom = lastOffsetHeight + lastOffsetTop + 1000;
-    console.log("!!", lastBottom);
+    // console.log("!!", lastBottom);
     if (window.innerWidth < mdMinWidth) {
       setMdBroken(true);
       height = lastBottom;
@@ -55,10 +51,6 @@ export const Solution = () => {
   };
 
   const paraRef = useRef(null);
-
-  useEffect(() => {
-    console.log(clicked);
-  }, [clicked]);
 
   return (
     <>
@@ -110,7 +102,7 @@ export const Solution = () => {
         <Parallax
           speed={12}
           rootMargin={{ top: -820, right: 0, bottom: 1080, left: 0 }}
-          onEnter={() => console.log("entered")}
+          // onEnter={() => console.log("entered")}
           disabled={mdBroken}
         >
           <div className="block mt-10 md:translate-y-0 md:absolute md:w-[660px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-4 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-40 md:top-[700px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
@@ -169,7 +161,7 @@ export const Solution = () => {
         <Parallax
           speed={7}
           rootMargin={{ top: -1350, right: 0, bottom: 1630, left: 0 }}
-          onEnter={() => console.log("entered")}
+          // onEnter={() => console.log("entered")}
           disabled={mdBroken}
         >
           <div className="block mt-10 md:translate-y-0 md:absolute md:w-[750px] w-[80vw] mx-[10vw] p-5 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-0 md:top-[1300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">

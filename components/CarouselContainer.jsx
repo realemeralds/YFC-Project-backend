@@ -48,10 +48,6 @@ const CarouselContainer = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(clicked);
-  }, [clicked]);
-
   return (
     <div className="w-full flex pt-[2vh] items-center justify-center h-screen flex-col-reverse">
       <div

@@ -68,7 +68,6 @@ export default function Canvas() {
 
   // effect to do countdown recursion
   useEffect(() => {
-    console.log(canvasDisabled);
     let min, sec;
     function countdown(n) {
       if (n === 0) {
@@ -85,7 +84,6 @@ export default function Canvas() {
       }, 1000);
     }
     if (!canvasDisabled) return;
-    console.log(`called ${canvasDisabled}`);
     countdown(countdownDuration);
   }, [canvasDisabled]);
 
@@ -96,21 +94,14 @@ export default function Canvas() {
     setOverlayCanvas(overlayCanvasRef.current);
   }, []);
 
-  useEffect(() => {
-    console.log(clearRectArray);
-  }, [clearRectArray]);
+  useEffect(() => {}, [clearRectArray]);
 
   useEffect(() => {
-    console.log(mousedown);
-    console.log("effect triggered");
     if (!canvasDisabled) {
-      console.log(mousedown);
       breakButton = breakButtonRef.current;
       cancelButton = cancelButtonRef.current;
-      console.log(overlaypos);
       breakButton.disabled = false;
       cancelButton.disabled = false;
-      console.log(`${breakButton} enabled`);
     }
     onMousedown(false);
   }, [mousedown, overlaypos.x]);
@@ -136,7 +127,6 @@ export default function Canvas() {
       ctx2.fillStyle = "white";
       breakButton = breakButtonRef.current;
       cancelButton = cancelButtonRef.current;
-      console.log(breakButton);
 
       // Key canvas params
       const pixelSize = 10;
@@ -154,7 +144,6 @@ export default function Canvas() {
       const paintCanvas = (array = clearRectArray, log) => {
         let offset;
         if (array) {
-          console.log(array, log);
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           // insert clear rectangles
@@ -196,7 +185,6 @@ export default function Canvas() {
 
       // paint canvas once array has been changed
       if (changed) {
-        console.log("changed");
         paintCanvas(clearRectArray);
         setTimeout(() => setChanged(false), 500);
       }
@@ -284,7 +272,6 @@ export default function Canvas() {
       // Set upon click
       const localImgLoad = () => {
         if (ctx2 && imgRef.current) {
-          console.log("drawn");
           paintCanvas();
           ctx2.drawImage(
             imgRef.current,
@@ -316,7 +303,6 @@ export default function Canvas() {
               JSON.stringify([selectpos.x, selectpos.y])
             )
           ) {
-            console.log(tempArray);
             tempArray.push([selectpos.x, selectpos.y]);
           }
           if (JSON.stringify(tempArray) !== JSON.stringify([]))
@@ -334,7 +320,6 @@ export default function Canvas() {
           if (mouseOnCanvas) {
             selectpos.x = overlaypos.x;
             selectpos.y = overlaypos.y;
-            console.log(selectpos);
             onMousedown(!mousedown);
           }
         });
@@ -343,7 +328,6 @@ export default function Canvas() {
           selectpos.y = undefined;
           breakButton.disabled = true;
           cancelButton.disabled = true;
-          console.log("lol");
         });
         triggered = true;
       }
@@ -376,7 +360,6 @@ export default function Canvas() {
     if (!socket.current) {
       return;
     }
-    console.log("attempting connection");
     socket.current.emit("handshake", (response) => {
       console.log(response.status); // ok
     });
@@ -384,8 +367,7 @@ export default function Canvas() {
       args[0] || clearRectArray ? () => {} : console.log("huh");
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
-        : console.log("");
-      console.log(`canvasUpdate: ${JSON.stringify(args[0])}`);
+        : () => {};
       setChanged(true);
       // fallback
     });
@@ -404,7 +386,6 @@ export default function Canvas() {
             shadow
             daRef={mainCanvasRef}
             active={!canvasDisabled}
-            onLoad={() => console.log("canvas loaded")}
           />
           <CanvasElement
             zindex={20}
@@ -523,7 +504,6 @@ export const CanvasCooldown = ({ text }) => {
   let expired = false;
   let exampleText;
   exampleText = text;
-  !text ? (exampleText = "ready!") : console.log();
 
   return (
     <div className="min-w-[86px] px-4 py-2 bg-white rounded-full m-auto flex align-center justify-center">

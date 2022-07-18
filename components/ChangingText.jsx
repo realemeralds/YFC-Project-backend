@@ -20,7 +20,6 @@ export const ChangingText = ({ progress }) => {
     for (var i = 0; i < displayedWords.length; i++) {
       changeCheck.push(false);
     }
-    // console.log(displayedWords);
     messUpWords();
   }, []);
 
@@ -38,14 +37,12 @@ export const ChangingText = ({ progress }) => {
   }, [changed]); // might be a problem
 
   useEffect(() => {
-    console.log(paused);
     if (!paused) messUpWords();
   }, [paused]);
 
   function messUpWord(p, index, mode = getRandomInt(5) + 1) {
     if (changeCheck.includes(index)) {
       displayedWords[index] = originalWords[index];
-      // console.log(`reverted ${displayedWords[index]}`);
       changeCheck.splice(changeCheck.indexOf(index), 1);
       p.innerHTML = displayedWords.join(" ");
       return;
@@ -53,7 +50,6 @@ export const ChangingText = ({ progress }) => {
 
     let displayedWord = displayedWords[index];
     if (!displayedWord) {
-      console.log("uh oh"); // TODO: remove
       return;
     }
     let punctuation = "";
@@ -75,7 +71,6 @@ export const ChangingText = ({ progress }) => {
       if (mode === 3) {
         after = displayedWord.slice(randomIndex);
       }
-      // console.log(`original: ${displayedWord}`);
       mode === 2
         ? (displayedWord =
             before +
@@ -86,8 +81,6 @@ export const ChangingText = ({ progress }) => {
             randomChar +
             after.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "") +
             punctuation);
-
-      // console.log(`final: ${displayedWord}, ${mode}`);
     } else if (mode === 4) {
       displayedWord =
         displayedWord
@@ -113,7 +106,6 @@ export const ChangingText = ({ progress }) => {
   function messUpWords() {
     if (!paraRef.current || paused) return;
     para = paraRef.current;
-    // console.log("messing up words");
     if (para) {
       if (running > 1) {
         return;
@@ -123,7 +115,6 @@ export const ChangingText = ({ progress }) => {
       }
     }
     setTimeout(() => setChanged(!changed), 1000);
-    console.log();
   }
 
   function resetWords() {
@@ -132,7 +123,6 @@ export const ChangingText = ({ progress }) => {
     displayedWords = originalWords;
     para.innerHTML = displayedWords.join(" ");
     changeCheck = [];
-    // console.log("words reset");
     setPaused(true);
   }
 
