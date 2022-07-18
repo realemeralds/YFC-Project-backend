@@ -98,6 +98,7 @@ const CarouselContainer = () => {
                         Place an order with the link below by <b>August 7th</b>,
                         and food will be delivered <u>right to your class.</u>
                       </span>{" "}
+                      Check back here soon, as more details arrive!
                     </p>
                     <a>
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
@@ -194,7 +195,7 @@ const CarouselContainer = () => {
                         sales to the match <u>will be donated to DAS.</u>
                       </span>
                     </p>
-                    <a>
+                    <a href="https://www.sistic.com.sg/events/lcs2022">
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
                           buy tickets from sistic →

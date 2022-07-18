@@ -6,30 +6,33 @@ export const Footer = () => {
     <div className="bg-[#140E34]">
       <FooterTransition />
       <FooterWrapper>
-        <PanelWrapper nextLink="/projects">
+        <PanelWrapper nextLink="/merch">
           <Image
-            src="/placeholder.png"
-            alt="placeholder"
+            src="/merch.png"
+            alt="merchandise icon"
             layout="fixed"
             width={100}
             height={100}
+            className="rounded-full"
           />
           <p className="font-semibold text-2xl sm:text-3xl mb-1 sm:mb-3 tracking-tight text-white mt-4">
-            → Projects
+            → Merch
           </p>
           <p className="font-light text-lg sm:text-2xl text-white text-md tracking-tight leading-tight">
-            Learn more about the projects{" "}
-            <span className="font-semibold">you</span> can contribute to.
+            You can support DAS by purchasing our cute stickers and totebags!
+            Consider buying some for your friends and family too, with{" "}
+            <span className="font-bold">all</span> proceeds going to DAS!
           </p>
         </PanelWrapper>
 
         <PanelWrapper link="https://www.giving.sg/campaigns/project-prima-signa">
           <Image
-            src="/placeholder.png"
-            alt="placeholder"
+            src="/donate.png"
+            alt="donate to a good cause"
             layout="fixed"
             width={100}
             height={100}
+            className="rounded-full"
           />
           <p className="font-semibold text-2xl sm:text-3xl mb-1 sm:mb-3 tracking-tight text-white mt-4">
             → Donate
@@ -41,8 +44,8 @@ export const Footer = () => {
         </PanelWrapper>
         <PanelWrapper link="https://www.das.org.sg/">
           <Image
-            src="/placeholder.png"
-            alt="placeholder"
+            src="/das square.png"
+            alt="icon of the dyslexia association of singapore (DAS)"
             layout="fixed"
             width={100}
             height={100}
@@ -91,7 +94,7 @@ export const FooterWrapper = ({ children, link }) => {
   return (
     <>
       <h1 className="text-center sm:text-5xl text-3xl font-semibold text-white mt-3">
-        [placeholder text]
+        How to help?
       </h1>
       <div className="flex flex-col mx-auto w-[81vw] mr-[9.5vw]">
         <div className="flex flex-col lg:flex-row lg:space-y-0 space-y-6 lg:space-x-6 pt-10 pb-16">

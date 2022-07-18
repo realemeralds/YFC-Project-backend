@@ -52,7 +52,7 @@ export default function Canvas() {
   // key variables
   const width = 1002;
   const height = 802;
-  const countdownDuration = 5;
+  const countdownDuration = 30;
 
   // Overlay square position
   var overlaypos = {

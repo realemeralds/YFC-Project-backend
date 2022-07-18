@@ -215,6 +215,20 @@ export const Solution = () => {
             </div>
           </div>
         </Parallax>
+        <Parallax
+          speed={20}
+          rootMargin={{ top: -1450, right: 0, bottom: 1530, left: 0 }}
+        >
+          <div className="w-[calc(26vw+20px)] right-8 xl:right-24 max-w-96 md:top-[1300px]  absolute hidden lg:block">
+            <Image
+              width={400}
+              height={400}
+              layout="intrinsic"
+              src="/donating.png"
+              alt="kid donating money"
+            />
+          </div>
+        </Parallax>
 
         <div
           ref={divContainer}

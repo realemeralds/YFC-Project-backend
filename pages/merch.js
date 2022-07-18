@@ -15,8 +15,9 @@ const Home = () => {
         Grab some fashionable merchandise while <u>100%</u> of your purchase
         goes towards supporting DAS&#39; programs for dyslexics!
       </p>
-      <p className="text-center px-10 sm:px-[30vw] mt-4 md:mt-2 sm:mt-0 text-2xl font-light mb-8">
-        click on the panels for more details...
+      <p className="text-center px-10 sm:px-[30vw] mt-4 md:mt-2 sm:mt-0 text-2xl font-light mb-8 leading-6">
+        click on the panels for more details, and check back here soon when the
+        prices and order form are made public!
       </p>
       <ShopWrapper />
     </>
@@ -108,8 +109,8 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={0}
         heading={"when life gives you melons totebag"}
-        author="by Heather, LE510"
-        src="/tote (1).png"
+        author="by Heather, 17"
+        src="/newtote (1).png"
         price="$9.99"
         link="#"
         showModal={showModal}
@@ -118,7 +119,7 @@ export const ShopWrapper = () => {
         <div className="w-full h-full">
           <div className={`pb-2 pt-2 ${styles.gradient}`}>
             <Image
-              src="/tote (1).png"
+              src="/newtote (1).png"
               layout="responsive"
               height={200}
               width={200}
@@ -132,7 +133,7 @@ export const ShopWrapper = () => {
               when life gives you melons totebag
             </p>
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
-              by Heather, LE510
+              by Heather, 17
             </p>
             <p className="font-semibold text-xl text-start">$9.99</p>
           </div>
@@ -141,8 +142,8 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={1}
         heading={"prima signa totebag"}
-        author="by Olivia, MN518"
-        src="/tote (2).png"
+        author="by Olivia, 17"
+        src="/newtote (2).png"
         price="$9.99"
         link="#"
         showModal={showModal}
@@ -151,7 +152,7 @@ export const ShopWrapper = () => {
         <div className="w-full h-full">
           <div className={`pb-2 pt-2 ${styles.gradient} `}>
             <Image
-              src="/tote (2).png"
+              src="/newtote (2).png"
               layout="responsive"
               height={200}
               width={200}
@@ -165,7 +166,7 @@ export const ShopWrapper = () => {
               prima signa totebag
             </p>
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
-              by Olivia, MN518
+              by Olivia, 17
             </p>
             <p className="font-semibold text-start text-xl">$9.99</p>
           </div>
@@ -174,8 +175,8 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={2}
         heading="seeing through dyslexia totebag"
-        author="by Clement, MN517"
-        src="/tote (3).png"
+        author="by Clement, 18"
+        src="/newtote (3).png"
         price="$9.99"
         link="#"
         showModal={showModal}
@@ -184,7 +185,7 @@ export const ShopWrapper = () => {
         <div className="w-full h-full">
           <div className={`pb-2 pt-2 ${styles.gradient} `}>
             <Image
-              src="/tote (3).png"
+              src="/newtote (3).png"
               layout="responsive"
               height={200}
               width={200}
@@ -198,7 +199,7 @@ export const ShopWrapper = () => {
               seeing through dyslexia totebag
             </p>
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-              by Clement, MN517
+              by Clement, 18
             </p>
             <p className="font-semibold text-xl text-start">$9.99</p>
           </div>
@@ -207,9 +208,9 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={3}
         heading="sticker collection A"
-        author="by Alyssa, ML511"
+        author="by Alyssa, 17"
         src="/editedStickerA.png"
-        price="$9.99"
+        price="price - TBC"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -229,17 +230,19 @@ export const ShopWrapper = () => {
               sticker collection A
             </p>
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-              by Alyssa, ML511
+              by Alyssa, 17
             </p>
-            <p className="font-semibold text-xl text-start">$9.99</p>
+            <p className="font-semibold text-xl text-start">
+              TBC (at later date)
+            </p>
           </div>
         </div>
       </ModalFunction>
       <ModalFunction
         index={4}
         heading="misconceptions totebag"
-        author="by Darren, MN518"
-        src="/tote (4).png"
+        author="by [das kid], 17"
+        src="/newtote (4).png"
         price="$9.99"
         link="#"
         showModal={showModal}
@@ -248,7 +251,7 @@ export const ShopWrapper = () => {
         <div className="w-full h-full">
           <div className={`pb-2 pt-2 ${styles.gradient} `}>
             <Image
-              src="/tote (4).png"
+              src="/newtote (4).png"
               layout="responsive"
               height={200}
               width={200}
@@ -261,7 +264,7 @@ export const ShopWrapper = () => {
               misconceptions totebag
             </p>
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-              by Darren, MN518
+              by [das kid], 17
             </p>
             <p className="font-semibold text-xl text-start">$9.99</p>
           </div>
@@ -270,9 +273,9 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={5}
         heading="sticker collection B"
-        author="by Darren, MN518"
+        author="by Various Artists"
         src="/editedStickerB.png"
-        price="$9.99"
+        price="price - TBC"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -295,7 +298,9 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Various Artists
             </p>
-            <p className="font-semibold text-xl text-start">$9.99</p>
+            <p className="font-semibold text-xl text-start">
+              TBC (at later date)
+            </p>
           </div>
         </div>
       </ModalFunction>
