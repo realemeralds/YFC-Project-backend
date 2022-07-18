@@ -41,7 +41,7 @@ export default function Canvas() {
   const [changed, setChanged] = useState(false);
 
   // Countdown implementation
-  const [countdownText, setCountdownText] = useState(undefined);
+  const [countdownText, setCountdownText] = useState("ready!");
   const [canvasDisabled, setCanvasDisabled] = useState(false);
   const [mousedown, onMousedown] = useState(false);
   let breakButton, cancelButton;
@@ -52,7 +52,7 @@ export default function Canvas() {
   // key variables
   const width = 1002;
   const height = 802;
-  const countdownDuration = 30;
+  const countdownDuration = 5;
 
   // Overlay square position
   var overlaypos = {
