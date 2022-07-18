@@ -72,6 +72,7 @@ const CarouselContainer = () => {
                       layout="intrinsic"
                       width={1000}
                       height={1000}
+                      priority
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-10 pl-4 -mt-5">

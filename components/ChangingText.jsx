@@ -141,7 +141,7 @@ export const ChangingText = ({ progress }) => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mt-10">
       <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000] cv:mx-20">
         <p
           ref={paraRef}

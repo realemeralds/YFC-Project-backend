@@ -6,24 +6,23 @@ export const Footer = () => {
     <div className="bg-[#140E34]">
       <FooterTransition />
       <FooterWrapper>
-        <Link href="/projects">
-          <PanelWrapper>
-            <Image
-              src="/placeholder.png"
-              alt="placeholder"
-              layout="fixed"
-              width={100}
-              height={100}
-            />
-            <p className="font-semibold text-3xl tracking-tight text-white mb-3 mt-4">
-              → Projects
-            </p>
-            <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
-              Learn more about the projects{" "}
-              <span className="font-semibold">you</span> can contribute to.
-            </p>
-          </PanelWrapper>
-        </Link>
+        <PanelWrapper nextLink="/projects">
+          <Image
+            src="/placeholder.png"
+            alt="placeholder"
+            layout="fixed"
+            width={100}
+            height={100}
+          />
+          <p className="font-semibold text-3xl tracking-tight text-white mb-3 mt-4">
+            → Projects
+          </p>
+          <p className="font-light text-2xl text-white text-md tracking-tight leading-tight">
+            Learn more about the projects{" "}
+            <span className="font-semibold">you</span> can contribute to.
+          </p>
+        </PanelWrapper>
+
         <PanelWrapper link="https://www.giving.sg/campaigns/project-prima-signa">
           <Image
             src="/placeholder.png"
@@ -61,14 +60,30 @@ export const Footer = () => {
   );
 };
 
-export const PanelWrapper = ({ children, link }) => {
+export const PanelWrapper = ({ children, link, nextLink }) => {
   return (
-    <a
-      href={link}
-      className="bg-panelBG rounded-xl w-full relative hover:-translate-y-[6px] hover:-translate-x-[2px] transition-all duration-500 shadow-panel hover:shadow-panelActive"
-    >
-      <div className="w-full h-auto rounded-xl p-8 ">{children}</div>
-    </a>
+    <>
+      {nextLink && (
+        <Link href={nextLink}>
+          <a
+            href={link}
+            className="bg-panelBG rounded-xl w-full relative hover:-translate-y-[6px] hover:-translate-x-[2px] transition-all duration-500 shadow-panel hover:shadow-panelActive"
+          >
+            <button className="w-full h-auto rounded-xl p-8 text-start">
+              {children}
+            </button>
+          </a>
+        </Link>
+      )}
+      {!nextLink && (
+        <a
+          href={link}
+          className="bg-panelBG rounded-xl w-full relative hover:-translate-y-[6px] hover:-translate-x-[2px] transition-all duration-500 shadow-panel hover:shadow-panelActive"
+        >
+          <div className="w-full h-auto rounded-xl p-8 ">{children}</div>
+        </a>
+      )}
+    </>
   );
 };
 

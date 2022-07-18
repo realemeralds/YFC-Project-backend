@@ -37,6 +37,7 @@ const Home = () => {
                 height={1207.21}
                 src="/aidan.png"
                 alt="mugshot of aidan"
+                priority
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">
@@ -65,6 +66,7 @@ const Home = () => {
                 height={1082.45}
                 src="/bil.png"
                 alt="mugshot of bilquis"
+                priority
               />
             </div>
             <div className="pl-4 mt-5 border-l-black border-l-4 overflow-hidden">

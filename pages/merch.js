@@ -19,9 +19,6 @@ const Home = () => {
         click on the panels for more details...
       </p>
       <ShopWrapper />
-      <div>
-        <button>Open Modal</button>
-      </div>
     </>
   );
 };
@@ -102,7 +99,7 @@ export const ShopWrapper = () => {
   ]);
 
   return (
-    <div className="flex flex-col space-y-6 w-3/4 m-auto">
+    <div className="flex flex-col space-y-6 w-3/4 m-auto mb-20">
       <div className="flex flex-row space-x-6">
         <ModalFunction
           index={0}
@@ -126,7 +123,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-start text-xl font-medium leading-tight">
+              <p className="text-start text-xl font-medium leading-5 mb-1">
                 when life gives you melons totebag
               </p>
               <p className="text-md text-start text-shopFaded -mt-1 mb-2">
@@ -158,7 +155,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl text-start font-medium leading-tight">
+              <p className="text-xl text-start font-medium leading-5 mb-1">
                 prima signa totebag
               </p>
               <p className="text-md text-start text-shopFaded -mt-1 mb-2">
@@ -190,7 +187,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-tight text-start">
+              <p className="text-xl font-medium leading-5 mb-1 text-start">
                 seeing through dyslexia totebag
               </p>
               <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
@@ -223,7 +220,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-tight text-start">
+              <p className="text-xl font-medium leading-5 mb-1 text-start">
                 sticker collection A
               </p>
               <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
@@ -254,7 +251,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-tight text-start">
+              <p className="text-xl font-medium leading-5 mb-1 text-start">
                 misconceptions totebag
               </p>
               <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
@@ -285,7 +282,7 @@ export const ShopWrapper = () => {
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
-              <p className="text-xl font-medium leading-tight text-start">
+              <p className="text-xl font-medium leading-5 mb-1 text-start">
                 sticker collection B
               </p>
               <p className="text-md text-shopFaded -mt-1 mb-2 text-start">

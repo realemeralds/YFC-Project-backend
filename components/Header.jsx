@@ -26,7 +26,7 @@ const Header = () => {
     <Parallax translateY={[-50, 50]}>
       <div className="relative">
         <div
-          className={`justify-center items-center w-full flex absolute top-1 transition-all duration-1000 ${
+          className={`justify-center items-center w-full flex absolute top-1 transition-all duration-1000 z-10 ${
             imageLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
