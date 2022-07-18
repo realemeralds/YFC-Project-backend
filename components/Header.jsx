@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext, useCallback } from "react";
 import Image from "next/image";
 import logo from "../public/4klogo.png";
 import downChevron from "../public/down-chevron.svg";
+
 import { ScrollContext } from "./ScrollObserver";
 import { Parallax } from "react-scroll-parallax";
 

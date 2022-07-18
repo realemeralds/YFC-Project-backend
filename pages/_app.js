@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import "../styles/embla.scss";
 import "../styles/scrollbar.scss";
-import Navbar from "../components/Navbar";
 import ScrollObserver from "../components/ScrollObserver";
 import { ParallaxProvider } from "react-scroll-parallax";
 
