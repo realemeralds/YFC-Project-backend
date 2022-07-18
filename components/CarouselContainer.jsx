@@ -73,6 +73,7 @@ const CarouselContainer = () => {
                       width={1000}
                       height={1000}
                       priority
+                      alt="cookie icon"
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-10 pl-4 -mt-5">
@@ -123,6 +124,7 @@ const CarouselContainer = () => {
                       layout="intrinsic"
                       width={1000}
                       height={1000}
+                      alt="hands moulding clay"
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow md:pl-10 pl-3 -mt-5">
@@ -159,6 +161,7 @@ const CarouselContainer = () => {
                       layout="intrinsic"
                       width={1598}
                       height={1598}
+                      alt="a football (the right kind)"
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">
@@ -214,6 +217,7 @@ const CarouselContainer = () => {
                       layout="intrinsic"
                       width={1598}
                       height={1396}
+                      alt="an acoustic guitar"
                     />
                   </div>
                   <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">

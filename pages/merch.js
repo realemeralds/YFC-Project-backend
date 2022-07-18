@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <h1 className="text-center text-5xl text-black font-bold mb-4 mt-5">
+      <h1 className="text-center text-4xl md:text-5xl text-black font-bold mb-4 mt-5">
         Merchandise
       </h1>
-      <p className="text-center text-3xl text-black font-regular px-[20vw]">
+      <p className="text-center text-2xl md:text-3xl text-black font-regular px-[20vw]">
         Grab some fashionable merchandise while <u>100%</u> of your purchase
         goes towards supporting dyslexics!
       </p>
@@ -33,6 +33,7 @@ export const ModalFunction = ({
   children,
   showModal,
   setShowModal,
+  maxW,
 }) => {
   return (
     <>
@@ -59,6 +60,7 @@ export const ModalFunction = ({
                 height={200}
                 width={200}
                 className="max-h-[233px] max-w-[233px]"
+                alt={heading}
               />
             </div>
           </div>
@@ -73,7 +75,7 @@ export const ModalFunction = ({
         </Modal>
       )}
       <button
-        className="w-full border border-black rounded-3xl flex flex-col bg-white overflow-hidden shadow-panel hover:shadow-panelActive transition-all duration-500 hover:-translate-x-[5px] hover:-translate-y-[2px]"
+        className={`w-full border min-w-[${250}px] border-black rounded-3xl flex flex-col bg-white overflow-hidden shadow-panel hover:shadow-panelActive transition-all duration-500 hover:-translate-x-[5px] hover:-translate-y-[2px]`}
         onClick={() => {
           setTimeout(() => {
             let tempArray = showModal.splice();
@@ -103,10 +105,10 @@ export const ShopWrapper = () => {
       <div className="flex flex-row space-x-6">
         <ModalFunction
           index={0}
-          heading={"when life gives you melons tote bag"}
+          heading={"when life gives you melons totebag"}
           author="by Heather, LE510"
           src="/tote (1).png"
-          price="$19.99"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -120,16 +122,17 @@ export const ShopWrapper = () => {
                 width={200}
                 className="max-h-60"
                 priority
+                alt="when life gives you melons totebag"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-start text-xl font-medium leading-5 mb-1">
                 when life gives you melons totebag
               </p>
-              <p className="text-md text-start text-shopFaded -mt-1 mb-2">
+              <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
                 by Heather, LE510
               </p>
-              <p className="font-semibold text-xl text-start">$19.99</p>
+              <p className="font-semibold text-xl text-start">$9.99</p>
             </div>
           </div>
         </ModalFunction>
@@ -138,7 +141,7 @@ export const ShopWrapper = () => {
           heading={"prima signa totebag"}
           author="by Olivia, MN518"
           src="/tote (2).png"
-          price="$19.99"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -150,27 +153,28 @@ export const ShopWrapper = () => {
                 layout="responsive"
                 height={200}
                 width={200}
-                className="max-h-60 "
+                className="max-h-60"
                 priority
+                alt="prima signa totebag"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-xl text-start font-medium leading-5 mb-1">
                 prima signa totebag
               </p>
-              <p className="text-md text-start text-shopFaded -mt-1 mb-2">
+              <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
                 by Olivia, MN518
               </p>
-              <p className="font-semibold text-start text-xl">$19.99</p>
+              <p className="font-semibold text-start text-xl">$9.99</p>
             </div>
           </div>
         </ModalFunction>
         <ModalFunction
           index={2}
-          heading={"seeing through dyslexia totebag"}
+          heading="seeing through dyslexia totebag"
           author="by Clement, MN517"
           src="/tote (3).png"
-          price="$19.99"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -184,16 +188,17 @@ export const ShopWrapper = () => {
                 width={200}
                 priority
                 className="max-h-60"
+                alt="seeing through dyslexia totebag"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-xl font-medium leading-5 mb-1 text-start">
                 seeing through dyslexia totebag
               </p>
-              <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
+              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
                 by Clement, MN517
               </p>
-              <p className="font-semibold text-xl text-start">$19.99</p>
+              <p className="font-semibold text-xl text-start">$9.99</p>
             </div>
           </div>
         </ModalFunction>
@@ -201,10 +206,10 @@ export const ShopWrapper = () => {
       <div className="flex flex-row space-x-6">
         <ModalFunction
           index={3}
-          heading={"sticker collection A"}
+          heading="sticker collection A"
           author="by Alyssa, ML511"
           src="/editedStickerA.png"
-          price="$19.99"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -216,26 +221,26 @@ export const ShopWrapper = () => {
                 layout="responsive"
                 width={1}
                 height={1}
-                className=""
+                alt="sticker collection A"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-xl font-medium leading-5 mb-1 text-start">
                 sticker collection A
               </p>
-              <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
+              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
                 by Alyssa, ML511
               </p>
-              <p className="font-semibold text-xl text-start">$19.99</p>
+              <p className="font-semibold text-xl text-start">$9.99</p>
             </div>
           </div>
         </ModalFunction>
         <ModalFunction
           index={4}
-          heading={"misconceptions totebag"}
+          heading="misconceptions totebag"
           author="by Darren, MN518"
           src="/tote (4).png"
-          price="$19.99"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -248,25 +253,26 @@ export const ShopWrapper = () => {
                 height={200}
                 width={200}
                 className="max-h-60"
+                alt="misconceptions totebag"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-xl font-medium leading-5 mb-1 text-start">
                 misconceptions totebag
               </p>
-              <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
+              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
                 by Darren, MN518
               </p>
-              <p className="font-semibold text-xl text-start">$19.99</p>
+              <p className="font-semibold text-xl text-start">$9.99</p>
             </div>
           </div>
         </ModalFunction>
         <ModalFunction
-          index={4}
-          heading={"misconceptions totebag"}
+          index={5}
+          heading="sticker collection B"
           author="by Darren, MN518"
-          src="/tote (4).png"
-          price="$19.99"
+          src="/editedStickerB.png"
+          price="$9.99"
           link="#"
           showModal={showModal}
           setShowModal={setShowModal}
@@ -279,16 +285,17 @@ export const ShopWrapper = () => {
                 height={2480}
                 width={2480}
                 className="max-h-60"
+                alt="sticker collection B"
               />
             </div>
             <div className="flex flex-col border-t border-t-black p-2 pl-3">
               <p className="text-xl font-medium leading-5 mb-1 text-start">
                 sticker collection B
               </p>
-              <p className="text-md text-shopFaded -mt-1 mb-2 text-start">
+              <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
                 by Various Artists
               </p>
-              <p className="font-semibold text-xl text-start">$19.99</p>
+              <p className="font-semibold text-xl text-start">$9.99</p>
             </div>
           </div>
         </ModalFunction>
