@@ -59,7 +59,7 @@ export default function Canvas() {
   // key variables
   const width = 1002;
   const height = 802;
-  const countdownDuration = 5;
+  const countdownDuration = 1;
 
   // Overlay square position
   var overlaypos = {
@@ -100,8 +100,6 @@ export default function Canvas() {
     setCanvas2(bgCanvasRef.current);
     setOverlayCanvas(overlayCanvasRef.current);
     setParticleCanvas(particleCanvasRef.current);
-    triggered = false;
-    console.log("uhh");
   }, []);
 
   useEffect(() => {
@@ -154,6 +152,7 @@ export default function Canvas() {
 
       // Key params for loading the overlays and triggering the event listneers
       var mouseOnCanvas = false;
+      let triggered = false;
 
       // default disabled
       breakButton.disabled = true;
@@ -291,7 +290,6 @@ export default function Canvas() {
       // Set upon click
       const localImgLoad = () => {
         if (ctx2 && imgRef.current) {
-          paintCanvas();
           setImgLoad(() => {
             1 + 1 === 2;
           });
@@ -303,7 +301,7 @@ export default function Canvas() {
           this.x = x;
           this.y = y;
           this.size = 5 + 10 * Math.random();
-          this.dx = Math.random() * -1;
+          this.dx = 1.5 * (Math.random() - 0.5);
           this.dy = Math.random() * -1.5;
           this.opacity = 150;
         }
@@ -353,7 +351,6 @@ export default function Canvas() {
 
       // Mount event listeners on load
       if (!triggered) {
-        console.log("triggered?");
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
@@ -364,6 +361,7 @@ export default function Canvas() {
           canvas.width - 1,
           canvas.height + 2
         );
+        paintCanvas();
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
         });
