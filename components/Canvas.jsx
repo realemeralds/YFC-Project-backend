@@ -138,8 +138,10 @@ export default function Canvas() {
       canvas2.height = height;
       overlayCanvas.width = width;
       overlayCanvas.height = height;
-      particleCanvas.width = width + 200;
-      particleCanvas.height = height + 160;
+      // particleCanvas.width = width + 200;
+      // particleCanvas.height = height + 160;
+      particleCanvas.width = width;
+      particleCanvas.height = height;
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
@@ -514,10 +516,33 @@ export const CanvasWrapper = ({ children }) => {
 export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
   const [loaded, setLoaded] = useState(false);
   const scriptContainer = useRef(null);
+  const dimenRef = useRef(null);
+  let width, transform, maxHeight, maxWidth, top;
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", resizeHandler);
+  // }, []);
 
   if (scriptContainer.current && !loaded) {
     setTimeout(() => setLoaded(true), 1000);
   }
+
+  // const resizeHandler = () => {
+  //   if (zindex === 30) {
+  //     width = "calc(57vw * 1.2)";
+  //     transform = "translate(calc(0.2 * 57vw), calc(-50% - 5vh + 4.56vw))";
+  //     maxHeight = "90vh";
+  //     maxWidth = "9999px";
+  //     if (dimenRef.current) {
+  //       console.log(dimenRef.current.clientHeight);
+  //       console.log(window.innerHeight);
+  //       console.log(dimenRef.current.clientHeight > window.innerHeight * 0.89);
+  //       console.log((window.innerHeight - dimenRef.current.clientHeight) / 2);
+  //       top = `${(window.innerHeight - dimenRef.current.clientHeight) / 2}px`;
+  //     }
+  //   }
+  // };
+  // resizeHandler();
 
   return (
     <>
@@ -529,12 +554,29 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
         style={{
           pointerEvents: active ? "auto" : "none",
           opacity: loaded || zindex !== 0 ? "1" : "0",
-          width: zindex !== 30 ? undefined : "calc(57vw * 1.2)",
-          right: zindex !== 30 ? undefined : "calc(36vw - 0.2 * 57vw)",
-          transform:
-            zindex !== 30 ? undefined : "translateY(calc(-50% - 5vh + 4.56vw))",
+          width,
+          transform,
+          maxHeight,
+          maxWidth,
+          // top,
         }}
       />
+      {zindex === 30 && (
+        <canvas
+          ref={dimenRef}
+          className={`-z-10 absolute top-1/2 cv:right-[40vw] right-[36vw]  max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
+            shadow ? styles.shadow : ""
+          } -translate-y-[calc(50%+5vh)]`}
+          style={{
+            pointerEvents: "none",
+            opacity: loaded || zindex !== 0 ? "1" : "0",
+            width,
+            transform,
+            maxHeight,
+            maxWidth,
+          }}
+        />
+      )}
       <script ref={scriptContainer} className="z-30"></script>
     </>
   );

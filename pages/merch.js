@@ -242,7 +242,7 @@ export const ShopWrapper = () => {
       <ModalFunction
         index={4}
         heading="misconceptions totebag"
-        author="by [das kid], 17"
+        author="by Faith, 14"
         src="/newtote (4).png"
         price="$6.99"
         link="#"
