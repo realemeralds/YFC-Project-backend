@@ -15,6 +15,7 @@ export default function Canvas() {
   const mainCanvasRef = useRef(null);
   const bgCanvasRef = useRef(null);
   const overlayCanvasRef = useRef(null);
+  const particleCanvasRef = useRef(null);
   const breakButtonRef = useRef(null);
   const cancelButtonRef = useRef(null);
   const imgRef = useRef(null);
@@ -23,22 +24,27 @@ export default function Canvas() {
   let socket = useRef("");
   // clearRectArray, for all broken squares
   const [clearRectArray, setClearRectArray] = useState([]);
-  let tempArray;
+  const [compareRectArray, setCompareRectArray] = useState([]);
+  let tempArray = [];
 
   // States to store the canvases + contexts, as their refs are filled
   let contextSet = false;
   const [canvas, setCanvas] = useState();
   const [canvas2, setCanvas2] = useState();
   const [overlayCanvas, setOverlayCanvas] = useState();
+  const [particleCanvas, setParticleCanvas] = useState();
   const [ctx, setCtx] = useState();
   const [ctx2, setCtx2] = useState();
   const [overlayContext, setOverlayContext] = useState();
+  const [particleContext, setParticleContext] = useState();
 
   // Function + variable to load the image
   const [imgLoad, setImgLoad] = useState();
 
   // Changed, to trigger a canvas repaint
   const [changed, setChanged] = useState(false);
+  let ix, iy;
+  const [animateUpdate, setAnimateUpdate] = useState();
 
   // Countdown implementation
   const [countdownText, setCountdownText] = useState("ready!");
@@ -46,8 +52,8 @@ export default function Canvas() {
   const [mousedown, onMousedown] = useState(false);
   let breakButton, cancelButton;
 
-  // translate for parallax
-  let translate;
+  // Array for animated particles
+  let particleArray;
 
   // key variables
   const width = 1002;
@@ -92,9 +98,23 @@ export default function Canvas() {
     setCanvas(mainCanvasRef.current);
     setCanvas2(bgCanvasRef.current);
     setOverlayCanvas(overlayCanvasRef.current);
+    setParticleCanvas(particleCanvasRef.current);
   }, []);
 
-  useEffect(() => {}, [clearRectArray]);
+  useEffect(() => {
+    console.log(compareRectArray);
+    if (
+      clearRectArray.filter((x) => !compareRectArray.includes(x)).length == 1
+    ) {
+      console.log(clearRectArray.filter((x) => !compareRectArray.includes(x)));
+      ix = clearRectArray.filter((x) => !compareRectArray.includes(x))[0][0];
+      iy = clearRectArray.filter((x) => !compareRectArray.includes(x))[0][1];
+      setAnimateUpdate(true);
+      console.log(ix, iy);
+    } else if (compareRectArray.length === 0) {
+      setCompareRectArray(clearRectArray.slice());
+    }
+  }, [clearRectArray]);
 
   useEffect(() => {
     if (!canvasDisabled) {
@@ -113,15 +133,18 @@ export default function Canvas() {
       setCtx(canvas.getContext("2d"));
       setCtx2(canvas2.getContext("2d"));
       setOverlayContext(overlayCanvas.getContext("2d"));
+      setParticleContext(particleCanvas.getContext("2d"));
       contextSet = true;
 
-      // Set canvas width
+      // Set canvas widths and heights
       canvas.width = width;
       canvas.height = height;
       canvas2.width = width;
       canvas2.height = height;
       overlayCanvas.width = width;
       overlayCanvas.height = height;
+      particleCanvas.width = width + 200;
+      particleCanvas.height = height + 160;
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
@@ -286,6 +309,65 @@ export default function Canvas() {
         }
       };
 
+      class Particle {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = 5 + 10 * Math.random();
+          this.dx = Math.random() * -1;
+          this.dy = Math.random() * -1.5;
+          this.opacity = 150;
+        }
+        update() {
+          this.x += this.dx;
+          this.y += this.dy;
+          this.dy += 0.1;
+          this.opacity -= 1.5;
+        }
+        draw() {
+          particleContext.fillStyle = `rgba(209, 213, 219, ${
+            Math.min(100, Math.max(0, this.opacity)) / 100
+          }`;
+          particleContext.fillRect(this.x, this.y, this.size, this.size);
+        }
+      }
+
+      function animate() {
+        if (particleArray[0].opacity < 0) return;
+        particleContext.clearRect(
+          0,
+          0,
+          particleCanvas.width,
+          particleCanvas.height
+        );
+        particleArray.forEach((element) => {
+          element.draw();
+          element.update();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      const breakAnimation = (x, y) => {
+        particleArray = [];
+        for (let i = 0; i < Math.floor(Math.random() * 5) + 4; i++) {
+          particleArray.push(new Particle(x, y));
+        }
+        animate();
+      };
+
+      if (animateUpdate) {
+        console.log(clearRectArray);
+        ix = clearRectArray.filter((x) => !compareRectArray.includes(x))[
+          clearRectArray.length - 1
+        ][0];
+        iy = clearRectArray.filter((x) => !compareRectArray.includes(x))[
+          clearRectArray.length - 1
+        ][1];
+        breakAnimation(ix, iy);
+        console.log(`triggered ${ix}, ${iy}`);
+        setAnimateUpdate(false);
+      }
+
       // Mount event listeners on load
       if (!triggered) {
         setImgLoad(() => {
@@ -369,7 +451,6 @@ export default function Canvas() {
         ? setClearRectArray(args[0])
         : () => {};
       setChanged(true);
-      // fallback
     });
   }, [backendURL]);
   return (
@@ -390,6 +471,11 @@ export default function Canvas() {
           <CanvasElement
             zindex={20}
             daRef={overlayCanvasRef}
+            active={!canvasDisabled}
+          />
+          <CanvasElement
+            zindex={30}
+            daRef={particleCanvasRef}
             active={!canvasDisabled}
           />
         </CanvasWrapper>
@@ -454,9 +540,13 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
         style={{
           pointerEvents: active ? "auto" : "none",
           opacity: loaded || zindex !== 0 ? "1" : "0",
+          width: zindex !== 30 ? undefined : "calc(57vw * 1.2)",
+          right: zindex !== 30 ? undefined : "calc(36vw - 0.2 * 57vw)",
+          // transform:
+          // zindex !== 30 ? undefined : "translateY(calc(80px - 50% - 5vh))",
         }}
       />
-      <script ref={scriptContainer}></script>
+      <script ref={scriptContainer} className="z-30"></script>
     </>
   );
 };
@@ -492,7 +582,7 @@ export const CanvasButton = React.forwardRef(({ icon, text }, ref) => {
   return (
     <button
       ref={ref}
-      className="bg-white shadow-md px-5 py-3 rounded-full disabled:bg-disabled flex flex-row align-center justify-center text-green-600 disabled:text-slate-500"
+      className="bg-white shadow-md px-5 py-3 rounded-full disabled:bg-disabled flex flex-row align-center justify-center text-green-600 disabled:text-slate-500 z-40"
     >
       <FontAwesomeIcon icon={icon} size="lg" className="relative top-[7px]" />
       <span className="text-2xl whitespace-pre ml-3">{text}</span>
@@ -538,7 +628,7 @@ export const CanvasReplace = () => {
   return (
     <div className="bg-black py-10 sm:hidden block">
       <h3 className="font-semibold text-3xl text-white text-center px-4">
-        Oops! Looks like your device is too small to load the mural :/
+        Oops! Looks like you need to rotate your device to load the mural :/
       </h3>
     </div>
   );

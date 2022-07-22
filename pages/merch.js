@@ -15,9 +15,9 @@ const Home = () => {
         Grab some fashionable merchandise while <u>100%</u> of your purchase
         goes towards supporting DAS&#39; programs for dyslexics!
       </p>
-      <p className="text-center px-10 sm:px-[30vw] mt-4 md:mt-2 sm:mt-0 text-2xl font-light mb-8 leading-6">
+      <p className="text-center px-10 sm:px-[28vw] mt-4 md:mt-4 text-2xl font-light mb-8 leading-6">
         click on the panels for more details, and check back here soon when the
-        prices and order form are made public!
+        order form is made public!
       </p>
       <ShopWrapper />
     </>
@@ -34,7 +34,6 @@ export const ModalFunction = ({
   children,
   showModal,
   setShowModal,
-  maxW,
 }) => {
   return (
     <>
@@ -43,6 +42,7 @@ export const ModalFunction = ({
           onClose={() => {
             let tempArray = showModal.splice();
             tempArray[index] = false;
+            document.querySelector("body").classList.remove("pause-scroll");
             setShowModal(tempArray);
           }}
           show={showModal[index]}
@@ -50,7 +50,7 @@ export const ModalFunction = ({
           <p className="text-start text-xl font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-8 mb-1 self-start">
             {heading}
           </p>
-          <p className="text-sm sm:text-lg text-[#A49F9B] self-start mb-2 sm:mb-4">
+          <p className="text-sm sm:text-[18px] text-[#A49F9B] self-start mb-2">
             {author}
           </p>
           <div className="w-64 sm:w-96">
@@ -83,6 +83,7 @@ export const ModalFunction = ({
           setTimeout(() => {
             let tempArray = showModal.splice();
             tempArray[index] = true;
+            document.querySelector("body").classList.add("pause-scroll");
             setShowModal(tempArray);
           }, 10);
         }}
@@ -111,7 +112,7 @@ export const ShopWrapper = () => {
         heading={"when life gives you melons totebag"}
         author="by Heather, 17"
         src="/newtote (1).png"
-        price="$9.99"
+        price="$6.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -135,7 +136,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
               by Heather, 17
             </p>
-            <p className="font-semibold text-xl text-start">$9.99</p>
+            <p className="font-semibold text-xl text-start">$6.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -144,7 +145,7 @@ export const ShopWrapper = () => {
         heading={"prima signa totebag"}
         author="by Olivia, 17"
         src="/newtote (2).png"
-        price="$9.99"
+        price="$6.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -168,7 +169,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
               by Olivia, 17
             </p>
-            <p className="font-semibold text-start text-xl">$9.99</p>
+            <p className="font-semibold text-start text-xl">$6.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -177,7 +178,7 @@ export const ShopWrapper = () => {
         heading="seeing through dyslexia totebag"
         author="by Clement, 18"
         src="/newtote (3).png"
-        price="$9.99"
+        price="$6.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -201,7 +202,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Clement, 18
             </p>
-            <p className="font-semibold text-xl text-start">$9.99</p>
+            <p className="font-semibold text-xl text-start">$6.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -233,7 +234,7 @@ export const ShopWrapper = () => {
               by Alyssa, 17
             </p>
             <p className="font-semibold text-xl text-start">
-              TBC (at later date)
+              price - TBC (at later date)
             </p>
           </div>
         </div>
@@ -243,7 +244,7 @@ export const ShopWrapper = () => {
         heading="misconceptions totebag"
         author="by [das kid], 17"
         src="/newtote (4).png"
-        price="$9.99"
+        price="$6.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -266,7 +267,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by [das kid], 17
             </p>
-            <p className="font-semibold text-xl text-start">$9.99</p>
+            <p className="font-semibold text-xl text-start">$6.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -299,7 +300,7 @@ export const ShopWrapper = () => {
               by Various Artists
             </p>
             <p className="font-semibold text-xl text-start">
-              TBC (at later date)
+              price - TBC (at later date)
             </p>
           </div>
         </div>

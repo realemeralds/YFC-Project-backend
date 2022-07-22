@@ -247,6 +247,50 @@ const CarouselContainer = () => {
                 </div>
               </div>
             </div>
+            <div className="embla__slide relative">
+              <div className="embla__slide__inner">
+                <div className="h-[500px] w-[90vw] sm:px-8 px-0 pt-5 sm:flex-row flex-col items-center justify-center flex">
+                  <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
+                    <Image
+                      src="/camera.png"
+                      layout="intrinsic"
+                      width={4620}
+                      height={3100}
+                      alt="a football (the right kind)"
+                    />
+                  </div>
+                  <div className="h-[480px] flex flex-col justify-center flex-grow lg:pl-8 pl-2 -mt-5 -mr-3">
+                    <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-3">
+                      video series
+                    </p>
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-4">
+                      5th September{" "}
+                      <span className="relative rotate-[-30deg] bottom-3 inline-block">
+                        📅
+                      </span>
+                    </p>
+                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight mb-4 sm:block hidden">
+                      Premiering on <b>5 September</b>, this video series is
+                      aimed to inform and educate the public about dyslexia, so
+                      as to debunk stereotypes about dyslexia and raise
+                      awareness about dyslexia (as well as the issues dyslexics
+                      face)
+                    </p>
+                    <p></p>
+                    <a href="https://www.sistic.com.sg/events/lcs2022">
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
+                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
+                          TO CHANGE LINK // TODO
+                        </p>
+                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
+                          TO CHANGE LINK // TODO
+                        </p>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />

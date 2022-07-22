@@ -135,7 +135,7 @@ export const ChangingText = ({ progress }) => {
       <div className="p-7 bg-thirdAccent flex justify-center items-center flex-col rounded-3xl z-[3000] cv:mx-20">
         <p
           ref={paraRef}
-          className="project:text-3xl project:font-medium text-xl font-regular tracking-tight leading-tight"
+          className="lg:text-3xl twoxsm:text-2xl project:font-medium text-xl font-regular tracking-tight leading-tight"
         >
           Everyday tasks are excruciatingly frustrating, with text being
           substituted, reversed, inserted, omitted and even combined, at the
