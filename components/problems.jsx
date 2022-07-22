@@ -23,17 +23,17 @@ const Problems = () => {
           renderContent={({ progress }) => (
             <ProblemContainer>
               <ProblemLeft progress={progress}>
-                <p className="project:text-4xl twoxsm:text-3xl text-2xl font-medium leading-tight px-8 w-full">
+                <p className="lg:text-4xl text-2xl font-medium leading-tight px-8 w-full">
                   Dyslexia is a neurological difficultly associated with
                   procesing audio, making it{" "}
-                  <span className="project:text-4xl twoxsm:text-3xl text-2xl font-semibold underline decoration-2 underline-offset-2">
+                  <span className="lg:text-4xl text-2xl font-semibold underline decoration-2 underline-offset-2">
                     difficult to interpret
                   </span>{" "}
                   syllables as words.
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center lg:mt-20">
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] glfull mx-auto pointer-events-none relative flex items-center justify-center lg:mt-20">
                   <Image
                     src="/panel1.png"
                     alt="Embrace dysxleia poster"
@@ -49,16 +49,16 @@ const Problems = () => {
           renderContent={({ progress }) => (
             <ProblemContainer>
               <ProblemLeft progress={progress}>
-                <p className="project:text-4xl twoxsm:text-3xl text-2xl font-medium leading-tight px-8 w-full">
-                  <span className="project:text-4xl twoxsm:text-3xl text-2xl font-semibold underline decoration-2 underline-offset-2">
+                <p className="lg:text-4xl text-2xl font-medium leading-tight px-8 w-full">
+                  <span className="lg:text-4xl text-2xl font-semibold underline decoration-2 underline-offset-2">
                     Reading
                   </span>
                   {", "}
-                  <span className="project:text-4xl twoxsm:text-3xl text-2xl font-semibold underline decoration-2 underline-offset-2">
+                  <span className="lg:text-4xl text-2xl font-semibold underline decoration-2 underline-offset-2">
                     Spelling
                   </span>
                   {" and "}
-                  <span className="project:text-4xl twoxsm:text-3xl text-2xl font-semibold underline decoration-2 underline-offset-2">
+                  <span className="lg:text-4xl text-2xl font-semibold underline decoration-2 underline-offset-2">
                     Writing
                   </span>
                   {", "}are tall tasks for any dyslexic, thanks to difficulties
@@ -89,8 +89,8 @@ const Problems = () => {
           renderContent={({ progress }) => (
             <ProblemContainer>
               <ProblemLeft progress={progress}>
-                <p className="project:text-4xl twoxsm:text-3xl text-2xl font-medium leading-tight px-8 w-full">
-                  <span className="project:text-4xl twoxsm:text-3xl text-2xl font-semibold underline decoration-2 underline-offset-2">
+                <p className="lg:text-4xl text-2xl font-medium leading-tight px-8 w-full">
+                  <span className="lg:text-4xl text-2xl font-semibold underline decoration-2 underline-offset-2">
                     On top of this,
                   </span>{" "}
                   dyslexics have to deal with common misunderstandings of their
@@ -98,7 +98,7 @@ const Problems = () => {
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center">
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] glfull mx-auto pointer-events-none relative flex items-center justify-center">
                   <Image
                     src="/misunderstandings.png"
                     alt="misunderstandings of dyslexics"
