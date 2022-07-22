@@ -45,6 +45,7 @@ export default function Canvas() {
   const [changed, setChanged] = useState(false);
   let ix, iy;
   const [animateUpdate, setAnimateUpdate] = useState();
+  let triggered;
 
   // Countdown implementation
   const [countdownText, setCountdownText] = useState("ready!");
@@ -99,21 +100,17 @@ export default function Canvas() {
     setCanvas2(bgCanvasRef.current);
     setOverlayCanvas(overlayCanvasRef.current);
     setParticleCanvas(particleCanvasRef.current);
+    triggered = false;
+    console.log("uhh");
   }, []);
 
   useEffect(() => {
-    console.log(compareRectArray);
-    if (
-      clearRectArray.filter((x) => !compareRectArray.includes(x)).length == 1
-    ) {
-      console.log(clearRectArray.filter((x) => !compareRectArray.includes(x)));
+    if (clearRectArray.length - compareRectArray.length == 1) {
       ix = clearRectArray.filter((x) => !compareRectArray.includes(x))[0][0];
       iy = clearRectArray.filter((x) => !compareRectArray.includes(x))[0][1];
       setAnimateUpdate(true);
-      console.log(ix, iy);
-    } else if (compareRectArray.length === 0) {
-      setCompareRectArray(clearRectArray.slice());
     }
+    setCompareRectArray(clearRectArray.slice());
   }, [clearRectArray]);
 
   useEffect(() => {
@@ -157,7 +154,6 @@ export default function Canvas() {
 
       // Key params for loading the overlays and triggering the event listneers
       var mouseOnCanvas = false;
-      let triggered = false;
 
       // default disabled
       breakButton.disabled = true;
@@ -296,13 +292,6 @@ export default function Canvas() {
       const localImgLoad = () => {
         if (ctx2 && imgRef.current) {
           paintCanvas();
-          ctx2.drawImage(
-            imgRef.current,
-            0,
-            0,
-            canvas.width - 1,
-            canvas.height + 2
-          );
           setImgLoad(() => {
             1 + 1 === 2;
           });
@@ -356,23 +345,25 @@ export default function Canvas() {
       };
 
       if (animateUpdate) {
-        console.log(clearRectArray);
-        ix = clearRectArray.filter((x) => !compareRectArray.includes(x))[
-          clearRectArray.length - 1
-        ][0];
-        iy = clearRectArray.filter((x) => !compareRectArray.includes(x))[
-          clearRectArray.length - 1
-        ][1];
+        ix = clearRectArray[clearRectArray.length - 1][0];
+        iy = clearRectArray[clearRectArray.length - 1][1];
         breakAnimation(ix, iy);
-        console.log(`triggered ${ix}, ${iy}`);
         setAnimateUpdate(false);
       }
 
       // Mount event listeners on load
       if (!triggered) {
+        console.log("triggered?");
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
+        ctx2.drawImage(
+          imgRef.current,
+          0,
+          0,
+          canvas.width - 1,
+          canvas.height + 2
+        );
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
         });
@@ -534,16 +525,16 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
     <>
       <canvas
         ref={daRef}
-        className={`z-${zindex} absolute top-1/2 cv:right-[40vw] right-[36vw] -translate-y-[calc(50%+5vh)] max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
+        className={`z-${zindex} absolute top-1/2 cv:right-[40vw] right-[36vw]  max-h-[90vh] w-[57vw] max-w-[112.5vh] ${
           shadow ? styles.shadow : ""
-        }`}
+        } -translate-y-[calc(50%+5vh)]`}
         style={{
           pointerEvents: active ? "auto" : "none",
           opacity: loaded || zindex !== 0 ? "1" : "0",
           width: zindex !== 30 ? undefined : "calc(57vw * 1.2)",
           right: zindex !== 30 ? undefined : "calc(36vw - 0.2 * 57vw)",
-          // transform:
-          // zindex !== 30 ? undefined : "translateY(calc(80px - 50% - 5vh))",
+          transform:
+            zindex !== 30 ? undefined : "translateY(calc(-50% - 5vh + 4.56vw))",
         }}
       />
       <script ref={scriptContainer} className="z-30"></script>
