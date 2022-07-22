@@ -48,7 +48,7 @@ export default function Canvas() {
   let triggered;
 
   // Countdown implementation
-  const [countdownText, setCountdownText] = useState("ready!");
+  const [countdownText, setCountdownText] = useState("loading...");
   const [canvasDisabled, setCanvasDisabled] = useState(false);
   const [mousedown, onMousedown] = useState(false);
   let breakButton, cancelButton;
@@ -435,6 +435,7 @@ export default function Canvas() {
     }
     socket.current.emit("handshake", (response) => {
       console.log(response.status); // ok
+      setCountdownText("ready!");
     });
     socket.current.on("canvasUpdate", (...args) => {
       args[0] || clearRectArray ? () => {} : console.log("huh");
@@ -591,7 +592,8 @@ export const CanvasSidebar = ({
     <div className="cv:w-[38vw] overflow-hidden hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-[50%]">
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
         <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
-          paint on the mural to find out more about dyslexia.
+          break the barrier to reveal the mural, and find out more about
+          dyslexia.
         </p>
         <p className="text-4xl mb-7  hidden cv:block text-center m-auto text-white">
           changes by other users are updated live, and there is a short cooldown

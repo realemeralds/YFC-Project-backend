@@ -47,7 +47,7 @@ export const ModalFunction = ({
           }}
           show={showModal[index]}
         >
-          <p className="text-start text-xl font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-8 mb-1 self-start">
+          <p className="text-start text-xl font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-7 mb-1 self-start">
             {heading}
           </p>
           <p className="text-sm sm:text-[18px] text-[#A49F9B] self-start mb-2">
@@ -233,9 +233,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Alyssa, 17
             </p>
-            <p className="font-semibold text-xl text-start">
-              price - TBC (at later date)
-            </p>
+            <p className="font-semibold text-xl text-start">price - TBC</p>
           </div>
         </div>
       </ModalFunction>
@@ -299,9 +297,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Various Artists
             </p>
-            <p className="font-semibold text-xl text-start">
-              price - TBC (at later date)
-            </p>
+            <p className="font-semibold text-xl text-start">price - TBC</p>
           </div>
         </div>
       </ModalFunction>

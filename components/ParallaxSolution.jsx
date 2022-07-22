@@ -127,8 +127,8 @@ export const Solution = () => {
                   Instagram page.
                 </span>
               </p>
-              <a href="#">
-                <p className="lg:text-3xl text-2xl text-link text-right font-light hover:translate-x-4 duration-300">
+              <a href="https://www.youtube.com/channel/UCfycy0CegyPHXTHACnpXWdA/">
+                <p className="md:text-3xl text-xl text-link text-right font-light hover:translate-x-4 duration-300">
                   {" "}
                   → video series
                 </p>
