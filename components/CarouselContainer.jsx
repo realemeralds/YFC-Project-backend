@@ -49,7 +49,7 @@ const CarouselContainer = () => {
   }, []);
 
   return (
-    <div className="w-full flex pt-[2vh] items-center justify-center h-screen flex-col-reverse">
+    <div className="w-full flex pt-[2vh] items-center justify-center h-screen flex-col-reverse CarouselContainer">
       <div
         className="embla w-10/12 sm:w-4/5 bg-slate-300 rounded-3xl peer"
         onMouseDown={() => {
@@ -82,24 +82,26 @@ const CarouselContainer = () => {
                         📅
                       </span>
                     </p>
-                    <p className="text-[20px] tracking-tight leading-tight mb-3 project:block hidden">
+                    <p className="text-[20px] tracking-tight leading-tight mb-2 project:block hidden">
                       There are many foods students love, but they are sadly not
                       sold in SJI :(
                     </p>
                     <p className="text-[20px] tracking-tight leading-tight">
-                      <span className="project:block hidden">Thankfully,</span>{" "}
+                      <span className="project:inline-block hidden">
+                        Thankfully,
+                      </span>{" "}
                       Project Vanguard will be selling boba, cookies and other
                       items on <b>August 11th and 12th!</b>{" "}
-                      <span className="xsm:block hidden">
+                      <span className="xsm:inline-block hidden my-2 xsm:mb-2 ">
                         Place an order with the link below by <b>August 7th</b>,
                         and food will be delivered <u>right to your class.</u>
                       </span>{" "}
-                      Check back here soon, as more details arrive!
+                      <i>Check back here soon, as more details arrive!</i>
                     </p>
                     <a>
-                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-5">
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-3">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
-                          link to google form →
+                          → link to google form
                         </p>
                         <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
                           All proceeds will go to the Dyslexia{" "}
@@ -165,25 +167,25 @@ const CarouselContainer = () => {
                     <p className="font-futuraLight text-center text-4xl project:text-[48px] mb-3">
                       football match
                     </p>
-                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-4">
+                    <p className="font-medium text-center text-[20px] project:text-2xl relative project:left-4 -mt-1 mb-2 xsm:mb-4">
                       24th July{" "}
                       <span className="relative rotate-[-30deg] bottom-3 inline-block">
                         📅
                       </span>
                     </p>
-                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight mb-4 sm:block hidden">
+                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight mb-4 sm:inline-block hidden">
                       At the upcoming Lion City Sailors vs Tampines Rovers match
                       on <b>July 24th</b>, we will be setting up a booth!
                     </p>
                     <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight">
                       <span className="sm:hidden inline-block pr-4">
                         During the upcoming match between Lion City Sailors and
-                        Tampines Rovers,
+                        Tampines Rovers, we will be selling merch and having a
+                        board to showcase our programs.
                       </span>{" "}
-                      <span className="sm:hidden inline-block pr-4">
-                        we will be selling merch and having a board to showcase
-                        our programs. <u>All proceeds</u> from the ticket sales
-                        to the match <u>will be donated to DAS.</u>
+                      <span className="sm:hidden inline-block pr-4 mt-2 xsm:mt-0">
+                        <u>All proceeds</u> from the ticket sales to the match{" "}
+                        <u>will be donated to DAS.</u>
                       </span>
                       <span className="sm:inline-block hidden pr-4">
                         We will be selling merch and having a board to showcase
@@ -194,7 +196,7 @@ const CarouselContainer = () => {
                     <a href="https://www.sistic.com.sg/events/lcs2022">
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
-                          buy tickets from sistic →
+                          → buy tickets from sistic
                         </p>
                         <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
                           come down and show your support!
@@ -230,12 +232,12 @@ const CarouselContainer = () => {
                     <p className="font-medium text-center text-[20px] project:text-2xl relative mb-4">
                       20th August
                     </p>
-                    <p className="xsm:text-[20px] text-[16px] tracking-tight leading-tight mb-3">
+                    <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-3">
                       If you are a student from St. Joseph’s Institution (SJI),
                       come down for our <u>in-school busking sessions</u> held
                       on July <b>25th, 26th, and 28th.</b>
                     </p>
-                    <p className="xsm:text-[20px] text-[17px] tracking-tight leading-tight mb-3">
+                    <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-3">
                       Our student bands have been practising hard, and are
                       passionate to showcase their musical talent for a worthy
                       cause.
@@ -269,22 +271,20 @@ const CarouselContainer = () => {
                         📅
                       </span>
                     </p>
-                    <p className="xsm:text-[20px] text-[19px] tracking-tight leading-tight mb-4 sm:block hidden">
+                    <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-4 mx-4">
                       Premiering on <b>5 September</b>, this video series is
                       aimed to inform and educate the public about dyslexia, so
                       as to debunk stereotypes about dyslexia and raise
                       awareness about dyslexia (as well as the issues dyslexics
-                      face)
+                      face).
                     </p>
                     <p></p>
-                    <a href="https://www.sistic.com.sg/events/lcs2022">
-                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
-                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
-                          TO CHANGE LINK // TODO
+                    <a href="https://www.youtube.com/channel/UCfycy0CegyPHXTHACnpXWdA/">
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%]">
+                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1 hover:translate-x-2 transition-all duration-300">
+                          → check out the series!
                         </p>
-                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
-                          TO CHANGE LINK // TODO
-                        </p>
+                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]"></p>
                       </button>
                     </a>
                   </div>

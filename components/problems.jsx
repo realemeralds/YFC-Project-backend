@@ -33,7 +33,7 @@ const Problems = () => {
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] glfull mx-auto pointer-events-none relative flex items-center justify-center lg:mt-20">
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center lg:mt-20">
                   <Image
                     src="/panel1.png"
                     alt="Embrace dysxleia poster"
@@ -98,7 +98,7 @@ const Problems = () => {
                 </p>
               </ProblemLeft>
               <ProblemRight progress={progress}>
-                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] glfull mx-auto pointer-events-none relative flex items-center justify-center">
+                <div className="p-[4vw] lg:max-w-[92vh] max-w-[60vh] h-full mx-auto pointer-events-none relative flex items-center justify-center">
                   <Image
                     src="/misunderstandings.png"
                     alt="misunderstandings of dyslexics"
