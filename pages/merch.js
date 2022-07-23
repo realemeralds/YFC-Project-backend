@@ -3,16 +3,11 @@ import Image from "next/image";
 import styles from "../styles/Merch.module.css";
 import Modal from "../components/Modal";
 import React, { useState } from "react";
+import ProductCarousel from "../components/ProductCarousel";
 
 const Home = () => {
   return (
-    <>
-      {/* <Head>
-        <title>Project Prima</title>
-        <meta property="og:title" content="Project Prima" key="title" />
-        <link rel="icon" type="image/png" href="icon.png" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head> */}
+    <div className="bg-[#f6f3e79f] -mt-6 pt-6 -mb-8 pb-8">
       <Navbar />
       <h1 className="text-center text-4xl md:text-5xl text-black font-bold mb-4 mt-5">
         Merchandise
@@ -26,7 +21,7 @@ const Home = () => {
         order form is made public!
       </p>
       <ShopWrapper />
-    </>
+    </div>
   );
 };
 
@@ -53,30 +48,35 @@ export const ModalFunction = ({
           }}
           show={showModal[index]}
         >
-          <p className="text-start text-xl font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-7 mb-1 self-start">
+          <p className="text-start text-[22px] font-semibold leading-5 sm:text-3xl w-4/5 sm:font-bold sm:leading-7 sm:mb-1 self-start">
             {heading}
           </p>
           <p className="text-sm sm:text-[18px] text-[#A49F9B] self-start mb-2">
             {author}
           </p>
-          <div className="w-64 sm:w-96">
-            <div
-              className={`rounded-[50px] px-8  sm:py-7 sm:mb-4 ${
-                index === 3 || index === 5 ? "sm:px-12 sm:mx-8" : "sm:px-20"
-              } ${styles.radialGradient}`}
-            >
-              <Image
-                src={src}
-                layout="responsive"
-                height={200}
-                width={200}
-                className="max-h-[233px] max-w-[233px]"
-                alt={heading}
-              />
+          {index === 3 || index === 5 ? (
+            <ProductCarousel slides={Array.from(Array(7).keys())} i={index} />
+          ) : (
+            <div className="w-64 sm:w-96">
+              <div
+                className={`rounded-[50px] px-8 sm:py-7 sm:mb-4 sm:px-20 ${styles.radialGradient}`}
+              >
+                <Image
+                  src={src}
+                  layout="responsive"
+                  height={200}
+                  width={200}
+                  className="max-h-[233px] max-w-[233px]"
+                  alt={heading}
+                />
+              </div>
             </div>
-          </div>
-          {/* <a href={link}> */}
-          <h1 className="text-3xl sm:text-4xl mt-4 sm:mt-0 font-bold text-black text-center">
+          )}
+          <h1
+            className={`text-3xl sm:text-4xl mt-4 sm:mt-0 font-bold text-black text-center ${
+              index === 3 || index === 5 ? "sm:mt-4 mt-3" : ""
+            }`}
+          >
             {price}
           </h1>
           <p className="text-lg sm:text-xl italic text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">

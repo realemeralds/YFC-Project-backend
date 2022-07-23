@@ -6,16 +6,27 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
   const [isBrowser, setIsBrowser] = useState(false);
+  const [modalWrapperRef, setModalWrapperRef] = useState();
+  const [mouseDown, setMouseDown] = useState(false);
+  let objRef;
 
   // create ref for the StyledModalWrapper component
-  const modalWrapperRef = React.useRef();
+  const modalWrapperRefHandler = (e) => {
+    console.log(e);
+    setModalWrapperRef(e);
+    objRef = e;
+  };
 
   // check if the user has clickedinside or outside the modal
   const backDropHandler = (e) => {
-    if (!modalWrapperRef?.current?.contains(e.target)) {
+    setMouseDown(e);
+  };
+  useEffect(() => {
+    if (mouseDown && !modalWrapperRef.contains(mouseDown.target)) {
       onClose();
     }
-  };
+    setMouseDown(false);
+  }, [mouseDown]);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -41,7 +52,7 @@ const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
       }}
     >
       <div
-        ref={modalWrapperRef}
+        ref={modalWrapperRefHandler}
         className="sm:w-[500px] sm:h-[650px] w-[300px] h-[390px] flex items-center justify-center bg-transparent"
       >
         <div className="bg-white w-[300px] h-[390px] sm:w-[450px] sm:h-[525px] relative rounded-[50px] border border-black shadow-[0_0_20px_10px_rgba(0,0,0,0.24)]">
@@ -69,7 +80,7 @@ const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
         }}
       >
         <div
-          ref={modalWrapperRef}
+          ref={modalWrapperRefHandler}
           className="sm:w-[400px] sm:h-[200px] w-[300px] h-[160px] flex items-center justify-center bg-transparent"
         >
           <div className="bg-white z-50 sm:w-[400px] sm:h-[200px] w-[300px] h-[160px] relative rounded-[50px] border border-black shadow-[0_0_20px_10px_rgba(0,0,0,0.24)]">

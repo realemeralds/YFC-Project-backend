@@ -99,7 +99,7 @@ const CarouselContainer = () => {
                       <i>Check back here soon, as more details arrive!</i>
                     </p>
                     <a>
-                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-3">
+                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-3 hidden">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
                           → link to google form
                         </p>
@@ -286,7 +286,7 @@ const CarouselContainer = () => {
                     </p>
                     <a href="https://www.youtube.com/channel/UCfycy0CegyPHXTHACnpXWdA/">
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%]">
-                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1 hover:translate-x-2 transition-all duration-300">
+                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium hover:translate-x-2 transition-all duration-300">
                           → check out the series!
                         </p>
                         <p className="text-start font-light tracking-tight text-sm leading-[1.15]"></p>
