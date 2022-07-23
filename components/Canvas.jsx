@@ -560,6 +560,7 @@ export const Waves = () => (
         alt="waves"
         width={900}
         height={150}
+        priority
       />
     </div>
   </div>
