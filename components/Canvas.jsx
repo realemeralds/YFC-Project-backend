@@ -122,10 +122,6 @@ export default function Canvas() {
     onMousedown(false);
   }, [mousedown, overlaypos.x]);
 
-  useEffect(() => {
-    console.log(triggered);
-  }, [triggered]);
-
   // The main function
   useEffect(() => {
     // Get canvases on all rounds
@@ -356,7 +352,6 @@ export default function Canvas() {
 
       // Mount event listeners on load
       if (!triggered) {
-        console.log("work??");
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
@@ -438,11 +433,10 @@ export default function Canvas() {
       return;
     }
     socket.current.emit("handshake", (response) => {
-      console.log(response.status); // ok
       setCountdownText("ready!");
     });
     socket.current.on("canvasUpdate", (...args) => {
-      args[0] || clearRectArray ? () => {} : console.log("huh");
+      args[0] || clearRectArray ? () => {} : console.log("");
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
         : () => {};

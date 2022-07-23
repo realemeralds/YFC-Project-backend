@@ -12,7 +12,6 @@ const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
 
   // create ref for the StyledModalWrapper component
   const modalWrapperRefHandler = (e) => {
-    console.log(e);
     setModalWrapperRef(e);
     objRef = e;
   };
