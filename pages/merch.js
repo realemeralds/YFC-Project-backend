@@ -7,6 +7,12 @@ import React, { useState } from "react";
 const Home = () => {
   return (
     <>
+      {/* <Head>
+        <title>Project Prima</title>
+        <meta property="og:title" content="Project Prima" key="title" />
+        <link rel="icon" type="image/png" href="icon.png" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head> */}
       <Navbar />
       <h1 className="text-center text-4xl md:text-5xl text-black font-bold mb-4 mt-5">
         Merchandise

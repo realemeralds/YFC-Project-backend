@@ -278,7 +278,12 @@ const CarouselContainer = () => {
                       awareness about dyslexia (as well as the issues dyslexics
                       face).
                     </p>
-                    <p></p>
+                    <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-4 mx-4 hidden xsm:block">
+                      We will be releasing informational videos where we debunk
+                      stereotypes, as well as videos interviewing specialists
+                      from DAS. Additionally, we have a rap video (!) about
+                      dyslexia.
+                    </p>
                     <a href="https://www.youtube.com/channel/UCfycy0CegyPHXTHACnpXWdA/">
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%]">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1 hover:translate-x-2 transition-all duration-300">
