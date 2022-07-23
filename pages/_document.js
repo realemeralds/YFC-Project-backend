@@ -6,6 +6,8 @@ export default function Document() {
       <Head>
         <link rel="icon" type="image/png" href="icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <title>Project Prima</title>
+        <meta property="og:title" content="Project Prima" key="title" />
       </Head>
       <body>
         <Main />

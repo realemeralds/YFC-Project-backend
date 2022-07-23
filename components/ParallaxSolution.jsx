@@ -164,7 +164,7 @@ export const Solution = () => {
           // onEnter={() => console.log("entered")}
           disabled={mdBroken}
         >
-          <div className="block mt-10 md:translate-y-0 lg:absolute lg:w-[750px] w-[80vw] mx-[10vw] md:w-[60vw] md:mx-[20vw] lg:mx-[8vw] p-5 md:p-8 pr-6 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-0 md:top-[1300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
+          <div className="block mt-10 md:translate-y-0 lg:absolute lg:w-[750px] w-[80vw] mx-[10vw] md:w-[60vw] md:mx-[20vw] lg:mx-[8vw] p-5 md:p-8 pr-8 md:pr-12 bg-cardBG rounded-[30px] border border-black md:left-0 md:top-[1300px] shadow-cards hover:cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300">
             <div className="border-l-black border-l-[3px] md:border-l-[5px] pl-5 sm:pl-6 pt-1 pb-2 pr-5">
               <p className="lg:text-[40px] text-2xl font-regular text-start mb-2 leading-tight">
                 <b>(2)</b> Raising funds
@@ -226,7 +226,7 @@ export const Solution = () => {
           ref={divContainer}
           className="block mt-10 md:translate-y-0 lg:absolute lg:w-[660px] w-[80vw] mx-[10vw] md:w-[60vw] md:mx-[20vw] lg:mx-[4vw] p-5 md:p-8 pr-4 md:pr-8 bg-cardBG pl-0 rounded-[30px] border border-black md:right-8 md:top-[1800px] shadow-cards hover:-cards-rotation hover:shadow-xl hover:shadow-[rgba(0,0,0,0.3)] transition-all duration-300 mb-6"
         >
-          <div className="border-r-black border-r-[3px] sm:border-r-[5px] pr-6 pt-1 pb-2 sm:pl-0 pl-4">
+          <div className="border-r-black border-r-[3px] md:border-r-[5px] pr-6 pt-1 pb-2 sm:pl-0 pl-4">
             <p className="lg:text-[40px] text-2xl font-regular text-end mb-3 leading-tight">
               <b>(3)</b> Programs for dyslexic youths:
             </p>

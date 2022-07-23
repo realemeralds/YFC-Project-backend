@@ -46,6 +46,7 @@ module.exports = {
   ],
   theme: {
     screens: {
+      "3xsm": "340px",
       twoxsm: "444px",
       xsm: "515px",
       project: "700px",
