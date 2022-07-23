@@ -46,7 +46,7 @@ export default function Canvas() {
   const [changed, setChanged] = useState(false);
   let ix, iy;
   const [animateUpdate, setAnimateUpdate] = useState();
-  const [triggered, setTriggered] = useState(false);
+  let triggered;
 
   // Countdown implementation
   const [countdownText, setCountdownText] = useState("loading...");
@@ -101,7 +101,6 @@ export default function Canvas() {
     setCanvas2(bgCanvasRef.current);
     setOverlayCanvas(overlayCanvasRef.current);
     setParticleCanvas(particleCanvasRef.current);
-    setTriggered(false);
   }, []);
 
   useEffect(() => {
@@ -123,6 +122,10 @@ export default function Canvas() {
     onMousedown(false);
   }, [mousedown, overlaypos.x]);
 
+  useEffect(() => {
+    console.log(triggered);
+  }, [triggered]);
+
   // The main function
   useEffect(() => {
     // Get canvases on all rounds
@@ -142,6 +145,7 @@ export default function Canvas() {
       overlayCanvas.height = height;
       particleCanvas.width = width;
       particleCanvas.height = height;
+      triggered = false;
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
@@ -256,7 +260,7 @@ export default function Canvas() {
       };
 
       // function to check whether overlays are painted
-      const paintOverlays = (e) => {
+      var paintOverlays = (e) => {
         const { x, y } = getMousePos(canvas, e);
 
         if (2 < x && x < canvas.width - 2 && 2 < y && y < canvas.height - 2) {
@@ -271,6 +275,7 @@ export default function Canvas() {
             canvasDisabled
           ) {
             removePos(258);
+            () => {};
           }
           mouseOnCanvas = true;
         } else {
@@ -290,14 +295,9 @@ export default function Canvas() {
       // Set upon click
       const localImgLoad = () => {
         if (ctx2 && imgRef.current) {
-          ctx2.drawImage(
-            imgRef.current,
-            0,
-            0,
-            canvas.width - 1,
-            canvas.height + 2
-          );
-          paintCanvas();
+          setImgLoad(() => {
+            1 + 1 === 2;
+          });
         }
       };
 
@@ -354,17 +354,22 @@ export default function Canvas() {
         setAnimateUpdate(false);
       }
 
-      localImgLoad(ctx2, imgRef.current, canvas);
       // Mount event listeners on load
       if (!triggered) {
         console.log("work??");
-        console.log(triggered);
-        setTriggered(true);
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
+        ctx2.drawImage(
+          imgRef.current,
+          0,
+          0,
+          canvas.width - 1,
+          canvas.height + 2
+        );
+        paintCanvas();
         window.addEventListener("mousemove", (e) => {
-          paintOverlays(e, canvasDisabled);
+          paintOverlays(e, canvas);
         });
         breakButton.addEventListener("click", () => {
           if (!clearRectArray) return;
@@ -386,6 +391,7 @@ export default function Canvas() {
           cancelButton.disabled = true;
           setCanvasDisabled(true);
           setChanged(true);
+          // paintCanvas(tempArray, "lol");
         });
         window.addEventListener("mousedown", () => {
           if (mouseOnCanvas) {
@@ -400,6 +406,7 @@ export default function Canvas() {
           breakButton.disabled = true;
           cancelButton.disabled = true;
         });
+        triggered = true;
       }
 
       // TODO: remove debug functions below
@@ -472,7 +479,6 @@ export default function Canvas() {
           breakButtonRef={breakButtonRef}
           cancelButtonRef={cancelButtonRef}
           countdownText={countdownText}
-          canvasDisabled={canvasDisabled}
         />
       </CanvasContainer>
       <CanvasReplace />
@@ -482,7 +488,7 @@ export default function Canvas() {
   );
 }
 
-export const ModalFunction = ({ daRef, canvasDisabled }) => {
+export const ModalFunction = ({ daRef }) => {
   // State of the canvas popups
   const [showModal, setShowModal] = useState(false);
   const factList = [
@@ -534,7 +540,6 @@ export const ModalFunction = ({ daRef, canvasDisabled }) => {
           probNo = Math.random();
           if (probNo < 0.75) return;
           setTimeout(() => {
-            if (!canvasDisabled) return;
             document.querySelector("body").classList.add("pause-scroll");
             setShowModal(true);
             setRandomNo(Math.floor(Math.random() * factList.length));
@@ -628,7 +633,6 @@ export const CanvasSidebar = ({
   breakButtonRef,
   cancelButtonRef,
   countdownText,
-  canvasDisabled,
 }) => {
   return (
     <div className="cv:w-[38vw] overflow-hidden hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-[50%]">
@@ -646,7 +650,6 @@ export const CanvasSidebar = ({
             <ModalFunction
               fact='Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat.'
               daRef={breakButtonRef}
-              canvasDisabled={canvasDisabled}
             />
             <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
           </div>
