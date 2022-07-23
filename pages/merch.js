@@ -263,7 +263,7 @@ export const ShopWrapper = () => {
               misconceptions totebag
             </p>
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
-              by [das kid], 17
+              by Faith, 14
             </p>
             <p className="font-semibold text-xl text-start">$6.99</p>
           </div>
