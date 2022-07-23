@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useCallback } from "react";
+import React, { useState, useRef, useContext, useCallback, useEffect } from "react";
 import Image from "next/image";
 import logo from "../public/4klogo.png";
 import downChevron from "../public/down-chevron.svg";
@@ -8,8 +8,8 @@ import { Parallax } from "react-scroll-parallax";
 
 const Header = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const handleImageLoaded = useCallback(() => {
+  
+  useEffect(() => {
     setImageLoaded(true);
   }, []);
 
@@ -44,16 +44,17 @@ const Header = () => {
           ref={refContainer}
         >
           <div
-            className={`justify-center items-center w-full flex absolute bottom-6 transition-all delay-300 duration-1000 ${
+            className={`justify-center items-center w-full flex absolute bottom-6 transition-all delay-300 duration-1000 z-10 ${
               imageLoaded ? "opacity-100" : "opacity-0 -translate-y-10"
             }`}
           >
             <Image
               src={downChevron}
+              alt="down chevron"
               height={40}
               width={40}
-              onLoad={handleImageLoaded}
-              alt="down chevron"
+              objectFit="cover"
+              priority
             />
           </div>
           <div className="flex h-screen w-full justify-center items-center flex-col">
