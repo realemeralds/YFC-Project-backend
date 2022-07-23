@@ -127,14 +127,14 @@ export const Solution = () => {
                   Instagram page.
                 </span>
               </p>
-              <a href="#">
-                <p className="lg:text-3xl text-2xl text-link text-right font-light hover:translate-x-4 duration-300">
+              <a href="https://www.youtube.com/channel/UCfycy0CegyPHXTHACnpXWdA/">
+                <p className="md:text-3xl text-xl text-link text-right font-light hover:translate-x-4 duration-300">
                   {" "}
                   → video series
                 </p>
               </a>
               <a href="https://www.instagram.com/projprima/">
-                <p className="lg:text-3xl text-2xl text-link text-right font-light hover:translate-x-4 duration-300">
+                <p className="md:text-3xl text-xl text-link text-right font-light hover:translate-x-4 duration-300">
                   {" "}
                   → insta page! (@projprima)
                 </p>
@@ -190,7 +190,7 @@ export const Solution = () => {
               </p>
               <Link href="/projects">
                 <a>
-                  <p className="lg:text-3xl text-2xl text-link text-left font-light hover:translate-x-4 duration-300">
+                  <p className="md:text-3xl text-xl text-link text-left font-light hover:translate-x-4 duration-300">
                     {" "}
                     → more details on projects!
                   </p>
@@ -198,7 +198,7 @@ export const Solution = () => {
               </Link>
               <Link href="/merch">
                 <a>
-                  <p className="lg:text-3xl text-2xl text-link text-left font-light hover:translate-x-4 duration-300">
+                  <p className="md:text-3xl text-xl text-link text-left font-light hover:translate-x-4 duration-300">
                     {" "}
                     → check out our merch!
                   </p>

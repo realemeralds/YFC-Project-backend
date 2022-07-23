@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 
+import Modal from "../components/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faL, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
@@ -48,7 +49,7 @@ export default function Canvas() {
   let triggered;
 
   // Countdown implementation
-  const [countdownText, setCountdownText] = useState("ready!");
+  const [countdownText, setCountdownText] = useState("loading...");
   const [canvasDisabled, setCanvasDisabled] = useState(false);
   const [mousedown, onMousedown] = useState(false);
   let breakButton, cancelButton;
@@ -59,7 +60,7 @@ export default function Canvas() {
   // key variables
   const width = 1002;
   const height = 802;
-  const countdownDuration = 1;
+  const countdownDuration = 5;
 
   // Overlay square position
   var overlaypos = {
@@ -121,6 +122,10 @@ export default function Canvas() {
     onMousedown(false);
   }, [mousedown, overlaypos.x]);
 
+  useEffect(() => {
+    console.log(triggered);
+  }, [triggered]);
+
   // The main function
   useEffect(() => {
     // Get canvases on all rounds
@@ -138,10 +143,9 @@ export default function Canvas() {
       canvas2.height = height;
       overlayCanvas.width = width;
       overlayCanvas.height = height;
-      // particleCanvas.width = width + 200;
-      // particleCanvas.height = height + 160;
       particleCanvas.width = width;
       particleCanvas.height = height;
+      triggered = false;
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
@@ -154,7 +158,6 @@ export default function Canvas() {
 
       // Key params for loading the overlays and triggering the event listneers
       var mouseOnCanvas = false;
-      let triggered = false;
 
       // default disabled
       breakButton.disabled = true;
@@ -353,6 +356,7 @@ export default function Canvas() {
 
       // Mount event listeners on load
       if (!triggered) {
+        console.log("work??");
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
@@ -435,6 +439,7 @@ export default function Canvas() {
     }
     socket.current.emit("handshake", (response) => {
       console.log(response.status); // ok
+      setCountdownText("ready!");
     });
     socket.current.on("canvasUpdate", (...args) => {
       args[0] || clearRectArray ? () => {} : console.log("huh");
@@ -483,6 +488,69 @@ export default function Canvas() {
   );
 }
 
+export const ModalFunction = ({ daRef }) => {
+  // State of the canvas popups
+  const [showModal, setShowModal] = useState(false);
+  const factList = [
+    "Dyslexia affects nearly 10% of the population.",
+    "Dyslexia is by far the most common learning disability.",
+    "Those with dyslexia use only the right side of the brain to process language, while non-dyslexics use three areas on the left side of the brain to process language.",
+    "People with dyslexia are usually more creative and have a higher level of intelligence.",
+    "Did you know that Lee Kuan Yew is dyslexic?",
+    "Did you know that Tom Cruise is dyslexic? Even after high school, he could barely read through his earliest roles.",
+    "Did you know that Winston Churchill is dyslexic? At age 10, he was described by his teachers to be “negligent, slovenly and perpetually late,” and struggled to keep up in school.",
+    "The ability to use their right brain better and have a better sense of spatial relationships is prominent in dyslexics.",
+    "The excellent comprehension skills dyslexic people are gifted with prove to be an asset in helping them understand stories read or told to them.",
+    "Solving puzzles are dyslexic people’s forte.",
+    "Dyslexics typically have a large spoken vocabulary for their age.",
+    "Many individuals with dyslexia have proven to see things three dimensionally, which can effect how they look at words.",
+    "Often dyslexics are thought to be reading backwards because of what is called the “Recency Effect.” In which they pronounce the word using the most recent sound first, like “tap” for “pat.”",
+    "Anxiety disorders are more common in dyslexic children.",
+    "Areas that dyslexic children are likely to excel in include conceptualisation, reason and abstraction.",
+    "Dyslexia is not tied to IQ.",
+    "People with dyslexia are more likely to have Attention Deficit Disorder (ADD).",
+    "Dyslexics do not see letters backwards.",
+  ];
+  const [randomNo, setRandomNo] = useState(
+    Math.floor(Math.random() * factList.length)
+  );
+  let probNo;
+
+  return (
+    <>
+      <Modal
+        onClose={() => {
+          document.querySelector("body").classList.remove("pause-scroll");
+          setShowModal(false);
+        }}
+        show={showModal}
+        altType
+      >
+        <p className="text-center text-3xl font-semibold leading-5 sm:text-4xl w-4/5 sm:font-bold sm:leading-7 mt-1 mb-1">
+          Fun Fact:
+        </p>
+        <p className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18px] leading-5 w-4/5 mt-5 font-regular sm:leading-5 mb-1">
+          {factList[randomNo]}
+        </p>
+      </Modal>
+      <CanvasButton
+        icon={faCheck}
+        text="Break"
+        onClick={() => {
+          probNo = Math.random();
+          if (probNo < 0.75) return;
+          setTimeout(() => {
+            document.querySelector("body").classList.add("pause-scroll");
+            setShowModal(true);
+            setRandomNo(Math.floor(Math.random() * factList.length));
+          }, 10);
+        }}
+        ref={daRef}
+      />
+    </>
+  );
+};
+
 export const Waves = () => (
   <div className="-mt-[16.666666666666666666666666666666666667vh] z-10 sm:block hidden">
     <div className="w-full h-auto">
@@ -519,30 +587,9 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
   const dimenRef = useRef(null);
   let width, transform, maxHeight, maxWidth, top;
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", resizeHandler);
-  // }, []);
-
   if (scriptContainer.current && !loaded) {
     setTimeout(() => setLoaded(true), 1000);
   }
-
-  // const resizeHandler = () => {
-  //   if (zindex === 30) {
-  //     width = "calc(57vw * 1.2)";
-  //     transform = "translate(calc(0.2 * 57vw), calc(-50% - 5vh + 4.56vw))";
-  //     maxHeight = "90vh";
-  //     maxWidth = "9999px";
-  //     if (dimenRef.current) {
-  //       console.log(dimenRef.current.clientHeight);
-  //       console.log(window.innerHeight);
-  //       console.log(dimenRef.current.clientHeight > window.innerHeight * 0.89);
-  //       console.log((window.innerHeight - dimenRef.current.clientHeight) / 2);
-  //       top = `${(window.innerHeight - dimenRef.current.clientHeight) / 2}px`;
-  //     }
-  //   }
-  // };
-  // resizeHandler();
 
   return (
     <>
@@ -591,7 +638,8 @@ export const CanvasSidebar = ({
     <div className="cv:w-[38vw] overflow-hidden hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-[50%]">
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
         <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
-          paint on the mural to find out more about dyslexia.
+          break the barrier to reveal the mural, and find out more about
+          dyslexia with fun facts.
         </p>
         <p className="text-4xl mb-7  hidden cv:block text-center m-auto text-white">
           changes by other users are updated live, and there is a short cooldown
@@ -599,7 +647,10 @@ export const CanvasSidebar = ({
         </p>
         <div className="flex flex-col space-y-5 justify-center align-center">
           <div className="flex flex-col cv:flex-row cv:space-y-0 cv:space-x-10 cv:w-auto space-y-5 justify-center items-center">
-            <CanvasButton icon={faCheck} text="Break" ref={breakButtonRef} />
+            <ModalFunction
+              fact='Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat.'
+              daRef={breakButtonRef}
+            />
             <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
           </div>
           <CanvasCooldown text={countdownText} />
@@ -609,11 +660,12 @@ export const CanvasSidebar = ({
   );
 };
 
-export const CanvasButton = React.forwardRef(({ icon, text }, ref) => {
+export const CanvasButton = React.forwardRef(({ icon, text, onClick }, ref) => {
   return (
     <button
       ref={ref}
       className="bg-white shadow-md px-5 py-3 rounded-full disabled:bg-disabled flex flex-row align-center justify-center text-green-600 disabled:text-slate-500 z-40"
+      onClick={onClick}
     >
       <FontAwesomeIcon icon={icon} size="lg" className="relative top-[7px]" />
       <span className="text-2xl whitespace-pre ml-3">{text}</span>

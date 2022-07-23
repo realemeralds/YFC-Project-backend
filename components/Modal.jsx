@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Modal = ({ onClose, children, title, show, daRef }) => {
+const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
   const [isBrowser, setIsBrowser] = useState(false);
-  const [active, setActive] = useState(false);
 
   // create ref for the StyledModalWrapper component
   const modalWrapperRef = React.useRef();
@@ -18,11 +16,6 @@ const Modal = ({ onClose, children, title, show, daRef }) => {
       onClose();
     }
   };
-
-  useEffect(() => {
-    setActive(true);
-    if (show) setTimeout(() => setActive(false), 300);
-  }, [show]);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -39,10 +32,13 @@ const Modal = ({ onClose, children, title, show, daRef }) => {
     onClose();
   };
 
-  const modalContent = (
+  let modalContent = (
     <div
-      className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F]"
-      style={{ display: show ? undefined : "none" }}
+      className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F] transition-all duration-1000"
+      style={{
+        opacity: show ? 1 : 0,
+        pointerEvents: show ? undefined : "none",
+      }}
     >
       <div
         ref={modalWrapperRef}
@@ -61,6 +57,35 @@ const Modal = ({ onClose, children, title, show, daRef }) => {
       </div>
     </div>
   );
+
+  if (altType) {
+    modalContent = (
+      <div
+        className="fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F] transition-all duration-1000 ease-in"
+        style={{
+          opacity: show ? 1 : 0,
+          pointerEvents: show ? undefined : "none",
+          zIndex: show ? undefined : -10,
+        }}
+      >
+        <div
+          ref={modalWrapperRef}
+          className="sm:w-[400px] sm:h-[200px] w-[300px] h-[160px] flex items-center justify-center bg-transparent"
+        >
+          <div className="bg-white z-50 sm:w-[400px] sm:h-[200px] w-[300px] h-[160px] relative rounded-[50px] border border-black shadow-[0_0_20px_10px_rgba(0,0,0,0.24)]">
+            <div className="absolute top-5 right-7 text-2xl">
+              <a href="#" onClick={handleCloseClick}>
+                <FontAwesomeIcon icon={faXmark} size="lg" />
+              </a>
+            </div>
+            <div className="flex justify-center flex-col items-center p-7 pt-5">
+              {children}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (isBrowser) {
     return ReactDOM.createPortal(
