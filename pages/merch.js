@@ -55,7 +55,9 @@ export const ModalFunction = ({
           </p>
           <div className="w-64 sm:w-96">
             <div
-              className={`rounded-[50px] px-8  sm:py-7 sm:mx-8 sm:mb-4 sm:px-12 ${styles.radialGradient}`}
+              className={`rounded-[50px] px-8  sm:py-7 sm:mb-4 ${
+                index === 3 || index === 5 ? "sm:px-12 sm:mx-8" : "sm:px-20"
+              } ${styles.radialGradient}`}
             >
               <Image
                 src={src}
@@ -67,14 +69,14 @@ export const ModalFunction = ({
               />
             </div>
           </div>
-          <a href={link}>
-            <h1 className="text-4xl font-bold text-black text-center">
-              {price}
-            </h1>
-            <p className="text-xl text-center hover:translate-x-1 duration-500 underline underline-offset-2">
-              → order via google form
-            </p>
-          </a>
+          {/* <a href={link}> */}
+          <h1 className="text-3xl sm:text-4xl mt-4 sm:mt-0 font-bold text-black text-center">
+            {price}
+          </h1>
+          <p className="text-lg sm:text-xl italic text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">
+            ordering coming soon!
+          </p>
+          {/* </a> */}
         </Modal>
       )}
       <button

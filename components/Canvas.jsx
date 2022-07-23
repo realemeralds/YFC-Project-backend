@@ -538,7 +538,6 @@ export const ModalFunction = ({ daRef }) => {
         text="Break"
         onClick={() => {
           probNo = Math.random();
-          console.log(probNo);
           if (probNo < 0.75) return;
           setTimeout(() => {
             document.querySelector("body").classList.add("pause-scroll");
