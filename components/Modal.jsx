@@ -35,7 +35,10 @@ const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
   let modalContent = (
     <div
       className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F] transition-all duration-1000"
-      style={{ opacity: show ? 1 : 0 }}
+      style={{
+        opacity: show ? 1 : 0,
+        pointerEvents: show ? undefined : "none",
+      }}
     >
       <div
         ref={modalWrapperRef}
@@ -58,8 +61,12 @@ const Modal = ({ onClose, children, title, show, daRef, altType = false }) => {
   if (altType) {
     modalContent = (
       <div
-        className="fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F] transition-all duration-1000"
-        style={{ opacity: show ? 1 : 0 }}
+        className="fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center bg-[#0000008F] transition-all duration-1000 ease-in"
+        style={{
+          opacity: show ? 1 : 0,
+          pointerEvents: show ? undefined : "none",
+          zIndex: show ? undefined : -10,
+        }}
       >
         <div
           ref={modalWrapperRef}

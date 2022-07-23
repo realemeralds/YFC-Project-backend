@@ -495,49 +495,55 @@ export const ModalFunction = ({ daRef }) => {
     "Dyslexia affects nearly 10% of the population.",
     "Dyslexia is by far the most common learning disability.",
     "Those with dyslexia use only the right side of the brain to process language, while non-dyslexics use three areas on the left side of the brain to process language.",
-    "People with dyslexia are usually more creative and have a higher level of intelligence",
-    "Did you know that Lee Kuan Yew is dyslexic? ",
+    "People with dyslexia are usually more creative and have a higher level of intelligence.",
+    "Did you know that Lee Kuan Yew is dyslexic?",
     "Did you know that Tom Cruise is dyslexic? Even after high school, he could barely read through his earliest roles.",
     "Did you know that Winston Churchill is dyslexic? At age 10, he was described by his teachers to be “negligent, slovenly and perpetually late,” and struggled to keep up in school.",
-    "The ability to use their right brain better and have a better sense of spatial relationships is prominent in dyslexics. (Anish)",
-    "The excellent comprehension skills dyslexic people are gifted with prove to be an asset in helping them understand stories read or told to them (Anish)",
-    "Solving puzzles are dyslexic people’s forte. (Anish)",
-    "Dyslexics typically have a large spoken vocabulary for their age.(Anish)",
-    "Many individuals with dyslexia have proven to see things three dimensionally, which can effect how they look at words.(Anish)",
-    `Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat."`,
-    "anxiety disorders are more common in dyslexic children",
-    "Areas that dyslexic children are likely to excel in include conceptualisation, reason and abstraction)",
-    "Dyslexia is not tied to IQ. ",
-    "People with dyslexia are more likely to have ADD",
-    "Dyslexics do not see letters backwards",
+    "The ability to use their right brain better and have a better sense of spatial relationships is prominent in dyslexics.",
+    "The excellent comprehension skills dyslexic people are gifted with prove to be an asset in helping them understand stories read or told to them.",
+    "Solving puzzles are dyslexic people’s forte.",
+    "Dyslexics typically have a large spoken vocabulary for their age.",
+    "Many individuals with dyslexia have proven to see things three dimensionally, which can effect how they look at words.",
+    "Often dyslexics are thought to be reading backwards because of what is called the “Recency Effect.” In which they pronounce the word using the most recent sound first, like “tap” for “pat.”",
+    "Anxiety disorders are more common in dyslexic children.",
+    "Areas that dyslexic children are likely to excel in include conceptualisation, reason and abstraction.",
+    "Dyslexia is not tied to IQ.",
+    "People with dyslexia are more likely to have Attention Deficit Disorder (ADD).",
+    "Dyslexics do not see letters backwards.",
   ];
+  const [randomNo, setRandomNo] = useState(
+    Math.floor(Math.random() * factList.length)
+  );
+  let probNo;
 
   return (
     <>
-      {showModal && (
-        <Modal
-          onClose={() => {
-            document.querySelector("body").classList.remove("pause-scroll");
-            setShowModal(false);
-          }}
-          show={showModal}
-          altType
-        >
-          <p className="text-center text-3xl font-semibold leading-5 sm:text-4xl w-4/5 sm:font-bold sm:leading-7 mt-1 mb-1">
-            Fun Fact:
-          </p>
-          <p className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18px] leading-5 w-4/5 mt-5 font-regular sm:leading-5 mb-1">
-            {factList[Math.floor(Math.random() * factList.length)]}
-          </p>
-        </Modal>
-      )}
+      <Modal
+        onClose={() => {
+          document.querySelector("body").classList.remove("pause-scroll");
+          setShowModal(false);
+        }}
+        show={showModal}
+        altType
+      >
+        <p className="text-center text-3xl font-semibold leading-5 sm:text-4xl w-4/5 sm:font-bold sm:leading-7 mt-1 mb-1">
+          Fun Fact:
+        </p>
+        <p className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18px] leading-5 w-4/5 mt-5 font-regular sm:leading-5 mb-1">
+          {factList[randomNo]}
+        </p>
+      </Modal>
       <CanvasButton
         icon={faCheck}
         text="Break"
         onClick={() => {
+          probNo = Math.random();
+          console.log(probNo);
+          if (probNo < 0.75) return;
           setTimeout(() => {
             document.querySelector("body").classList.add("pause-scroll");
             setShowModal(true);
+            setRandomNo(Math.floor(Math.random() * factList.length));
           }, 10);
         }}
         ref={daRef}
@@ -634,7 +640,7 @@ export const CanvasSidebar = ({
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
         <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
           break the barrier to reveal the mural, and find out more about
-          dyslexia.
+          dyslexia with fun facts.
         </p>
         <p className="text-4xl mb-7  hidden cv:block text-center m-auto text-white">
           changes by other users are updated live, and there is a short cooldown
@@ -643,7 +649,7 @@ export const CanvasSidebar = ({
         <div className="flex flex-col space-y-5 justify-center align-center">
           <div className="flex flex-col cv:flex-row cv:space-y-0 cv:space-x-10 cv:w-auto space-y-5 justify-center items-center">
             <ModalFunction
-              fact='Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat."(Anish)'
+              fact='Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat.'
               daRef={breakButtonRef}
             />
             <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
