@@ -57,7 +57,7 @@ export const ModalFunction = ({
           {index === 3 || index === 5 ? (
             <ProductCarousel slides={Array.from(Array(7).keys())} i={index} />
           ) : (
-            <div className="w-64 sm:w-96">
+            <div className={`w-64 sm:w-96 ${index == 1 ? "my-3" : ""}`}>
               <div
                 className={`rounded-[50px] px-8 sm:py-7 sm:mb-4 sm:px-20 ${styles.radialGradient}`}
               >
