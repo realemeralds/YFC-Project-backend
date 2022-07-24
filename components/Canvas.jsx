@@ -165,6 +165,7 @@ export default function Canvas() {
         if (array) {
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
+
           // insert clear rectangles
           for (let i = 0; i < array.length; i++) {
             offset = { sx: 0, sy: 0, ex: 0, ey: 0 };
@@ -355,13 +356,7 @@ export default function Canvas() {
         setImgLoad(() => {
           localImgLoad(ctx2, imgRef.current, canvas);
         });
-        ctx2.drawImage(
-          imgRef.current,
-          0,
-          0,
-          canvas.width - 1,
-          canvas.height + 2
-        );
+        ctx2.drawImage(imgRef.current, 1, 1, width - 2, height - 2);
         paintCanvas();
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
@@ -403,26 +398,6 @@ export default function Canvas() {
         });
         triggered = true;
       }
-
-      // TODO: remove debug functions below
-      function checkAlignment(ctx, color) {
-        const gap = 10;
-        const padding = 1;
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = color;
-        for (var x = gap + padding; x <= width + padding; x += gap) {
-          ctx.beginPath();
-          ctx.moveTo(x, 0);
-          ctx.lineTo(x, width + 2 * padding);
-          ctx.stroke();
-        }
-        for (var y = gap + padding; y <= height + padding; y += gap) {
-          ctx.beginPath();
-          ctx.moveTo(0, y);
-          ctx.lineTo(height + 2 * padding, y);
-          ctx.stroke();
-        }
-      }
     }
   }, [canvas, canvas2, ctx, ctx2, changed, canvasDisabled]);
 
@@ -440,6 +415,7 @@ export default function Canvas() {
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
         : () => {};
+      console.log(args[0]);
       setChanged(true);
     });
   }, [backendURL]);
@@ -691,7 +667,7 @@ export const ImageLoader = ({ daRef, imgLoad }) => {
     <div style={{ display: "none" }}>
       <img
         ref={daRef}
-        src="/finalpixelart.jpg"
+        src="/aligned px art.png"
         onLoad={imgLoad}
         width={750}
         height={600}
