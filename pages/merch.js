@@ -120,7 +120,7 @@ export const ShopWrapper = () => {
         heading={"when life gives you melons totebag"}
         author="by Heather, 17"
         src="/newtote (1).png"
-        price="$6.99"
+        price="$5.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -144,7 +144,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
               by Heather, 17
             </p>
-            <p className="font-semibold text-xl text-start">$6.99</p>
+            <p className="font-semibold text-xl text-start">$5.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -153,7 +153,7 @@ export const ShopWrapper = () => {
         heading={"prima signa totebag"}
         author="by Olivia, 17"
         src="/newtote (2).png"
-        price="$6.99"
+        price="$5.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -177,7 +177,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-start text-shopFaded -mt-1 mb-1 leading-tight">
               by Olivia, 17
             </p>
-            <p className="font-semibold text-start text-xl">$6.99</p>
+            <p className="font-semibold text-start text-xl">$5.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -186,7 +186,7 @@ export const ShopWrapper = () => {
         heading="seeing through dyslexia totebag"
         author="by Clement, 18"
         src="/newtote (3).png"
-        price="$6.99"
+        price="$5.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -210,7 +210,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Clement, 18
             </p>
-            <p className="font-semibold text-xl text-start">$6.99</p>
+            <p className="font-semibold text-xl text-start">$5.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -219,7 +219,7 @@ export const ShopWrapper = () => {
         heading="sticker collection A"
         author="by Alyssa, 17"
         src="/editedStickerA.png"
-        price="price - TBC"
+        price="$4.49"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -241,7 +241,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Alyssa, 17
             </p>
-            <p className="font-semibold text-xl text-start">price - TBC</p>
+            <p className="font-semibold text-xl text-start">$4.49</p>
           </div>
         </div>
       </ModalFunction>
@@ -250,7 +250,7 @@ export const ShopWrapper = () => {
         heading="misconceptions totebag"
         author="by Faith, 14"
         src="/newtote (4).png"
-        price="$6.99"
+        price="$5.99"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -273,7 +273,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Faith, 14
             </p>
-            <p className="font-semibold text-xl text-start">$6.99</p>
+            <p className="font-semibold text-xl text-start">$5.99</p>
           </div>
         </div>
       </ModalFunction>
@@ -282,7 +282,7 @@ export const ShopWrapper = () => {
         heading="sticker collection B"
         author="by Various Artists"
         src="/editedStickerB.png"
-        price="price - TBC"
+        price="$4.49"
         link="#"
         showModal={showModal}
         setShowModal={setShowModal}
@@ -305,7 +305,7 @@ export const ShopWrapper = () => {
             <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
               by Various Artists
             </p>
-            <p className="font-semibold text-xl text-start">price - TBC</p>
+            <p className="font-semibold text-xl text-start">$4.49</p>
           </div>
         </div>
       </ModalFunction>
