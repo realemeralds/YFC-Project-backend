@@ -193,16 +193,19 @@ const CarouselContainer = () => {
                         sales to the match <u>will be donated to DAS.</u>
                       </span>
                     </p>
-                    <a href="https://www.sistic.com.sg/events/lcs2022">
-                      <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5">
-                        <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
-                          → buy tickets from sistic
-                        </p>
-                        <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
-                          come down and show your support!
-                        </p>
-                      </button>
-                    </a>
+                    {/* <a href="https://www.sistic.com.sg/events/lcs2022"> */}
+                    <button
+                      className="bg-stone-200 rounded-3xl items-start px-6 py-3 project:w-[80%] mt-5"
+                      disabled
+                    >
+                      <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
+                        <strike> → buy tickets from sistic</strike>
+                      </p>
+                      <p className="text-start font-light tracking-tight text-sm leading-[1.15]">
+                        sadly, the match day has passed :(
+                      </p>
+                    </button>
+                    {/* </a> */}
                   </div>
                 </div>
               </div>
@@ -235,7 +238,7 @@ const CarouselContainer = () => {
                     <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-3">
                       If you are a student from St. Joseph’s Institution (SJI),
                       come down for our <u>in-school busking sessions</u> held
-                      on July <b>25th, 26th, and 28th.</b>
+                      on <b>July 25th, 26th, and 28th.</b>
                     </p>
                     <p className="xsm:text-[20px] text-[18px] tracking-tight leading-tight mb-3">
                       Our student bands have been practising hard, and are
