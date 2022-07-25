@@ -10,7 +10,7 @@ Contributions are welcome <3
 
 ## Technologies Used
 
-This project used a MEMN stack (_but not the conventional one_)
+This project used a MENN stack (_but not the conventional one_)
 
 - Memcachier for data storage / caching
 - Express and Node.js for the backend web server (source code not public for security reasons)
