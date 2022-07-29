@@ -70,6 +70,7 @@ export default function Navbar({ hidden, menuVisible }) {
               width={30}
               height={30}
               alt="menu hamburger icon"
+              priority
             />
           </button>
         </div>
