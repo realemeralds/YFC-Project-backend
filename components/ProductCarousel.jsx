@@ -103,6 +103,7 @@ const ProductCarousel = ({ slides, i }) => {
                     width={180}
                     className="max-h-[200px] max-w-[200px]"
                     alt={"epic"}
+                    priority={index === 0}
                   />
                 </div>
               </div>
@@ -154,6 +155,7 @@ export const Thumb = ({ selected, onClick, imgSrc }) => (
         src={imgSrc}
         layout="fill"
         objectFit="contain"
+        priority
       />
     </button>
   </div>

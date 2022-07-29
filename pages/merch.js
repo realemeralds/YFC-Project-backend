@@ -73,6 +73,7 @@ export const ModalFunction = ({
                   width={200}
                   className="max-h-[233px] max-w-[233px]"
                   alt={heading}
+                  priority
                 />
               </div>
             </div>
