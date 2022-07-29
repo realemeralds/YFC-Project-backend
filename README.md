@@ -3,7 +3,7 @@
 On behalf of a client, I designed this website, which was meant to raise awareness for Project Prima, and the efforts of the Dyslexia Association of Singapore.
 This project was completed over two weeks, and was my first foray into Next.js.
 
-The website is available at https://projprima.com, and will only be taken down on July 23th, 2022.
+The website is available at https://projprima.com, and will only be taken down on July 23th, 2023.
 Before then, feel free to tinker with the source code with the build instructions below.
 
 Contributions are welcome <3
