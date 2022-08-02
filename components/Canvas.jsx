@@ -415,7 +415,7 @@ export default function Canvas() {
       JSON.stringify(args[0]) !== JSON.stringify(clearRectArray)
         ? setClearRectArray(args[0])
         : () => {};
-      console.log(args[0]);
+      // console.log(args[0]);
       setChanged(true);
     });
   }, [backendURL]);
