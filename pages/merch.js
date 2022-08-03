@@ -35,6 +35,7 @@ export const ModalFunction = ({
   children,
   showModal,
   setShowModal,
+  span = false,
 }) => {
   return (
     <>
@@ -56,10 +57,14 @@ export const ModalFunction = ({
           </p>
           {index === 3 || index === 5 ? (
             <ProductCarousel slides={Array.from(Array(7).keys())} i={index} />
+          ) : index === 7 ? (
+            <ProductCarousel slides={Array.from(Array(12).keys())} i={index} />
           ) : (
             <div className={`w-64 sm:w-96 ${index == 1 ? "my-3" : ""}`}>
               <div
-                className={`rounded-[50px] px-8 sm:py-7 sm:mb-4 sm:px-20 ${styles.radialGradient}`}
+                className={`rounded-[50px] px-8  ${
+                  index !== 6 ? "sm:px-20 sm:py-7 sm:mb-4" : "px-0 -mx-2 -my-12"
+                } ${styles.radialGradient}`}
               >
                 <Image
                   src={src}
@@ -68,25 +73,33 @@ export const ModalFunction = ({
                   width={200}
                   className="max-h-[233px] max-w-[233px]"
                   alt={heading}
+                  priority
                 />
               </div>
             </div>
           )}
           <h1
             className={`text-3xl sm:text-4xl mt-4 sm:mt-0 font-bold text-black text-center ${
-              index === 3 || index === 5 ? "sm:mt-4 mt-3" : ""
+              index === 3 || index === 5 || index === 7 ? "sm:mt-4 mt-3" : ""
             }`}
           >
             {price}
           </h1>
-          <p className="text-lg sm:text-xl italic text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">
-            ordering coming soon!
-          </p>
-          {/* </a> */}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdZEvogS235wq9p6nhiAt_6E0TD70XaVmj_6q93j5RPRMQnSg/viewform"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <p className="text-lg sm:text-xl text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">
+              → order via google form
+            </p>
+          </a>
         </Modal>
       )}
       <button
-        className={`w-full border min-w-[${250}px] border-black rounded-3xl flex flex-col bg-white overflow-hidden shadow-panel hover:shadow-panelActive transition-all duration-500 hover:-translate-x-[5px] hover:-translate-y-[2px]`}
+        className={`${
+          span ? "lg:col-span-3 col-span-2" : "col-span-2"
+        } h-min w-full border min-w-[${250}px] border-black rounded-3xl flex flex-col bg-white overflow-hidden shadow-panel hover:shadow-panelActive transition-all duration-500 hover:-translate-x-[5px] hover:-translate-y-[2px]`}
         onClick={() => {
           setTimeout(() => {
             let tempArray = showModal.splice();
@@ -114,7 +127,7 @@ export const ShopWrapper = () => {
 
   return (
     // <div className="flex flex-col space-y-6 w-3/4 m-auto mb-20">
-    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-3/4 m-auto gap-6 mb-10">
+    <div className="grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 w-3/4 m-auto gap-6 mb-10">
       <ModalFunction
         index={0}
         heading={"when life gives you melons totebag"}
@@ -306,6 +319,70 @@ export const ShopWrapper = () => {
               by Various Artists
             </p>
             <p className="font-semibold text-xl text-start">$4.49</p>
+          </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={6}
+        heading="combo deal: totebag + 3 stickers"
+        author="by Various Artists"
+        src="/comboEditedSquare.png"
+        price="$7.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+        span={true}
+      >
+        <div className="h-full w-full">
+          <div className={`px-3 ${styles.gradient} w-full`}>
+            <Image
+              src="/comboEdited.png"
+              layout="responsive"
+              height={2847.83}
+              width={5830.96}
+              alt="combo deal photo"
+            />
+          </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              combo deal: totebag + 3 stickers
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Various Artists
+            </p>
+            <p className="font-semibold text-xl text-start">$7.99</p>
+          </div>
+        </div>
+      </ModalFunction>
+      <ModalFunction
+        index={7}
+        heading="individual stickers"
+        author="by Various Artists"
+        src="/indivStickersSquare.png"
+        price="$0.99"
+        link="#"
+        showModal={showModal}
+        setShowModal={setShowModal}
+        span
+      >
+        <div className="h-full w-full">
+          <div className={`px-3 ${styles.gradient} w-full`}>
+            <Image
+              src="/indivStickers.png"
+              layout="responsive"
+              height={2847.83}
+              width={5830.96}
+              alt="individual stickers"
+            />
+          </div>
+          <div className="flex flex-col border-t border-t-black p-2 pl-3">
+            <p className="text-xl font-medium leading-5 mb-1 text-start">
+              individual stickers
+            </p>
+            <p className="text-md text-shopFaded -mt-1 mb-1 leading-tight text-start">
+              by Various Artists
+            </p>
+            <p className="font-semibold text-xl text-start">$0.99</p>
           </div>
         </div>
       </ModalFunction>

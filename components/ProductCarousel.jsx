@@ -64,6 +64,20 @@ const ProductCarousel = ({ slides, i }) => {
       "/setA_5.png",
       "/setA_6.png",
     ],
+    [
+      "/setB_1.png",
+      "/setB_2.png",
+      "/setB_3.png",
+      "/setB_4.png",
+      "/setB_5.png",
+      "/setB_6.png",
+      "/setA_1.png",
+      "/setA_2.png",
+      "/setA_3.png",
+      "/setA_4.png",
+      "/setA_5.png",
+      "/setA_6.png",
+    ],
   ];
 
   return (
@@ -78,13 +92,18 @@ const ProductCarousel = ({ slides, i }) => {
                 >
                   <Image
                     src={
-                      i === 3 ? sourceArray[0][index] : sourceArray[1][index]
+                      i === 3
+                        ? sourceArray[0][index]
+                        : 1 === 5
+                        ? sourceArray[1][index]
+                        : sourceArray[2][index]
                     }
                     layout="responsive"
                     height={180}
                     width={180}
                     className="max-h-[200px] max-w-[200px]"
                     alt={"epic"}
+                    priority={index === 0}
                   />
                 </div>
               </div>
@@ -101,7 +120,13 @@ const ProductCarousel = ({ slides, i }) => {
               <Thumb
                 onClick={() => onThumbClick(index)}
                 selected={index === selectedIndex}
-                imgSrc={i === 3 ? sourceArray[0][index] : sourceArray[1][index]}
+                imgSrc={
+                  i === 3
+                    ? sourceArray[0][index]
+                    : 1 === 5
+                    ? sourceArray[1][index]
+                    : sourceArray[2][index]
+                }
                 key={index}
                 className="border-4 border-black"
               />
@@ -130,6 +155,7 @@ export const Thumb = ({ selected, onClick, imgSrc }) => (
         src={imgSrc}
         layout="fill"
         objectFit="contain"
+        priority
       />
     </button>
   </div>
