@@ -85,10 +85,15 @@ export const ModalFunction = ({
           >
             {price}
           </h1>
-          <p className="text-lg sm:text-xl italic text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">
-            ordering coming soon!
-          </p>
-          {/* </a> */}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdZEvogS235wq9p6nhiAt_6E0TD70XaVmj_6q93j5RPRMQnSg/viewform"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <p className="text-lg sm:text-xl text-center hover:translate-x-1 sm:mt-1 duration-500 underline underline-offset-2">
+              → order via google form
+            </p>
+          </a>
         </Modal>
       )}
       <button
