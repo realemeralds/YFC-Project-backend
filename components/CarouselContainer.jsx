@@ -77,27 +77,24 @@ const CarouselContainer = () => {
                       boba and cookies day
                     </p>
                     <p className="font-medium text-center text-xl xsm:text-2xl relative left-5 mb-4">
-                      11 - 12th August{" "}
+                      2 September{" "}
                       <span className="inline-block relative rotate-[-30deg] bottom-3 ">
                         📅
                       </span>
                     </p>
                     <p className="text-[20px] tracking-tight leading-tight mb-2 project:block hidden">
-                      There are many foods students love, but they are sadly not
-                      sold in SJI :(
+                      Want to buy something special for your teachers and
+                      friends? Well we have the perfect gift for you!
                     </p>
                     <p className="text-[20px] tracking-tight leading-tight">
-                      <span className="project:inline-block hidden">
-                        Thankfully,
-                      </span>{" "}
                       Project Vanguard will be selling boba, cookies and other
-                      items on <b>August 11th and 12th!</b>{" "}
+                      items on <b>2 September!</b>{" "}
                       <span className="xsm:inline-block hidden my-2 xsm:mb-2 ">
-                        Place an order with the link below by <b>August 7th</b>,
-                        and food will be delivered <u>right to your class.</u>
+                        The goods are in <u>limited stock</u>, so do check your
+                        email for confirmation and collection details!
                       </span>{" "}
-                      <i>Check back here soon, as more details arrive!</i>
                     </p>
+                    <i>Check back here soon for the order form!</i>
                     <a>
                       <button className="bg-white rounded-3xl items-start px-6 py-3 project:w-[80%] w-full mt-3 hidden">
                         <p className="text-start text-xl sm:text-2xl text-firstAccent font-medium mb-1">
