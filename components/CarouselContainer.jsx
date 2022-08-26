@@ -59,7 +59,7 @@ const CarouselContainer = () => {
       >
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex sm:h-[440px] h-[380px] items-center">
-            <div className="embla__slide">
+            {/* <div className="embla__slide">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[90vw] sm:px-8 flex-row items-center justify-center flex">
                   <div className="max-w-[40%] max-h-[500px] lg:block hidden pr-10">
@@ -110,7 +110,7 @@ const CarouselContainer = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="embla__slide relative">
               <div className="embla__slide__inner">
                 <div className="h-[500px] w-[90vw] sm:px-8 pt-5 flex-row items-center justify-center flex">
