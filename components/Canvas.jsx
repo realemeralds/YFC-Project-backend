@@ -17,8 +17,8 @@ export default function Canvas() {
   const bgCanvasRef = useRef(null);
   const overlayCanvasRef = useRef(null);
   const particleCanvasRef = useRef(null);
-  const breakButtonRef = useRef(null);
-  const cancelButtonRef = useRef(null);
+  // const breakButtonRef = useRef(null);
+  // const cancelButtonRef = useRef(null);
   const imgRef = useRef(null);
 
   // Socket ref for backend implementation
@@ -52,7 +52,7 @@ export default function Canvas() {
   const [countdownText, setCountdownText] = useState("loading...");
   const [canvasDisabled, setCanvasDisabled] = useState(false);
   const [mousedown, onMousedown] = useState(false);
-  let breakButton, cancelButton;
+  // let breakButton, cancelButton;
 
   // Array for animated particles
   let particleArray;
@@ -114,10 +114,10 @@ export default function Canvas() {
 
   useEffect(() => {
     if (!canvasDisabled) {
-      breakButton = breakButtonRef.current;
-      cancelButton = cancelButtonRef.current;
-      breakButton.disabled = false;
-      cancelButton.disabled = false;
+      // breakButton = breakButtonRef.current;
+      // cancelButton = cancelButtonRef.current;
+      // breakButton.disabled = false;
+      // cancelButton.disabled = false;
     }
     onMousedown(false);
   }, [mousedown, overlaypos.x]);
@@ -145,8 +145,8 @@ export default function Canvas() {
     }
     if (ctx && ctx2) {
       ctx2.fillStyle = "white";
-      breakButton = breakButtonRef.current;
-      cancelButton = cancelButtonRef.current;
+      // breakButton = breakButtonRef.current;
+      // cancelButton = cancelButtonRef.current;
 
       // Key canvas params
       const pixelSize = 10;
@@ -156,8 +156,8 @@ export default function Canvas() {
       var mouseOnCanvas = false;
 
       // default disabled
-      breakButton.disabled = true;
-      cancelButton.disabled = true;
+      // breakButton.disabled = true;
+      // cancelButton.disabled = true;
 
       // Create the holes in the canvas based off clearRectArray
       const paintCanvas = (array = clearRectArray, log) => {
@@ -361,28 +361,28 @@ export default function Canvas() {
         window.addEventListener("mousemove", (e) => {
           paintOverlays(e, canvas);
         });
-        breakButton.addEventListener("click", () => {
-          if (!clearRectArray) return;
-          tempArray = clearRectArray.slice();
-          if (
-            JSON.stringify(tempArray) !== JSON.stringify([]) &&
-            !JSON.stringify(tempArray).includes(
-              JSON.stringify([selectpos.x, selectpos.y])
-            )
-          ) {
-            tempArray.push([selectpos.x, selectpos.y]);
-          }
-          if (JSON.stringify(tempArray) !== JSON.stringify([]))
-            setClearRectArray(tempArray);
-          socket.current.emit("canvasChange", selectpos.x, selectpos.y);
-          selectpos.x = undefined;
-          selectpos.y = undefined;
-          breakButton.disabled = true;
-          cancelButton.disabled = true;
-          setCanvasDisabled(true);
-          setChanged(true);
-          // paintCanvas(tempArray, "lol");
-        });
+        // breakButton?.addEventListener("click", () => {
+        //   if (!clearRectArray) return;
+        //   tempArray = clearRectArray.slice();
+        //   if (
+        //     JSON.stringify(tempArray) !== JSON.stringify([]) &&
+        //     !JSON.stringify(tempArray).includes(
+        //       JSON.stringify([selectpos.x, selectpos.y])
+        //     )
+        //   ) {
+        //     tempArray.push([selectpos.x, selectpos.y]);
+        //   }
+        //   if (JSON.stringify(tempArray) !== JSON.stringify([]))
+        //     setClearRectArray(tempArray);
+        //   socket.current.emit("canvasChange", selectpos.x, selectpos.y);
+        //   selectpos.x = undefined;
+        //   selectpos.y = undefined;
+        //   // breakButton.disabled = true;
+        //   // cancelButton.disabled = true;
+        //   setCanvasDisabled(true);
+        //   setChanged(true);
+        //   // paintCanvas(tempArray, "lol");
+        // });
         window.addEventListener("mousedown", () => {
           if (mouseOnCanvas) {
             selectpos.x = overlaypos.x;
@@ -390,12 +390,12 @@ export default function Canvas() {
             onMousedown(!mousedown);
           }
         });
-        cancelButton.addEventListener("click", () => {
-          selectpos.x = undefined;
-          selectpos.y = undefined;
-          breakButton.disabled = true;
-          cancelButton.disabled = true;
-        });
+        // cancelButton?.addEventListener("click", () => {
+        //   selectpos.x = undefined;
+        //   selectpos.y = undefined;
+        //   // breakButton.disabled = true;
+        //   // cancelButton.disabled = true;
+        // });
         triggered = true;
       }
     }
@@ -446,8 +446,8 @@ export default function Canvas() {
           />
         </CanvasWrapper>
         <CanvasSidebar
-          breakButtonRef={breakButtonRef}
-          cancelButtonRef={cancelButtonRef}
+          // breakButtonRef={breakButtonRef}
+          // cancelButtonRef={cancelButtonRef}
           countdownText={countdownText}
         />
       </CanvasContainer>
@@ -572,6 +572,7 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
         style={{
           pointerEvents: active ? "auto" : "none",
           opacity: loaded || zindex !== 0 ? "1" : "0",
+          display: zindex === 10 ? "none" : undefined,
           width,
           transform,
           maxHeight,
@@ -588,6 +589,7 @@ export const CanvasElement = ({ shadow, zindex, daRef, active, onLoad }) => {
           style={{
             pointerEvents: "none",
             opacity: loaded || zindex !== 0 ? "1" : "0",
+            display: "none",
             width,
             transform,
             maxHeight,
@@ -608,23 +610,24 @@ export const CanvasSidebar = ({
   return (
     <div className="cv:w-[38vw] overflow-hidden hidden sm:block cv:flex justify-center items-center -mt-[10vh] basis-[50%]">
       <div className="cv:max-w-[600px] cv:min-w-[350px] cv:pl-6 pr-10">
-        <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
+        {/* <p className="text-4xl mb-5 hidden cv:block text-center m-auto text-white">
           break the barrier to reveal the mural, and find out more about
           dyslexia with fun facts.
-        </p>
-        <p className="text-4xl mb-7  hidden cv:block text-center m-auto text-white">
-          changes by other users are updated live, and there is a short cooldown
-          to add new pixels
+        </p> */}
+        <p className="text-4xl hidden cv:block text-center m-auto text-white">
+          thanks for participating! the mural is now complete, and the interactive features have been disabled.
         </p>
         <div className="flex flex-col space-y-5 justify-center align-center">
           <div className="flex flex-col cv:flex-row cv:space-y-0 cv:space-x-10 cv:w-auto space-y-5 justify-center items-center">
-            <ModalFunction
-              fact='Often dyslexics are thought to be reading backwards because of what is called the "Recency Effect." In which they pronounce the word using the most recent sound first, like "tap" for "pat.'
-              daRef={breakButtonRef}
+            {/* <ModalFunction daRef={breakButtonRef} /> */}
+            {/* <CanvasButton
+              icon={faCheck}
+              text="Break"
+              ref={breakButtonRef}
             />
-            <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} />
+            <CanvasButton icon={faXmark} text="Cancel" ref={cancelButtonRef} /> */}
           </div>
-          <CanvasCooldown text={countdownText} />
+          {/* <CanvasCooldown text={countdownText} /> */}
         </div>
       </div>
     </div>
